@@ -18,7 +18,7 @@ export const en: Dictionary = {
     langToggleAria: "Cambiar a español",
   },
   hero: {
-    badge: "Free Consultation · No pressure",
+    badge: "Free Consultation",
     title: "Stuck with a solar contract?",
     subtitle:
       "Are your solar bills higher than expected? Did the sale not match what you were told? Request a free consultation. We’ll take an honest look at your options and give you clear next steps.",
