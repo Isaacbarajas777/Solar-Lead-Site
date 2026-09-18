@@ -21,7 +21,7 @@ export const en: Dictionary = {
     badge: "Free Consultation · No pressure",
     title: "Stuck with a solar contract?",
     subtitle:
-      "Are your solar bills too high? Or did the sale not match what you were told? Ask for a free consultation. We will take an honest look at your options and help you see clear next steps.",
+      "Are your solar bills higher than expected? Did the sale not match what you were told? Request a free consultation. We’ll take an honest look at your options and give you clear next steps.",
     bullets: [
       "Free consultation — no pressure",
       "An honest look at your options",
