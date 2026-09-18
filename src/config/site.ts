@@ -11,7 +11,7 @@ export const siteConfig = {
   description:
     "Stuck with a solar contract? Ask for a free talk. We may connect you with people who can look at your case. We cannot promise any result.",
   phone: "(702) 313-3073",
-  email: "nevadaenergyadvisors@yahoo.com",
+  email: "team@nevadaenergyadvisors.com",
   address: "",
   /** Client form posts here; server validates and appends to data/leads.jsonl */
   formEndpoint: "/api/leads",
