@@ -15,14 +15,14 @@ export function Header({ locale, dict }: Props) {
 
   return (
     <header className="border-b border-slate-200/80 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
         <a href="#top" className="group flex items-center">
           <Image
             src="/logo.png"
             alt={siteConfig.brandName}
-            width={220}
-            height={100}
-            className="h-10 w-auto sm:h-12"
+            width={360}
+            height={164}
+            className="h-14 w-auto sm:h-20"
             priority
           />
         </a>
