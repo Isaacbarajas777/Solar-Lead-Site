@@ -18,7 +18,7 @@ export function Header({ locale, dict }: Props) {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <a href="#top" className="group flex items-center">
           <Image
-            src="/logo.png"
+            src="/logo.jpg"
             alt={siteConfig.brandName}
             width={220}
             height={100}
