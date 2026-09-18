@@ -13,10 +13,9 @@ export const siteConfig = {
   phone: "(702) 313-3073",
   email: "team@nevadaenergyadvisors.com",
   /** Inboxes that receive each form submission (via Resend) */
-  leadNotifyEmails: [
-    "team@nevadaenergyadvisors.com",
-    "nevadaenergyadvisors@yahoo.com",
-  ] as const,
+  // Resend test mode can only deliver to the account owner (team@) until
+  // nevadaenergyadvisors.com is verified at resend.com/domains.
+  leadNotifyEmails: ["team@nevadaenergyadvisors.com"] as const,
   address: "",
   /** Client form posts here; server validates and appends to data/leads.jsonl */
   formEndpoint: "/api/leads",
