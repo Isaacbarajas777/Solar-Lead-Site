@@ -18,12 +18,12 @@ export const es: Dictionary = {
     langToggleAria: "Switch to English",
   },
   hero: {
-    badge: "Consulta gratuita · Sin presión",
+    badge: "Consulta gratuita",
     title: "¿Se siente atrapado con un contrato solar?",
     subtitle:
       "¿Sus pagos solares son más altos de lo esperado? ¿La venta no coincidió con lo que le dijeron? Solicite una consulta gratuita. Revisamos sus opciones con honestidad y le damos pasos claros.",
     bullets: [
-      "Consulta gratuita — sin presión",
+      "Consulta gratuita",
       "Una mirada honesta a sus opciones",
       "Un camino más claro desde aquí",
     ],
