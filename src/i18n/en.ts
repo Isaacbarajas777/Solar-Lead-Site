@@ -30,7 +30,7 @@ export const en: Dictionary = {
     questionsPrefix: "Questions? Call",
     orEmail: "or email",
     formTitle: "Ask for a free consultation",
-    formSubtitle: "Share a few details. We will follow up if we can help.",
+    formSubtitle: "Share a few details and we’ll be in touch.",
   },
   form: {
     fullName: "Full name",
