@@ -2,26 +2,26 @@ import type { Dictionary } from "./types";
 
 export const en: Dictionary = {
   meta: {
-    title: "Nevada Energy Advisors | Free solar consult",
+    title: "Nevada Energy Advisors | Free solar consultation",
     description:
-      "Stuck with a solar contract? Bills too high, or the sale did not match what you were told? Ask for a free consult. We give you an honest look at your options and clear next steps. Every case is different.",
+      "Stuck with a solar contract? Bills too high, or the sale did not match what you were told? Ask for a free consultation. We give you an honest look at your options and clear next steps. Every case is different.",
     keywords: [
       "solar contract help",
       "solar payment relief",
-      "free solar consult",
+      "free solar consultation",
       "solar lease review",
     ],
   },
   header: {
-    cta: "Free consult",
+    cta: "Free Consultation",
     langToggleLabel: "ES",
     langToggleAria: "Cambiar a español",
   },
   hero: {
-    badge: "Free consult · No pressure",
+    badge: "Free Consultation · No pressure",
     title: "Stuck with a solar contract?",
     subtitle:
-      "Are your solar bills too high? Or did the sale not match what you were told? Ask for a free consult. We will take an honest look at your options and help you see clear next steps.",
+      "Are your solar bills too high? Or did the sale not match what you were told? Ask for a free consultation. We will take an honest look at your options and help you see clear next steps.",
     bullets: [
       "Free to ask — no pressure",
       "We help you take the next step",
@@ -29,7 +29,7 @@ export const en: Dictionary = {
     ],
     questionsPrefix: "Questions? Call",
     orEmail: "or email",
-    formTitle: "Ask for a free consult",
+    formTitle: "Ask for a free consultation",
     formSubtitle: "Share a few details. We will follow up if we can help.",
   },
   form: {
@@ -42,13 +42,13 @@ export const en: Dictionary = {
     phonePlaceholder: "(702) 313-3073",
     zipPlaceholder: "12345",
     messagePlaceholder: "Briefly describe your situation...",
-    submit: "Ask for a free consult",
+    submit: "Ask for a free consultation",
     submitting: "Sending...",
     consent:
-      "By submitting, you agree we may contact you about a free consult. This is not legal advice. Every case is different — we do not guarantee cancellation, refunds, or any specific outcome.",
+      "By submitting, you agree we may contact you about a free consultation. This is not legal advice. Every case is different — we do not guarantee cancellation, refunds, or any specific outcome.",
     successTitle: "Thank you",
     successBody:
-      "We got your request. Someone may call or email you about a free consult. If it fits, we may connect you with specialists for a closer look at your options.",
+      "We got your request. Someone may call or email you about a free consultation. If it fits, we may connect you with specialists for a closer look at your options.",
     submitAnother: "Submit another request",
     errors: {
       fullName: "Please enter your full name.",
@@ -63,7 +63,7 @@ export const en: Dictionary = {
   problem: {
     title: "Why people call us",
     subtitle:
-      "Solar deals can feel confusing or too expensive. We start with a free consult — an honest look at your options.",
+      "Solar deals can feel confusing or too expensive. We start with a free consultation — an honest look at your options.",
     items: [
       {
         title: "Bills that feel too high",
@@ -75,14 +75,14 @@ export const en: Dictionary = {
       },
       {
         title: "Not sure what to do next",
-        body: "Lease, loan, and PPA papers can be hard to read. A free consult can help you see clear next steps. Every case is different.",
+        body: "Lease, loan, and PPA papers can be hard to read. A free consultation can help you see clear next steps. Every case is different.",
       },
     ],
   },
   process: {
     title: "How it works",
     subtitle:
-      "Simple steps. Free consult first. Specialists only if it fits. Clear next steps.",
+      "Simple steps. Free consultation first. Specialists only if it fits. Clear next steps.",
     steps: [
       {
         step: "1",
@@ -91,7 +91,7 @@ export const en: Dictionary = {
       },
       {
         step: "2",
-        title: "Free consult",
+        title: "Free Consultation",
         body: "We follow up to learn more about your situation — free, with no pressure.",
       },
       {
@@ -112,11 +112,11 @@ export const en: Dictionary = {
     items: [
       {
         q: "What happens after I submit the form?",
-        a: "Someone may contact you for a free consult, ask a few questions, and see if connecting you with specialists makes sense.",
+        a: "Someone may contact you for a free consultation, ask a few questions, and see if connecting you with specialists makes sense.",
       },
       {
-        q: "Is the consult really free?",
-        a: "Yes. Asking for a consult on this site is free. You do not have to do anything after you speak with us.",
+        q: "Is the consultation really free?",
+        a: "Yes. Asking for a consultation on this site is free. You do not have to do anything after you speak with us.",
       },
       {
         q: "Do you guarantee my solar contract will be cancelled?",
@@ -124,11 +124,11 @@ export const en: Dictionary = {
       },
       {
         q: "What information should I have ready?",
-        a: "It helps to know your contract type (lease, loan, PPA, or owned), about how much you pay each month, and any papers you are okay sharing during a consult.",
+        a: "It helps to know your contract type (lease, loan, PPA, or owned), about how much you pay each month, and any papers you are okay sharing during a consultation.",
       },
       {
         q: "Is this legal advice?",
-        a: "No. This site and consults that start from the form are not legal advice. Specialists may discuss options, but results are never promised.",
+        a: "No. This site and consultations that start from the form are not legal advice. Specialists may discuss options, but results are never promised.",
       },
       {
         q: "Who will contact me?",
@@ -137,20 +137,20 @@ export const en: Dictionary = {
     ],
   },
   finalCta: {
-    title: "Want a free consult?",
-    body: "Ask for a free consult. We will take an honest look at what you share and follow up with clear next steps. If it fits, we may connect you with specialists.",
+    title: "Want a free consultation?",
+    body: "Ask for a free consultation. We will take an honest look at what you share and follow up with clear next steps. If it fits, we may connect you with specialists.",
     bullets: [
-      "Free consult — no pressure",
+      "Free Consultation — no pressure",
       "We may connect you with specialists if it fits",
       "Clear next steps — every case is different",
     ],
-    formTitle: "Ask for a free consult",
+    formTitle: "Ask for a free consultation",
     formSubtitle: "Same form as above — use whichever is easier.",
   },
   footer: {
-    tagline: "Free consults for people stuck with solar contracts",
+    tagline: "Free consultations for people stuck with solar contracts",
     disclaimer:
-      "Submitting this form is not legal advice. It is not a promise of cancellation, relief, refund, or any result. We may use your info to contact you about a free consult and to connect you with specialists if it fits.",
+      "Submitting this form is not legal advice. It is not a promise of cancellation, relief, refund, or any result. We may use your info to contact you about a free consultation and to connect you with specialists if it fits.",
     rights: "All rights reserved.",
   },
 };
