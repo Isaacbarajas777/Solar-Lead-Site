@@ -23,7 +23,7 @@ export const en: Dictionary = {
     subtitle:
       "Are your solar bills higher than expected? Did the sale not match what you were told? Request a free consultation. We’ll take an honest look at your options and give you clear next steps.",
     bullets: [
-      "Free consultation — no pressure",
+      "Free consultation",
       "An honest look at your options",
       "A clearer path from here",
     ],
