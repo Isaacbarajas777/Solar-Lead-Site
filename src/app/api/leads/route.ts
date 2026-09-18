@@ -210,8 +210,19 @@ export async function POST(request: NextRequest) {
 
   const emailed = await sendLeadEmail(record);
   const savedLocally = await persistLeadLocally(record);
+  const requireEmail = Boolean(process.env.VERCEL || process.env.RESEND_API_KEY);
 
-  // Prefer email delivery. Local file is a best-effort backup (often unavailable on Vercel).
+  if (requireEmail && !emailed.ok) {
+    console.error("Lead email failed:", emailed.error);
+    return NextResponse.json(
+      {
+        success: false,
+        error: "Unable to save your request. Please try again.",
+      },
+      { status: 500 }
+    );
+  }
+
   if (!emailed.ok && !savedLocally) {
     return NextResponse.json(
       {
@@ -224,8 +235,6 @@ export async function POST(request: NextRequest) {
 
   if (!emailed.ok) {
     console.error("Lead saved locally but email failed:", emailed.error);
-    // Still succeed for the visitor if we persisted somehow; ops must fix Resend.
-    // On Vercel without writable FS, emailed.ok is required (handled above).
   }
 
   return NextResponse.json({ success: true });
