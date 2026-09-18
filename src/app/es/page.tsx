@@ -4,7 +4,7 @@ import { HtmlLang } from "@/components/HtmlLang";
 import { getDictionary } from "@/i18n";
 import { siteConfig } from "@/config/site";
 
-const dict = getDictionary("en");
+const dict = getDictionary("es");
 
 export const metadata: Metadata = {
   title: dict.meta.title,
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: dict.meta.description,
     siteName: siteConfig.brandName,
     type: "website",
-    locale: "en_US",
+    locale: "es_US",
   },
   alternates: {
     languages: {
@@ -25,11 +25,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HomePage() {
+export default function SpanishHomePage() {
   return (
     <>
-      <HtmlLang locale="en" />
-      <LandingPage locale="en" dict={dict} />
+      <HtmlLang locale="es" />
+      <LandingPage locale="es" dict={dict} />
     </>
   );
 }

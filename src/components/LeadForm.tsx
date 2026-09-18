@@ -2,21 +2,13 @@
 
 import { useState, FormEvent } from "react";
 import { siteConfig } from "@/config/site";
+import type { Dictionary, Locale } from "@/i18n";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
 type FieldErrors = Partial<
   Record<"fullName" | "phone" | "email" | "zip" | "message" | "financeType", string>
 >;
-
-const FINANCE_OPTIONS = [
-  { value: "", label: "Prefer not to say" },
-  { value: "lease", label: "Solar lease" },
-  { value: "loan", label: "Solar loan" },
-  { value: "ppa", label: "Power purchase agreement (PPA)" },
-  { value: "cash", label: "Cash / owned system" },
-  { value: "unsure", label: "Not sure" },
-] as const;
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -31,7 +23,23 @@ function isValidZip(zip: string) {
   return /^\d{5}(-\d{4})?$/.test(zip.trim());
 }
 
-export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
+type Props = {
+  idPrefix?: string;
+  locale: Locale;
+  dict: Dictionary;
+};
+
+export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
+  const copy = dict.form;
+  const financeOptions = [
+    { value: "", label: copy.financeOptions.preferNot },
+    { value: "lease", label: copy.financeOptions.lease },
+    { value: "loan", label: copy.financeOptions.loan },
+    { value: "ppa", label: copy.financeOptions.ppa },
+    { value: "cash", label: copy.financeOptions.cash },
+    { value: "unsure", label: copy.financeOptions.unsure },
+  ] as const;
+
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -45,19 +53,19 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
   function validate(): FieldErrors {
     const next: FieldErrors = {};
     if (!fullName.trim() || fullName.trim().length < 2) {
-      next.fullName = "Please enter your full name.";
+      next.fullName = copy.errors.fullName;
     }
     if (!phone.trim() || !isValidPhone(phone)) {
-      next.phone = "Enter a valid phone number.";
+      next.phone = copy.errors.phone;
     }
     if (!email.trim() || !isValidEmail(email)) {
-      next.email = "Enter a valid email address.";
+      next.email = copy.errors.email;
     }
     if (!zip.trim() || !isValidZip(zip)) {
-      next.zip = "Enter a valid ZIP code.";
+      next.zip = copy.errors.zip;
     }
     if (message.length > 500) {
-      next.message = "Message must be 500 characters or fewer.";
+      next.message = copy.errors.message;
     }
     return next;
   }
@@ -85,6 +93,7 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
           zip: zip.trim(),
           financeType: financeType || undefined,
           message: message.trim() || undefined,
+          locale,
         }),
       });
 
@@ -92,7 +101,7 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
 
       if (!res.ok || !data.success) {
         setState("error");
-        setServerMessage(data.error || "Something went wrong. Please try again.");
+        setServerMessage(data.error || copy.errors.generic);
         return;
       }
 
@@ -106,7 +115,7 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
       setErrors({});
     } catch {
       setState("error");
-      setServerMessage("Unable to submit right now. Please try again shortly.");
+      setServerMessage(copy.errors.network);
     }
   }
 
@@ -133,17 +142,14 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
             />
           </svg>
         </div>
-        <h3 className="text-lg font-semibold text-navy-900">Thank you</h3>
-        <p className="mt-2 text-sm text-slate-700">
-          Your request was received. A team member may reach out to schedule a free
-          consult and help you see if you may qualify to connect with specialists.
-        </p>
+        <h3 className="text-lg font-semibold text-navy-900">{copy.successTitle}</h3>
+        <p className="mt-2 text-sm text-slate-700">{copy.successBody}</p>
         <button
           type="button"
           onClick={() => setState("idle")}
           className="mt-4 text-sm font-medium text-teal-700 underline-offset-2 hover:underline"
         >
-          Submit another request
+          {copy.submitAnother}
         </button>
       </div>
     );
@@ -164,7 +170,7 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label htmlFor={`${idPrefix}-fullName`} className={labelClass}>
-            Full name <span className="text-red-500">*</span>
+            {copy.fullName} <span className="text-red-500">*</span>
           </label>
           <input
             id={`${idPrefix}-fullName`}
@@ -181,7 +187,7 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
 
         <div>
           <label htmlFor={`${idPrefix}-phone`} className={labelClass}>
-            Phone <span className="text-red-500">*</span>
+            {copy.phone} <span className="text-red-500">*</span>
           </label>
           <input
             id={`${idPrefix}-phone`}
@@ -191,7 +197,7 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className={fieldClass}
-            placeholder="(555) 000-0000"
+            placeholder={copy.phonePlaceholder}
             required
           />
           {errors.phone && <p className={errorClass}>{errors.phone}</p>}
@@ -199,7 +205,7 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
 
         <div>
           <label htmlFor={`${idPrefix}-email`} className={labelClass}>
-            Email <span className="text-red-500">*</span>
+            {copy.email} <span className="text-red-500">*</span>
           </label>
           <input
             id={`${idPrefix}-email`}
@@ -216,7 +222,7 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
 
         <div>
           <label htmlFor={`${idPrefix}-zip`} className={labelClass}>
-            ZIP code <span className="text-red-500">*</span>
+            {copy.zip} <span className="text-red-500">*</span>
           </label>
           <input
             id={`${idPrefix}-zip`}
@@ -227,7 +233,7 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
             value={zip}
             onChange={(e) => setZip(e.target.value)}
             className={fieldClass}
-            placeholder="12345"
+            placeholder={copy.zipPlaceholder}
             required
           />
           {errors.zip && <p className={errorClass}>{errors.zip}</p>}
@@ -235,7 +241,8 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
 
         <div>
           <label htmlFor={`${idPrefix}-financeType`} className={labelClass}>
-            Finance type <span className="font-normal text-slate-500">(optional)</span>
+            {copy.financeType}{" "}
+            <span className="font-normal text-slate-500">{copy.optional}</span>
           </label>
           <select
             id={`${idPrefix}-financeType`}
@@ -244,7 +251,7 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
             onChange={(e) => setFinanceType(e.target.value)}
             className={fieldClass}
           >
-            {FINANCE_OPTIONS.map((opt) => (
+            {financeOptions.map((opt) => (
               <option key={opt.value || "none"} value={opt.value}>
                 {opt.label}
               </option>
@@ -254,8 +261,8 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
 
         <div className="sm:col-span-2">
           <label htmlFor={`${idPrefix}-message`} className={labelClass}>
-            Short message{" "}
-            <span className="font-normal text-slate-500">(optional)</span>
+            {copy.message}{" "}
+            <span className="font-normal text-slate-500">{copy.optional}</span>
           </label>
           <textarea
             id={`${idPrefix}-message`}
@@ -264,7 +271,7 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             className={fieldClass}
-            placeholder="Briefly describe your situation..."
+            placeholder={copy.messagePlaceholder}
             maxLength={500}
           />
           {errors.message && <p className={errorClass}>{errors.message}</p>}
@@ -282,13 +289,10 @@ export function LeadForm({ idPrefix = "lead" }: { idPrefix?: string }) {
         disabled={state === "submitting"}
         className="w-full rounded-lg bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-teal-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600 disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {state === "submitting" ? "Submitting..." : "Request a free consult"}
+        {state === "submitting" ? copy.submitting : copy.submit}
       </button>
 
-      <p className="text-xs leading-relaxed text-slate-500">
-        By submitting, you agree we may contact you about a free consult. This is not
-        legal advice and not a guarantee of cancellation or any outcome.
-      </p>
+      <p className="text-xs leading-relaxed text-slate-500">{copy.consent}</p>
     </form>
   );
 }

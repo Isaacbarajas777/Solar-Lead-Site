@@ -9,6 +9,7 @@ type LeadBody = {
   zip?: unknown;
   financeType?: unknown;
   message?: unknown;
+  locale?: unknown;
 };
 
 function isNonEmptyString(value: unknown, min = 1): value is string {
@@ -36,6 +37,8 @@ const ALLOWED_FINANCE = new Set([
   "unsure",
 ]);
 
+const ALLOWED_LOCALE = new Set(["en", "es"]);
+
 export async function POST(request: NextRequest) {
   let body: LeadBody;
 
@@ -61,6 +64,10 @@ export async function POST(request: NextRequest) {
   const message =
     typeof body.message === "string" && body.message.trim()
       ? body.message.trim()
+      : undefined;
+  const locale =
+    typeof body.locale === "string" && ALLOWED_LOCALE.has(body.locale)
+      ? body.locale
       : undefined;
 
   if (!fullName) {
@@ -109,6 +116,7 @@ export async function POST(request: NextRequest) {
     zip,
     ...(financeType ? { financeType } : {}),
     ...(message ? { message } : {}),
+    ...(locale ? { locale } : {}),
     userAgent: request.headers.get("user-agent") || undefined,
   };
 
