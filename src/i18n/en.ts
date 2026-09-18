@@ -96,7 +96,7 @@ export const en: Dictionary = {
       },
       {
         step: "3",
-        title: "Specialist look (if it fits)",
+        title: "Specialist review",
         body: "If it makes sense, we may connect you with people who can review your case.",
       },
       {
