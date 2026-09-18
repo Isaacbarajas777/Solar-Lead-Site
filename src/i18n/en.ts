@@ -82,7 +82,7 @@ export const en: Dictionary = {
   process: {
     title: "How it works",
     subtitle:
-      "Simple steps. Free consultation first. Specialists only if it fits. Clear next steps.",
+      "Start with a free consultation. Specialists only when it makes sense.",
     steps: [
       {
         step: "1",
