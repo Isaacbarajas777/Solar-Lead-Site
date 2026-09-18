@@ -25,7 +25,7 @@ export const en: Dictionary = {
     bullets: [
       "Free consultation — no pressure",
       "An honest look at your options",
-      "Specialists when it fits — clearer path forward",
+      "A clearer path from here",
     ],
     questionsPrefix: "Questions? Call",
     orEmail: "or email",
@@ -141,7 +141,7 @@ export const en: Dictionary = {
     body: "Ask for a free consultation. We will take an honest look at what you share and follow up with clear next steps. If it fits, we may connect you with specialists.",
     bullets: [
       "Share a few details — we follow up",
-      "We may connect you with specialists if it fits",
+      "We may connect you with specialists when it makes sense",
       "Every case is different",
     ],
     formTitle: "Ask for a free consultation",
@@ -150,7 +150,7 @@ export const en: Dictionary = {
   footer: {
     tagline: "Free consultations for people stuck with solar contracts",
     disclaimer:
-      "Submitting this form is not legal advice. It is not a promise of cancellation, relief, refund, or any result. We may use your info to contact you about a free consultation and to connect you with specialists if it fits.",
+      "Submitting this form is not legal advice. It is not a promise of cancellation, relief, refund, or any result. We may use your info to contact you about a free consultation and to connect you with specialists when it makes sense.",
     rights: "All rights reserved.",
   },
 };
