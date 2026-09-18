@@ -1,6 +1,6 @@
 /**
  * Central site configuration.
- * Replace PLACEHOLDER values with real brand/contact details before publishing.
+ * Brand and public contact details used across the site UI.
  *
  * Form submissions POST to /api/leads (see that route). For production CRM/webhook
  * integration, update formEndpoint notes and the API handler accordingly.
@@ -10,8 +10,8 @@ export const siteConfig = {
   tagline: "Free talks for people stuck with solar contracts",
   description:
     "Stuck with a solar contract? Ask for a free talk. We may connect you with people who can look at your case. We cannot promise any result.",
-  phone: "(555) 000-0000",
-  email: "hello@example.com",
+  phone: "(702) 313-3073",
+  email: "nevadaenergyadvisors@yahoo.com",
   address: "",
   /** Client form posts here; server validates and appends to data/leads.jsonl */
   formEndpoint: "/api/leads",

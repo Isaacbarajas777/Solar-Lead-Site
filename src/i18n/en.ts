@@ -39,7 +39,7 @@ export const en: Dictionary = {
     zip: "ZIP code",
     optional: "(optional)",
     message: "Short message",
-    phonePlaceholder: "(555) 000-0000",
+    phonePlaceholder: "(702) 313-3073",
     zipPlaceholder: "12345",
     messagePlaceholder: "Briefly describe your situation...",
     submit: "Ask for a free talk",
