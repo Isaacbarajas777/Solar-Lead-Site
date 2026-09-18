@@ -7,7 +7,7 @@ import type { Dictionary, Locale } from "@/i18n";
 type FormState = "idle" | "submitting" | "success" | "error";
 
 type FieldErrors = Partial<
-  Record<"fullName" | "phone" | "email" | "zip" | "message" | "financeType", string>
+  Record<"fullName" | "phone" | "email" | "zip" | "message", string>
 >;
 
 function isValidEmail(email: string) {
@@ -31,20 +31,11 @@ type Props = {
 
 export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
   const copy = dict.form;
-  const financeOptions = [
-    { value: "", label: copy.financeOptions.preferNot },
-    { value: "lease", label: copy.financeOptions.lease },
-    { value: "loan", label: copy.financeOptions.loan },
-    { value: "ppa", label: copy.financeOptions.ppa },
-    { value: "cash", label: copy.financeOptions.cash },
-    { value: "unsure", label: copy.financeOptions.unsure },
-  ] as const;
 
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [zip, setZip] = useState("");
-  const [financeType, setFinanceType] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
   const [state, setState] = useState<FormState>("idle");
@@ -91,7 +82,6 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
           phone: phone.trim(),
           email: email.trim(),
           zip: zip.trim(),
-          financeType: financeType || undefined,
           message: message.trim() || undefined,
           locale,
         }),
@@ -110,7 +100,6 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
       setPhone("");
       setEmail("");
       setZip("");
-      setFinanceType("");
       setMessage("");
       setErrors({});
     } catch {
@@ -220,7 +209,7 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
           {errors.email && <p className={errorClass}>{errors.email}</p>}
         </div>
 
-        <div>
+        <div className="sm:col-span-2">
           <label htmlFor={`${idPrefix}-zip`} className={labelClass}>
             {copy.zip} <span className="text-red-500">*</span>
           </label>
@@ -237,26 +226,6 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
             required
           />
           {errors.zip && <p className={errorClass}>{errors.zip}</p>}
-        </div>
-
-        <div>
-          <label htmlFor={`${idPrefix}-financeType`} className={labelClass}>
-            {copy.financeType}{" "}
-            <span className="font-normal text-slate-500">{copy.optional}</span>
-          </label>
-          <select
-            id={`${idPrefix}-financeType`}
-            name="financeType"
-            value={financeType}
-            onChange={(e) => setFinanceType(e.target.value)}
-            className={fieldClass}
-          >
-            {financeOptions.map((opt) => (
-              <option key={opt.value || "none"} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
         </div>
 
         <div className="sm:col-span-2">

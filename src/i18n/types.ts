@@ -26,7 +26,6 @@ export type Dictionary = {
     phone: string;
     email: string;
     zip: string;
-    financeType: string;
     optional: string;
     message: string;
     phonePlaceholder: string;
@@ -46,14 +45,6 @@ export type Dictionary = {
       message: string;
       generic: string;
       network: string;
-    };
-    financeOptions: {
-      preferNot: string;
-      lease: string;
-      loan: string;
-      ppa: string;
-      cash: string;
-      unsure: string;
     };
   };
   problem: {

@@ -6,10 +6,10 @@
  * integration, update formEndpoint notes and the API handler accordingly.
  */
 export const siteConfig = {
-  brandName: "Solar Relief Consult",
-  tagline: "Free consults for homeowners stuck in solar contracts",
+  brandName: "Nevada Energy Advisors",
+  tagline: "Free talks for people stuck with solar contracts",
   description:
-    "See if you may qualify for help with a solar contract. Submit your info for a free consult and connect with specialists who review your situation.",
+    "Stuck with a solar contract? Ask for a free talk. We may connect you with people who can look at your case. We cannot promise any result.",
   phone: "(555) 000-0000",
   email: "hello@example.com",
   address: "",
@@ -23,9 +23,9 @@ export const siteConfig = {
   formEndpointNotes:
     "Leads are validated server-side and appended as JSON lines to data/leads.jsonl. Replace with a CRM/webhook before going live if needed.",
   seo: {
-    title: "Solar Relief Consult | Free Solar Contract Consult",
+    title: "Nevada Energy Advisors | Free solar talk",
     description:
-      "Feeling stuck with high solar payments or a contract that does not match what you were told? Request a free consult and see if you may qualify to connect with specialists.",
+      "Stuck with a solar contract? High bills or a sale that did not match what you were told? Ask for a free talk. We may connect you with specialists. We cannot promise any result.",
     keywords: [
       "solar contract help",
       "solar payment relief",
@@ -34,7 +34,7 @@ export const siteConfig = {
     ],
   },
   disclaimer:
-    "Submitting this form is not legal advice and is not a guarantee of cancellation, relief, or any particular outcome. Information you provide may be used to contact you about a free consult and to connect you with specialists if appropriate.",
+    "Submitting this form is not legal advice and is not a guarantee of cancellation, relief, or any particular outcome. Information you provide may be used to contact you about a free talk and to connect you with specialists if appropriate.",
 } as const;
 
 export type SiteConfig = typeof siteConfig;

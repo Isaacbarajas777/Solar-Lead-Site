@@ -2,9 +2,9 @@ import type { Dictionary } from "./types";
 
 export const es: Dictionary = {
   meta: {
-    title: "Solar Relief Consult | Consulta gratuita sobre contrato solar",
+    title: "Nevada Energy Advisors | Plática solar gratis",
     description:
-      "¿Se siente atrapado con pagos solares altos o un contrato que no coincide con lo que le dijeron? Solicite una consulta gratuita y vea si puede calificar para conectar con especialistas.",
+      "¿Atorado con un contrato solar? ¿Pagos muy altos, o le vendieron algo distinto a lo que le dijeron? Pida una plática gratis. Podemos conectarlo con personas que revisen su caso. No podemos prometer ningún resultado.",
     keywords: [
       "ayuda con contrato solar",
       "alivio de pagos solares",
@@ -13,44 +13,42 @@ export const es: Dictionary = {
     ],
   },
   header: {
-    cta: "Consulta gratuita",
+    cta: "Plática gratis",
     langToggleLabel: "EN",
     langToggleAria: "Switch to English",
   },
   hero: {
-    badge: "Consulta gratuita · Solo generación de leads",
-    title: "¿Atrapado en un contrato solar que no se siente bien?",
+    badge: "Plática gratis · Sin presión",
+    title: "¿Atorado con un contrato solar?",
     subtitle:
-      "Pagos altos, papeleo confuso o una oferta de venta que no coincide con la realidad — no está solo. Solicite una consulta gratuita para ver si puede calificar y conectar con especialistas que revisen su situación.",
+      "¿Los pagos son muy altos? ¿O le vendieron algo distinto a lo que le dijeron? Pida una plática gratis. Podemos conectarlo con personas que revisen su caso. No podemos prometer ningún resultado.",
     bullets: [
-      "Solicitud de consulta sin costo — sin obligación",
-      "Pasos claros después de una revisión por especialistas",
-      "Proceso transparente y conforme — sin garantías de resultado",
+      "Gratis preguntar — sin presión",
+      "Le ayudamos a dar el siguiente paso",
+      "Sin promesas de cancelar su contrato",
     ],
     questionsPrefix: "¿Preguntas? Llame al",
     orEmail: "o escriba a",
-    formTitle: "Solicite su consulta gratuita",
-    formSubtitle:
-      "Comparta algunos datos y le daremos seguimiento para ver si puede calificar.",
+    formTitle: "Pida una plática gratis",
+    formSubtitle: "Comparta algunos datos. Le damos seguimiento si podemos ayudar.",
   },
   form: {
     fullName: "Nombre completo",
     phone: "Teléfono",
     email: "Correo electrónico",
     zip: "Código postal",
-    financeType: "Tipo de financiamiento",
     optional: "(opcional)",
     message: "Mensaje breve",
     phonePlaceholder: "(555) 000-0000",
     zipPlaceholder: "12345",
     messagePlaceholder: "Describa brevemente su situación...",
-    submit: "Solicitar una consulta gratuita",
+    submit: "Pedir una plática gratis",
     submitting: "Enviando...",
     consent:
-      "Al enviar, acepta que podamos contactarlo sobre una consulta gratuita. Esto no es asesoría legal y no es una garantía de cancelación ni de ningún resultado.",
+      "Al enviar, acepta que podamos contactarlo sobre una plática gratis. Esto no es asesoría legal. No podemos prometer cancelación ni ningún resultado.",
     successTitle: "Gracias",
     successBody:
-      "Recibimos su solicitud. Un miembro del equipo podría contactarlo para programar una consulta gratuita y ayudarle a ver si puede calificar para conectar con especialistas.",
+      "Recibimos su solicitud. Alguien podría llamarlo o escribirle sobre una plática gratis. Si encaja, podemos conectarlo con especialistas. No podemos prometer ningún resultado.",
     submitAnother: "Enviar otra solicitud",
     errors: {
       fullName: "Ingrese su nombre completo.",
@@ -61,108 +59,98 @@ export const es: Dictionary = {
       generic: "Algo salió mal. Inténtelo de nuevo.",
       network: "No se pudo enviar ahora. Inténtelo de nuevo en breve.",
     },
-    financeOptions: {
-      preferNot: "Prefiero no decir",
-      lease: "Arrendamiento solar",
-      loan: "Préstamo solar",
-      ppa: "Acuerdo de compra de energía (PPA)",
-      cash: "Efectivo / sistema propio",
-      unsure: "No estoy seguro",
-    },
   },
   problem: {
-    title: "Por qué contactan los propietarios",
+    title: "Por qué nos llaman",
     subtitle:
-      "Muchas personas nos contactan porque su acuerdo solar es más estresante de lo esperado. Le ayudamos a comenzar con una consulta gratuita — no con garantías.",
+      "Los contratos solares pueden confundir o costar demasiado. Empezamos con una plática gratis — no con promesas.",
     items: [
       {
-        title: "Pagos que tensionan su presupuesto",
-        body: "Los pagos solares mensuales pueden subir más de lo esperado, dejando a los propietarios buscando opciones y respuestas más claras.",
+        title: "Pagos que se sienten muy altos",
+        body: "Su pago solar puede costar más de lo que esperaba. Muchas personas quieren respuestas más claras sobre qué pueden hacer.",
       },
       {
-        title: "Una oferta de venta que no coincide con la realidad",
-        body: "Si las estimaciones de ahorro, incentivos o términos del contrato se sienten distintos de lo que le dijeron, es razonable buscar una segunda opinión.",
+        title: "La venta no coincidió con lo que le dijeron",
+        body: "Si el ahorro, los incentivos o los términos se sienten distintos de lo que le dijeron, está bien pedir otra mirada.",
       },
       {
-        title: "Sentirse atrapado con pocos pasos claros",
-        body: "El papeleo de arrendamiento, préstamo y PPA puede ser denso. Una consulta gratuita puede ayudarle a entender qué caminos podrían estar disponibles — sin prometer ningún resultado.",
+        title: "No sabe qué hacer después",
+        body: "El papeleo de arrendamiento, préstamo y PPA puede ser difícil. Una plática gratis puede ayudar a ver posibles pasos. No podemos prometer ningún resultado.",
       },
     ],
   },
   process: {
     title: "Cómo funciona",
     subtitle:
-      "Un proceso simple y transparente centrado en una consulta gratuita y en conectar con los especialistas adecuados cuando tenga sentido.",
+      "Pasos simples. Primero una plática gratis. Especialistas solo si encaja. Sin garantías.",
     steps: [
       {
         step: "1",
         title: "Envíe su información",
-        body: "Complete el formulario breve con su nombre, datos de contacto, código postal y notas opcionales sobre su tipo de financiamiento.",
+        body: "Complete el formulario breve con su nombre, teléfono, correo, código postal y una nota opcional.",
       },
       {
         step: "2",
-        title: "Consulta gratuita",
-        body: "Damos seguimiento para conocer más sobre su contrato y situación — sin costo y sin obligación.",
+        title: "Plática gratis",
+        body: "Damos seguimiento para conocer más sobre su situación — gratis y sin presión.",
       },
       {
         step: "3",
-        title: "Revisión por especialistas",
-        body: "Si corresponde, le ayudamos a conectar con especialistas que puedan revisar sus documentos y circunstancias.",
+        title: "Revisión de especialista (si encaja)",
+        body: "Si tiene sentido, podemos conectarlo con personas que revisen su caso.",
       },
       {
         step: "4",
-        title: "Pasos claros siguientes",
-        body: "Recibe orientación práctica sobre posibles siguientes pasos. Los resultados varían; nada aquí garantiza cancelación ni alivio.",
+        title: "Pasos claros",
+        body: "Recibe pasos sencillos. Los resultados varían. No podemos prometer cancelación ni alivio.",
       },
     ],
   },
   faq: {
     title: "Preguntas frecuentes",
-    subtitle:
-      "Respuestas directas — sin garantías de resultado, sin afirmaciones de asesoría legal.",
+    subtitle: "Respuestas cortas. Sin promesas de resultado. No es asesoría legal.",
     items: [
       {
         q: "¿Qué ocurre después de enviar el formulario?",
-        a: "Alguien de nuestro equipo podría contactarlo para programar una consulta gratuita, hacer algunas preguntas aclaratorias y ayudar a determinar si conectar con especialistas es apropiado.",
+        a: "Alguien podría contactarlo para una plática gratis, hacer algunas preguntas y ver si conectar con especialistas tiene sentido.",
       },
       {
-        q: "¿La consulta es realmente gratuita?",
-        a: "Sí. Solicitar una consulta a través de este sitio es gratuito. No hay obligación de continuar después de hablar con nosotros.",
+        q: "¿La plática es realmente gratis?",
+        a: "Sí. Pedir una plática en este sitio es gratis. No tiene que continuar después de hablar con nosotros.",
       },
       {
         q: "¿Garantizan que se cancelará mi contrato solar?",
-        a: "No. No garantizamos cancelación, reembolsos, reducciones de pago ni ningún resultado específico. Cada situación es distinta, y enviar un formulario no es una promesa de alivio.",
+        a: "No. No prometemos cancelación, reembolsos, pagos más bajos ni ningún resultado específico. Cada caso es distinto.",
       },
       {
         q: "¿Qué información debo tener lista?",
-        a: "Ayuda tener el tipo de contrato (arrendamiento, préstamo, PPA o propio), el pago mensual aproximado, el nombre del instalador o prestamista si lo conoce, y cualquier documento que se sienta cómodo compartiendo durante una consulta.",
+        a: "Ayuda saber el tipo de contrato (arrendamiento, préstamo, PPA o propio), cuánto paga al mes más o menos, y cualquier papel que se sienta cómodo compartiendo en la plática.",
       },
       {
         q: "¿Esto es asesoría legal?",
-        a: "No. La información en este sitio y las conversaciones que comienzan desde un formulario de leads no son asesoría legal. Los especialistas pueden hablar de opciones relevantes a su situación, pero los resultados nunca están garantizados.",
+        a: "No. Este sitio y las pláticas que empiezan desde el formulario no son asesoría legal. Los especialistas pueden hablar de opciones, pero nunca se prometen resultados.",
       },
       {
         q: "¿Quién me contactará?",
-        a: "Un representante asociado a esta marca podría comunicarse usando el teléfono o correo que proporcione. Si su situación parece adecuada, podemos ayudarle a conectar con especialistas para una revisión más profunda.",
+        a: "Alguien de esta marca podría llamar o escribir usando los datos que dé. Si su caso parece adecuado, podemos conectarlo con especialistas para una revisión más cercana.",
       },
     ],
   },
   finalCta: {
-    title: "¿Listo para ver si puede calificar?",
-    body: "Dé el primer paso con una solicitud de consulta gratuita. Revisaremos lo que comparta y daremos seguimiento para hablar sobre si conectar con especialistas tiene sentido para su situación.",
+    title: "¿Quiere una plática gratis?",
+    body: "Pida una plática gratis. Revisaremos lo que comparta y le daremos seguimiento. Si encaja, podemos conectarlo con especialistas. No podemos prometer ningún resultado.",
     bullets: [
-      "Consulta gratuita — sin obligación",
-      "Vea si puede calificar para una revisión por especialistas",
-      "Proceso transparente con expectativas claras",
+      "Plática gratis — sin presión",
+      "Podemos conectarlo con especialistas si encaja",
+      "Pasos claros — sin promesas de resultado",
     ],
-    formTitle: "Comience su solicitud de consulta gratuita",
-    formSubtitle: "El mismo formulario de arriba — use el que le resulte conveniente.",
+    formTitle: "Pida una plática gratis",
+    formSubtitle: "El mismo formulario de arriba — use el que le resulte más fácil.",
   },
   footer: {
-    tagline:
-      "Consultas gratuitas para propietarios atrapados en contratos solares",
+    tagline: "Pláticas gratis para personas atoradas con contratos solares",
     disclaimer:
-      "Enviar este formulario no es asesoría legal y no es una garantía de cancelación, alivio ni de ningún resultado en particular. La información que proporcione puede usarse para contactarlo sobre una consulta gratuita y para conectar con especialistas si corresponde.",
+      "Enviar este formulario no es asesoría legal. No es una promesa de cancelación, alivio ni de ningún resultado. Podemos usar su información para contactarlo sobre una plática gratis y para conectar con especialistas si encaja.",
     rights: "Todos los derechos reservados.",
   },
 };

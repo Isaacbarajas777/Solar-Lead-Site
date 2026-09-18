@@ -17,7 +17,7 @@ export function Header({ locale, dict }: Props) {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
         <a href="#top" className="group flex items-center gap-2">
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-navy-900 text-sm font-bold text-white">
-            SR
+            NE
           </span>
           <span className="text-base font-semibold tracking-tight text-navy-900 group-hover:text-teal-700 sm:text-lg">
             {siteConfig.brandName}
