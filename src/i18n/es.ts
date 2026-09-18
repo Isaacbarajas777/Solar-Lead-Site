@@ -21,7 +21,7 @@ export const es: Dictionary = {
     badge: "Consulta gratuita · Sin presión",
     title: "¿Se siente atrapado con un contrato solar?",
     subtitle:
-      "¿Los pagos solares son muy altos? ¿O le vendieron algo distinto a lo que le dijeron? Pida una consulta gratuita. Revisamos sus opciones con honestidad y le ayudamos a ver pasos claros.",
+      "¿Sus pagos solares son más altos de lo esperado? ¿La venta no coincidió con lo que le dijeron? Solicite una consulta gratuita. Revisamos sus opciones con honestidad y le damos pasos claros.",
     bullets: [
       "Consulta gratuita — sin presión",
       "Una mirada honesta a sus opciones",
