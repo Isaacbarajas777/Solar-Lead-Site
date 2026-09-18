@@ -23,9 +23,9 @@ export const en: Dictionary = {
     subtitle:
       "Are your solar bills too high? Or did the sale not match what you were told? Ask for a free consultation. We will take an honest look at your options and help you see clear next steps.",
     bullets: [
-      "Free to ask — no pressure",
-      "We help you take the next step",
-      "Clear next steps — no pressure",
+      "Free consultation — no pressure",
+      "An honest look at your options",
+      "Specialists when it fits — clearer path forward",
     ],
     questionsPrefix: "Questions? Call",
     orEmail: "or email",
@@ -140,9 +140,9 @@ export const en: Dictionary = {
     title: "Want a free consultation?",
     body: "Ask for a free consultation. We will take an honest look at what you share and follow up with clear next steps. If it fits, we may connect you with specialists.",
     bullets: [
-      "Free Consultation — no pressure",
+      "Share a few details — we follow up",
       "We may connect you with specialists if it fits",
-      "Clear next steps — every case is different",
+      "Every case is different",
     ],
     formTitle: "Ask for a free consultation",
     formSubtitle: "Same form as above — use whichever is easier.",

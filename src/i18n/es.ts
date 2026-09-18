@@ -23,9 +23,9 @@ export const es: Dictionary = {
     subtitle:
       "¿Los pagos solares son muy altos? ¿O le vendieron algo distinto a lo que le dijeron? Pida una consulta gratuita. Revisamos sus opciones con honestidad y le ayudamos a ver pasos claros.",
     bullets: [
-      "Preguntar es gratis — sin presión",
-      "Le ayudamos a dar el siguiente paso",
-      "Pasos claros — sin presión",
+      "Consulta gratuita — sin presión",
+      "Una mirada honesta a sus opciones",
+      "Especialistas si encaja — camino más claro",
     ],
     questionsPrefix: "¿Preguntas? Llame al",
     orEmail: "o escriba a",
@@ -140,9 +140,9 @@ export const es: Dictionary = {
     title: "¿Quiere una consulta gratuita?",
     body: "Pida una consulta gratuita. Revisamos con honestidad lo que comparta y le damos seguimiento con pasos claros. Si encaja, podemos conectarlo con especialistas.",
     bullets: [
-      "Consulta gratuita — sin presión",
+      "Comparta unos datos — le damos seguimiento",
       "Podemos conectarlo con especialistas si encaja",
-      "Pasos claros — cada caso es distinto",
+      "Cada caso es distinto",
     ],
     formTitle: "Pida una consulta gratuita",
     formSubtitle: "El mismo formulario de arriba — use el que le resulte más fácil.",
