@@ -1,6 +1,11 @@
 import { siteConfig } from "@/config/site";
+import type { Dictionary } from "@/i18n";
 
-export function Footer() {
+type Props = {
+  dict: Dictionary;
+};
+
+export function Footer({ dict }: Props) {
   const year = new Date().getFullYear();
 
   return (
@@ -9,7 +14,7 @@ export function Footer() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="text-base font-semibold text-navy-900">{siteConfig.brandName}</p>
-            <p className="mt-1 max-w-md text-sm text-slate-600">{siteConfig.tagline}</p>
+            <p className="mt-1 max-w-md text-sm text-slate-600">{dict.footer.tagline}</p>
           </div>
           <div className="text-sm text-slate-700">
             <p>
@@ -32,11 +37,11 @@ export function Footer() {
         </div>
 
         <p className="mt-8 text-xs leading-relaxed text-slate-500">
-          {siteConfig.disclaimer}
+          {dict.footer.disclaimer}
         </p>
 
         <p className="mt-4 text-xs text-slate-400">
-          © {year} {siteConfig.brandName}. All rights reserved.
+          © {year} {siteConfig.brandName}. {dict.footer.rights}
         </p>
       </div>
     </footer>

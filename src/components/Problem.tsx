@@ -1,33 +1,23 @@
-const problems = [
-  {
-    title: "Payments that strain your budget",
-    body: "Monthly solar payments can climb higher than expected, leaving homeowners searching for options and clearer answers.",
-  },
-  {
-    title: "A sales pitch that does not match reality",
-    body: "If savings estimates, incentives, or contract terms feel different from what you were told, it is reasonable to seek a second look.",
-  },
-  {
-    title: "Feeling trapped with few clear next steps",
-    body: "Lease, loan, and PPA paperwork can be dense. A free consult can help you understand what paths may be available — without promising any outcome.",
-  },
-];
+import type { Dictionary } from "@/i18n";
 
-export function Problem() {
+type Props = {
+  dict: Dictionary;
+};
+
+export function Problem({ dict }: Props) {
+  const { problem } = dict;
+
   return (
     <section className="bg-slate-50 py-16 sm:py-20" id="problems">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-2xl font-bold tracking-tight text-navy-900 sm:text-3xl">
-            Why homeowners reach out
+            {problem.title}
           </h2>
-          <p className="mt-3 text-slate-600">
-            Many people contact us because their solar agreement is more stressful than
-            expected. We help you start with a free consult — not guarantees.
-          </p>
+          <p className="mt-3 text-slate-600">{problem.subtitle}</p>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {problems.map((item) => (
+          {problem.items.map((item) => (
             <article
               key={item.title}
               className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
