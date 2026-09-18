@@ -25,7 +25,7 @@ export const es: Dictionary = {
     bullets: [
       "Consulta gratuita — sin presión",
       "Una mirada honesta a sus opciones",
-      "Especialistas si encaja — camino más claro",
+      "Un camino más claro desde aquí",
     ],
     questionsPrefix: "¿Preguntas? Llame al",
     orEmail: "o escriba a",
@@ -48,7 +48,7 @@ export const es: Dictionary = {
       "Al enviar, acepta que podamos contactarlo sobre una consulta gratuita. Esto no es asesoría legal. Cada caso es distinto — no garantizamos cancelación, reembolsos ni ningún resultado específico.",
     successTitle: "Gracias",
     successBody:
-      "Recibimos su solicitud. Alguien podría llamarlo o escribirle sobre una consulta gratuita. Si encaja, podemos conectarlo con especialistas para revisar sus opciones con más detalle.",
+      "Recibimos su solicitud. Alguien podría llamarlo o escribirle sobre una consulta gratuita. Si corresponde, podemos conectarlo con especialistas para revisar sus opciones con más detalle.",
     submitAnother: "Enviar otra solicitud",
     errors: {
       fullName: "Ingrese su nombre completo.",
@@ -138,10 +138,10 @@ export const es: Dictionary = {
   },
   finalCta: {
     title: "¿Quiere una consulta gratuita?",
-    body: "Pida una consulta gratuita. Revisamos con honestidad lo que comparta y le damos seguimiento con pasos claros. Si encaja, podemos conectarlo con especialistas.",
+    body: "Pida una consulta gratuita. Revisamos con honestidad lo que comparta y le damos seguimiento con pasos claros. Si corresponde, podemos conectarlo con especialistas.",
     bullets: [
       "Comparta unos datos — le damos seguimiento",
-      "Podemos conectarlo con especialistas si encaja",
+      "Podemos conectarlo con especialistas cuando haga falta",
       "Cada caso es distinto",
     ],
     formTitle: "Pida una consulta gratuita",
@@ -150,7 +150,7 @@ export const es: Dictionary = {
   footer: {
     tagline: "Consultas gratuitas para personas atrapadas con contratos solares",
     disclaimer:
-      "Enviar este formulario no es asesoría legal. No es una promesa de cancelación, alivio, reembolso ni de ningún resultado. Podemos usar su información para contactarlo sobre una consulta gratuita y para conectar con especialistas si encaja.",
+      "Enviar este formulario no es asesoría legal. No es una promesa de cancelación, alivio, reembolso ni de ningún resultado. Podemos usar su información para contactarlo sobre una consulta gratuita y, si corresponde, conectar con especialistas.",
     rights: "Todos los derechos reservados.",
   },
 };
