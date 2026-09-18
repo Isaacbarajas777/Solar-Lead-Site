@@ -48,7 +48,7 @@ export const en: Dictionary = {
       "By submitting, you agree we may contact you about a free consultation. This is not legal advice. Every case is different — we do not guarantee cancellation, refunds, or any specific outcome.",
     successTitle: "Thank you",
     successBody:
-      "We got your request. Someone may call or email you about a free consultation. If it fits, we may connect you with specialists for a closer look at your options.",
+      "We got your request. Someone may call or email you about a free consultation. If it makes sense, we may connect you with specialists for a closer look at your options.",
     submitAnother: "Submit another request",
     errors: {
       fullName: "Please enter your full name.",
@@ -138,7 +138,7 @@ export const en: Dictionary = {
   },
   finalCta: {
     title: "Want a free consultation?",
-    body: "Ask for a free consultation. We will take an honest look at what you share and follow up with clear next steps. If it fits, we may connect you with specialists.",
+    body: "Ask for a free consultation. We will take an honest look at what you share and follow up with clear next steps. If it makes sense, we may connect you with specialists.",
     bullets: [
       "Share a few details — we follow up",
       "We may connect you with specialists when it makes sense",
