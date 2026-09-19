@@ -14,7 +14,7 @@ export const es: Dictionary = {
   },
   header: {
     cta: "Consulta gratuita",
-    langToggleLabel: "EN",
+    langToggleLabel: "English",
     langToggleAria: "Switch to English",
   },
   hero: {
