@@ -26,10 +26,12 @@ export type Dictionary = {
     phone: string;
     email: string;
     zip: string;
+    solarInstaller: string;
     optional: string;
     message: string;
     phonePlaceholder: string;
     zipPlaceholder: string;
+    solarInstallerPlaceholder: string;
     messagePlaceholder: string;
     submit: string;
     submitting: string;
