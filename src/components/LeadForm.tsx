@@ -7,7 +7,7 @@ import type { Dictionary, Locale } from "@/i18n";
 type FormState = "idle" | "submitting" | "success" | "error";
 
 type FieldErrors = Partial<
-  Record<"fullName" | "phone" | "email" | "zip" | "message", string>
+  Record<"fullName" | "phone" | "email" | "zip" | "solarInstaller" | "message", string>
 >;
 
 function isValidEmail(email: string) {
@@ -36,6 +36,7 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [zip, setZip] = useState("");
+  const [solarInstaller, setSolarInstaller] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
   const [state, setState] = useState<FormState>("idle");
@@ -54,6 +55,9 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
     }
     if (!zip.trim() || !isValidZip(zip)) {
       next.zip = copy.errors.zip;
+    }
+    if (solarInstaller.length > 120) {
+      next.solarInstaller = copy.errors.message;
     }
     if (message.length > 500) {
       next.message = copy.errors.message;
@@ -82,6 +86,7 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
           phone: phone.trim(),
           email: email.trim(),
           zip: zip.trim(),
+          solarInstaller: solarInstaller.trim() || undefined,
           message: message.trim() || undefined,
           locale,
         }),
@@ -100,6 +105,7 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
       setPhone("");
       setEmail("");
       setZip("");
+      setSolarInstaller("");
       setMessage("");
       setErrors({});
     } catch {
@@ -209,7 +215,7 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
           {errors.email && <p className={errorClass}>{errors.email}</p>}
         </div>
 
-        <div className="sm:col-span-2">
+        <div>
           <label htmlFor={`${idPrefix}-zip`} className={labelClass}>
             {copy.zip} <span className="text-red-500">*</span>
           </label>
@@ -226,6 +232,26 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
             required
           />
           {errors.zip && <p className={errorClass}>{errors.zip}</p>}
+        </div>
+
+        <div>
+          <label htmlFor={`${idPrefix}-solarInstaller`} className={labelClass}>
+            {copy.solarInstaller}{" "}
+            <span className="font-normal text-slate-500">{copy.optional}</span>
+          </label>
+          <input
+            id={`${idPrefix}-solarInstaller`}
+            name="solarInstaller"
+            type="text"
+            value={solarInstaller}
+            onChange={(e) => setSolarInstaller(e.target.value)}
+            className={fieldClass}
+            placeholder={copy.solarInstallerPlaceholder}
+            maxLength={120}
+          />
+          {errors.solarInstaller && (
+            <p className={errorClass}>{errors.solarInstaller}</p>
+          )}
         </div>
 
         <div className="sm:col-span-2">
