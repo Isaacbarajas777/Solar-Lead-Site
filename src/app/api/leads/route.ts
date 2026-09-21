@@ -8,6 +8,7 @@ type LeadBody = {
   phone?: unknown;
   email?: unknown;
   zip?: unknown;
+  solarInstaller?: unknown;
   financeType?: unknown;
   message?: unknown;
   locale?: unknown;
@@ -20,6 +21,7 @@ type LeadRecord = {
   phone: string;
   email: string;
   zip: string;
+  solarInstaller?: string;
   financeType?: string;
   message?: string;
   locale?: string;
@@ -61,6 +63,7 @@ function formatLeadEmail(record: LeadRecord) {
     `Phone: ${record.phone}`,
     `Email: ${record.email}`,
     `ZIP: ${record.zip}`,
+    `Solar installer: ${record.solarInstaller || "n/a"}`,
     `Locale: ${record.locale || "n/a"}`,
     `Submitted: ${record.createdAt}`,
     `Lead ID: ${record.id}`,
@@ -145,6 +148,10 @@ export async function POST(request: NextRequest) {
   const phone = isNonEmptyString(body.phone) ? body.phone.trim() : null;
   const email = isNonEmptyString(body.email) ? body.email.trim() : null;
   const zip = isNonEmptyString(body.zip) ? body.zip.trim() : null;
+  const solarInstaller =
+    typeof body.solarInstaller === "string" && body.solarInstaller.trim()
+      ? body.solarInstaller.trim()
+      : undefined;
   const financeType =
     typeof body.financeType === "string" && body.financeType.trim()
       ? body.financeType.trim()
@@ -160,7 +167,7 @@ export async function POST(request: NextRequest) {
 
   if (!fullName) {
     return NextResponse.json(
-      { success: false, error: "Full name is required." },
+      { success: false, error: "Name is required." },
       { status: 400 }
     );
   }
@@ -188,6 +195,12 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     );
   }
+  if (solarInstaller && solarInstaller.length > 120) {
+    return NextResponse.json(
+      { success: false, error: "Solar installer must be 120 characters or fewer." },
+      { status: 400 }
+    );
+  }
   if (message && message.length > 500) {
     return NextResponse.json(
       { success: false, error: "Message must be 500 characters or fewer." },
@@ -202,6 +215,7 @@ export async function POST(request: NextRequest) {
     phone,
     email,
     zip,
+    ...(solarInstaller ? { solarInstaller } : {}),
     ...(financeType ? { financeType } : {}),
     ...(message ? { message } : {}),
     ...(locale ? { locale } : {}),
