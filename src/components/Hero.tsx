@@ -13,15 +13,16 @@ export function Hero({ locale, dict }: Props) {
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 text-white"
+      className="relative overflow-hidden bg-navy-950 text-white"
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-30"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/hero-bg.jpg')" }}
         aria-hidden="true"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 20% 20%, rgba(45, 212, 191, 0.25), transparent 40%), radial-gradient(circle at 80% 0%, rgba(14, 165, 233, 0.2), transparent 35%)",
-        }}
+      />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/75 to-navy-900/55"
+        aria-hidden="true"
       />
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-12 lg:py-20">
         <div>
@@ -61,7 +62,6 @@ export function Hero({ locale, dict }: Props) {
             </a>
           </p>
         </div>
-
         <div
           id="lead-form"
           className="rounded-2xl border border-white/10 bg-white p-5 text-slate-900 shadow-2xl sm:p-7"
