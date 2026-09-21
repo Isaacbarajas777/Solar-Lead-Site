@@ -33,12 +33,14 @@ export const en: Dictionary = {
     formSubtitle: "Share a few details and we’ll be in touch.",
   },
   form: {
-    fullName: "Full name",
+    fullName: "Name",
     phone: "Phone",
     email: "Email",
     zip: "ZIP code",
+    solarInstaller: "Solar installer",
     optional: "(optional)",
     message: "Short message",
+    solarInstallerPlaceholder: "Company or installer name",
     phonePlaceholder: "(702) 313-3073",
     zipPlaceholder: "12345",
     messagePlaceholder: "Briefly describe your situation...",
@@ -51,7 +53,7 @@ export const en: Dictionary = {
       "We got your request. Someone may call or email you about a free consultation. If it makes sense, we may connect you with specialists for a closer look at your options.",
     submitAnother: "Submit another request",
     errors: {
-      fullName: "Please enter your full name.",
+      fullName: "Please enter your name.",
       phone: "Enter a valid phone number.",
       email: "Enter a valid email address.",
       zip: "Enter a valid ZIP code.",
@@ -87,7 +89,7 @@ export const en: Dictionary = {
       {
         step: "1",
         title: "Submit your info",
-        body: "Fill out the short form with your name, phone, email, ZIP, and an optional note.",
+        body: "Fill out the short form with your name, phone, email, ZIP, solar installer, and an optional note.",
       },
       {
         step: "2",
