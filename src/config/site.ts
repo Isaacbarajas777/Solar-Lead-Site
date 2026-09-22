@@ -38,7 +38,7 @@ export const siteConfig = {
     ],
   },
   disclaimer:
-    "Submitting this form is not legal advice and is not a guarantee of cancellation, relief, or any particular outcome. Information you provide may be used to contact you about a free talk and to connect you with specialists if appropriate.",
+    "Submitting this form is not legal advice and is not a guarantee of cancellation, relief, or any particular outcome. Information you provide may be used to contact you about a free talk and to connect you with specialists if appropriate. Nevada Energy Advisors is a private company. We are not a state or government program, and we are not affiliated with NV Energy or any utility.",
 } as const;
 
 export type SiteConfig = typeof siteConfig;

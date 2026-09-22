@@ -152,7 +152,7 @@ export const es: Dictionary = {
   footer: {
     tagline: "Consultas gratuitas para personas atrapadas con contratos solares",
     disclaimer:
-      "Enviar este formulario no es asesoría legal. No es una promesa de cancelación, alivio, reembolso ni de ningún resultado. Podemos usar su información para contactarlo sobre una consulta gratuita y, si corresponde, conectar con especialistas.",
+      "Enviar este formulario no es asesoría legal. No es una promesa de cancelación, alivio, reembolso ni de ningún resultado. Podemos usar su información para contactarlo sobre una consulta gratuita y para conectar con especialistas cuando tenga sentido. Nevada Energy Advisors es una empresa privada. No somos un programa estatal ni gubernamental, y no estamos afiliados a NV Energy ni a ninguna empresa de servicios públicos.",
     rights: "Todos los derechos reservados.",
   },
 };

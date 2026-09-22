@@ -152,7 +152,7 @@ export const en: Dictionary = {
   footer: {
     tagline: "Free consultations for people stuck with solar contracts",
     disclaimer:
-      "Submitting this form is not legal advice. It is not a promise of cancellation, relief, refund, or any result. We may use your info to contact you about a free consultation and to connect you with specialists when it makes sense.",
+      "Submitting this form is not legal advice. It is not a promise of cancellation, relief, refund, or any result. We may use your info to contact you about a free consultation and to connect you with specialists when it makes sense. Nevada Energy Advisors is a private company. We are not a state or government program, and we are not affiliated with NV Energy or any utility.",
     rights: "All rights reserved.",
   },
 };
