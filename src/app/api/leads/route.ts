@@ -2,11 +2,20 @@ import { NextRequest, NextResponse } from "next/server";
 import { appendFile, mkdir } from "fs/promises";
 import path from "path";
 import { siteConfig } from "@/config/site";
-import { QUIZ_SOURCE, quizOptions, setupToFinanceType, type QuizAnswers } from "@/config/quiz";
+import {
+  COMPANY_OTHER,
+  QUIZ_SOURCE,
+  paymentStructureToFinanceType,
+  quizOptions,
+  solarCompanies,
+  type QuizAnswers,
+} from "@/config/quiz";
 import { en } from "@/i18n/en";
 
 type LeadBody = {
   fullName?: unknown;
+  firstName?: unknown;
+  lastName?: unknown;
   phone?: unknown;
   email?: unknown;
   zip?: unknown;
@@ -27,6 +36,7 @@ type LeadRecord = {
   zip?: string;
   source?: string;
   quiz?: QuizAnswers;
+  names?: { first: string; last: string };
   solarInstaller?: string;
   financeType?: string;
   message?: string;
@@ -73,36 +83,44 @@ function pickOption<T extends readonly string[]>(
 /** Whitelists quiz answers against the known option keys. */
 function parseQuiz(raw: unknown): QuizAnswers {
   const q = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
-  const issues = Array.isArray(q.issues)
-    ? quizOptions.issues.filter((k) => (q.issues as unknown[]).includes(k))
-    : [];
+  const company = pickOption(solarCompanies, q.company);
+  const companyOther =
+    company === COMPANY_OTHER && typeof q.companyOther === "string" && q.companyOther.trim()
+      ? q.companyOther.trim().slice(0, 120)
+      : undefined;
   return {
-    ownHome: pickOption(quizOptions.ownHome, q.ownHome),
-    setup: pickOption(quizOptions.setup, q.setup),
+    wantCancel: pickOption(quizOptions.wantCancel, q.wantCancel),
+    misled: pickOption(quizOptions.misled, q.misled),
+    paymentStructure: pickOption(quizOptions.paymentStructure, q.paymentStructure),
+    salesStart: pickOption(quizOptions.salesStart, q.salesStart),
+    company,
+    ...(companyOther ? { companyOther } : {}),
     payment: pickOption(quizOptions.payment, q.payment),
-    billHigher: pickOption(quizOptions.billHigher, q.billHigher),
-    ...(issues.length ? { issues } : {}),
-    installedWhen: pickOption(quizOptions.installedWhen, q.installedWhen),
+    bestTime: pickOption(quizOptions.bestTime, q.bestTime),
   };
 }
 
-function formatQuizBlock(quiz: QuizAnswers, installer?: string) {
+function formatQuizBlock(quiz: QuizAnswers, names?: { first: string; last: string }) {
   const qs = en.quiz.questions;
   const label = (map: Record<string, string>, key?: string) =>
     key ? map[key] ?? key : "(no answer)";
+  const company = !quiz.company
+    ? "(no answer)"
+    : quiz.company === COMPANY_OTHER
+      ? `Other${quiz.companyOther ? `: ${quiz.companyOther}` : " (name not provided)"}`
+      : quiz.company;
   return [
-    "Questionnaire answers (BETA quiz):",
-    `1. ${qs.ownHome.q} ${label(qs.ownHome.options, quiz.ownHome)}`,
-    `2. ${qs.setup.q} ${label(qs.setup.options, quiz.setup)}`,
-    `3. ${qs.payment.q} ${label(qs.payment.options, quiz.payment)}`,
-    `4. ${qs.billHigher.q} ${label(qs.billHigher.options, quiz.billHigher)}`,
-    `5. ${qs.issues.q} ${
-      quiz.issues?.length
-        ? quiz.issues.map((k) => qs.issues.options[k]).join("; ")
-        : "(no answer)"
+    "Questionnaire answers:",
+    `1. ${qs.wantCancel.q} ${label(qs.wantCancel.options, quiz.wantCancel)}`,
+    `2. ${qs.misled.q} ${label(qs.misled.options, quiz.misled)}`,
+    `3. ${qs.paymentStructure.q} ${label(qs.paymentStructure.options, quiz.paymentStructure)}`,
+    `4. ${qs.salesStart.q} ${label(qs.salesStart.options, quiz.salesStart)}`,
+    `5. ${qs.company.q}: ${company}`,
+    `6. ${qs.payment.q}: ${label(qs.payment.options, quiz.payment)}`,
+    ...(names ? [`First name: ${names.first}`, `Last name: ${names.last}`] : []),
+    `Best time to reach: ${
+      quiz.bestTime ? qs.contact.bestTimeOptions[quiz.bestTime] : "(not specified)"
     }`,
-    `6. ${qs.installer.q} ${installer || "(not provided)"}`,
-    `7. ${qs.installedWhen.q} ${label(qs.installedWhen.options, quiz.installedWhen)}`,
   ];
 }
 
@@ -125,7 +143,7 @@ function formatLeadEmail(record: LeadRecord) {
     lines.push("", "Message:", record.message);
   }
   if (record.quiz) {
-    lines.push("", ...formatQuizBlock(record.quiz, record.solarInstaller));
+    lines.push("", ...formatQuizBlock(record.quiz, record.names));
   }
   lines.push("", "— Sent automatically from the website form");
   return lines.join("\n");
@@ -199,9 +217,17 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const fullName = isNonEmptyString(body.fullName, 2)
-    ? body.fullName.trim()
-    : null;
+  const isQuiz = body.source === QUIZ_SOURCE;
+  const firstName = isQuiz && isNonEmptyString(body.firstName) ? body.firstName.trim() : null;
+  const lastName = isQuiz && isNonEmptyString(body.lastName) ? body.lastName.trim() : null;
+  // Quiz: first + last name are combined into the lead's name.
+  const fullName = isQuiz
+    ? firstName && lastName
+      ? `${firstName} ${lastName}`
+      : null
+    : isNonEmptyString(body.fullName, 2)
+      ? body.fullName.trim()
+      : null;
   const phone = isNonEmptyString(body.phone) ? body.phone.trim() : null;
   const email = isNonEmptyString(body.email) ? body.email.trim() : null;
   const zip = isNonEmptyString(body.zip) ? body.zip.trim() : null;
@@ -209,13 +235,12 @@ export async function POST(request: NextRequest) {
     typeof body.solarInstaller === "string" && body.solarInstaller.trim()
       ? body.solarInstaller.trim()
       : undefined;
-  const isQuiz = body.source === QUIZ_SOURCE;
   const quiz = isQuiz ? parseQuiz(body.quiz) : undefined;
   const financeType =
     typeof body.financeType === "string" && body.financeType.trim()
       ? body.financeType.trim()
-      : quiz?.setup
-        ? setupToFinanceType[quiz.setup]
+      : quiz?.paymentStructure
+        ? paymentStructureToFinanceType[quiz.paymentStructure]
         : undefined;
   const message =
     typeof body.message === "string" && body.message.trim()
@@ -238,13 +263,13 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     );
   }
-  // Quiz (beta) only requires name + phone; email/ZIP are validated if given.
-  if (isQuiz ? email !== null && !isValidEmail(email) : !email || !isValidEmail(email)) {
+  if (!email || !isValidEmail(email)) {
     return NextResponse.json(
       { success: false, error: "A valid email is required." },
       { status: 400 }
     );
   }
+  // Quiz does not collect ZIP; validate only if one is sent.
   if (isQuiz ? zip !== null && !isValidZip(zip) : !zip || !isValidZip(zip)) {
     return NextResponse.json(
       { success: false, error: "A valid ZIP code is required." },
@@ -277,7 +302,13 @@ export async function POST(request: NextRequest) {
     phone,
     ...(email ? { email } : {}),
     ...(zip ? { zip } : {}),
-    ...(isQuiz ? { source: QUIZ_SOURCE, quiz } : {}),
+    ...(isQuiz
+      ? {
+          source: QUIZ_SOURCE,
+          quiz,
+          ...(firstName && lastName ? { names: { first: firstName, last: lastName } } : {}),
+        }
+      : {}),
     ...(solarInstaller ? { solarInstaller } : {}),
     ...(financeType ? { financeType } : {}),
     ...(message ? { message } : {}),

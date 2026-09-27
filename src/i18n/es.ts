@@ -157,61 +157,55 @@ export const es: Dictionary = {
     stepOf: "Paso {current} de {total}",
     back: "Atrás",
     next: "Siguiente",
-    skip: "Omitir",
-    selectAll: "Seleccione todas las que correspondan.",
     questions: {
-      ownHome: { q: "¿Es dueño de su casa?", options: { yes: "Sí", no: "No" } },
-      setup: {
-        q: "¿Cómo tiene su sistema solar?",
+      wantCancel: {
+        q: "¿Tiene un sistema solar que quiere cancelar?",
+        options: { yes: "Sí", no: "No" },
+      },
+      misled: {
+        q: "¿Le mintieron o lo engañaron de alguna forma durante la venta del sistema solar?",
+        options: { yes: "Sí", no: "No" },
+      },
+      paymentStructure: {
+        q: "¿Cómo está estructurado su pago solar?",
         options: {
-          lease: "Arrendamiento (lease)",
-          loan: "Préstamo",
-          ppa: "PPA (contrato de compra de energía)",
-          paid: "Pagado por completo",
-          unsure: "No estoy seguro",
+          lease: "Arrendamiento solar (lease)",
+          loan: "Préstamo solar (financiamiento)",
+          ppa: "Contrato de compra de energía (PPA)",
         },
       },
-      payment: {
-        q: "¿Más o menos cuánto paga al mes por su sistema solar?",
+      salesStart: {
+        q: "¿Cómo empezó la venta del sistema solar?",
         options: {
-          under100: "Menos de $100",
-          "100to200": "$100–$200",
-          "200to300": "$200–$300",
-          over300: "Más de $300",
-          unsure: "No estoy seguro",
-        },
-      },
-      billHigher: {
-        q: "¿Su factura de luz sigue siendo más alta de lo que esperaba?",
-        options: { yes: "Sí", no: "No", unsure: "No estoy seguro" },
-      },
-      issues: {
-        q: "¿Qué está pasando?",
-        options: {
-          savings: "Los ahorros no son los que me dijeron",
-          outOfBusiness: "El instalador cerró su negocio",
-          notWorking: "El sistema no funciona o no le dan servicio",
-          fees: "Cargos ocultos o aumentos de tarifa",
-          pressured: "Me presionaron o engañaron durante la venta",
+          doorToDoor: "Un vendedor de puerta en puerta",
+          onlineAd: "Vi un anuncio en internet",
+          coldCall: "Me llamaron sin haberlo pedido",
           other: "Otro",
         },
       },
-      installer: {
-        q: "¿Quién instaló su sistema?",
-        placeholder: "Nombre de la empresa o instalador (opcional)",
+      company: {
+        q: "Compañía solar",
+        placeholder: "Seleccione una opción",
+        searchPlaceholder: "Buscar…",
+        noResults: "No hay resultados. Elija “Otro” abajo.",
+        otherOption: "Otro",
+        otherLabel: "Nombre de la compañía",
       },
-      installedWhen: {
-        q: "¿Cuándo se instaló?",
+      payment: {
+        q: "Pago mensual",
         options: {
-          lt1: "Hace menos de 1 año",
-          "1to3": "Hace 1–3 años",
-          "3to5": "Hace 3–5 años",
-          "5plus": "Hace más de 5 años",
+          under200: "Menos de $200",
+          "201to500": "$201 a $500",
+          over500: "Más de $500",
         },
       },
       contact: {
-        q: "¿Cómo podemos contactarlo?",
+        q: "Ya casi — ¿dónde podemos contactarlo?",
         subtitle: "Nos comunicaremos con usted sobre su consulta gratuita.",
+        firstName: "Nombre",
+        lastName: "Apellido",
+        bestTime: "¿Cuál es el mejor momento para contactarlo?",
+        bestTimeOptions: { morning: "Mañana", afternoon: "Tarde", evening: "Noche" },
       },
     },
     submit: "Pedir mi consulta gratuita",
