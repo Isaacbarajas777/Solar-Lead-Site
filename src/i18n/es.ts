@@ -149,6 +149,81 @@ export const es: Dictionary = {
     formTitle: "Pida una consulta gratuita",
     formSubtitle: "El mismo formulario de arriba — use el que le resulte más fácil.",
   },
+  quiz: {
+    metaTitle: "Vea si una consulta gratuita tiene sentido | Nevada Energy Advisors",
+    metaDescription:
+      "Responda unas preguntas rápidas sobre su sistema solar. Cada caso es distinto.",
+    badge: "Consulta gratuita",
+    title: "Vea si una consulta gratuita tiene sentido para usted",
+    subtitle: "Unas preguntas rápidas. Toma alrededor de un minuto.",
+    stepOf: "Paso {current} de {total}",
+    back: "Atrás",
+    next: "Siguiente",
+    skip: "Omitir",
+    selectAll: "Seleccione todas las que correspondan.",
+    questions: {
+      ownHome: { q: "¿Es dueño de su casa?", options: { yes: "Sí", no: "No" } },
+      setup: {
+        q: "¿Cómo tiene su sistema solar?",
+        options: {
+          lease: "Arrendamiento (lease)",
+          loan: "Préstamo",
+          ppa: "PPA (contrato de compra de energía)",
+          paid: "Pagado por completo",
+          unsure: "No estoy seguro",
+        },
+      },
+      payment: {
+        q: "¿Más o menos cuánto paga al mes por su sistema solar?",
+        options: {
+          under100: "Menos de $100",
+          "100to200": "$100–$200",
+          "200to300": "$200–$300",
+          over300: "Más de $300",
+          unsure: "No estoy seguro",
+        },
+      },
+      billHigher: {
+        q: "¿Su factura de luz sigue siendo más alta de lo que esperaba?",
+        options: { yes: "Sí", no: "No", unsure: "No estoy seguro" },
+      },
+      issues: {
+        q: "¿Qué está pasando?",
+        options: {
+          savings: "Los ahorros no son los que me dijeron",
+          outOfBusiness: "El instalador cerró su negocio",
+          notWorking: "El sistema no funciona o no le dan servicio",
+          fees: "Cargos ocultos o aumentos de tarifa",
+          pressured: "Me presionaron o engañaron durante la venta",
+          other: "Otro",
+        },
+      },
+      installer: {
+        q: "¿Quién instaló su sistema?",
+        placeholder: "Nombre de la empresa o instalador (opcional)",
+      },
+      installedWhen: {
+        q: "¿Cuándo se instaló?",
+        options: {
+          lt1: "Hace menos de 1 año",
+          "1to3": "Hace 1–3 años",
+          "3to5": "Hace 3–5 años",
+          "5plus": "Hace más de 5 años",
+        },
+      },
+      contact: {
+        q: "¿Cómo podemos contactarlo?",
+        subtitle: "Nos comunicaremos con usted sobre su consulta gratuita.",
+      },
+    },
+    submit: "Pedir mi consulta gratuita",
+    thankYouTitle:
+      "Gracias — nos comunicaremos con usted sobre su consulta gratuita.",
+    thankYouBody:
+      "Alguien podría llamarlo o escribirle pronto. Cada caso es distinto.",
+    backHome: "Volver a la página principal",
+    everyCase: "Cada caso es distinto.",
+  },
   footer: {
     tagline: "Consultas gratuitas para personas atrapadas con contratos solares",
     disclaimer:

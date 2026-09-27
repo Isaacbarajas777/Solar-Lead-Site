@@ -149,6 +149,80 @@ export const en: Dictionary = {
     formTitle: "Ask for a free consultation",
     formSubtitle: "Same form as above — use whichever is easier.",
   },
+  quiz: {
+    metaTitle: "See if a free consultation makes sense | Nevada Energy Advisors",
+    metaDescription:
+      "Answer a few quick questions about your solar setup. Every case is different.",
+    badge: "Free Consultation",
+    title: "See if a free consultation makes sense for you",
+    subtitle: "A few quick questions. It takes about a minute.",
+    stepOf: "Step {current} of {total}",
+    back: "Back",
+    next: "Next",
+    skip: "Skip",
+    selectAll: "Select all that apply.",
+    questions: {
+      ownHome: { q: "Do you own your home?", options: { yes: "Yes", no: "No" } },
+      setup: {
+        q: "How is your solar set up?",
+        options: {
+          lease: "Lease",
+          loan: "Loan",
+          ppa: "PPA (Power Purchase Agreement)",
+          paid: "Paid in full",
+          unsure: "Not sure",
+        },
+      },
+      payment: {
+        q: "About how much is your monthly solar payment?",
+        options: {
+          under100: "Under $100",
+          "100to200": "$100–$200",
+          "200to300": "$200–$300",
+          over300: "Over $300",
+          unsure: "Not sure",
+        },
+      },
+      billHigher: {
+        q: "Is your electric bill still higher than you expected?",
+        options: { yes: "Yes", no: "No", unsure: "Not sure" },
+      },
+      issues: {
+        q: "What’s going on?",
+        options: {
+          savings: "Savings didn’t match what I was told",
+          outOfBusiness: "Installer went out of business",
+          notWorking: "System isn’t working or not serviced",
+          fees: "Hidden fees or rate increases",
+          pressured: "Pressured or misled during the sale",
+          other: "Other",
+        },
+      },
+      installer: {
+        q: "Who installed your system?",
+        placeholder: "Company or installer name (optional)",
+      },
+      installedWhen: {
+        q: "When was it installed?",
+        options: {
+          lt1: "Less than 1 year ago",
+          "1to3": "1–3 years ago",
+          "3to5": "3–5 years ago",
+          "5plus": "5+ years ago",
+        },
+      },
+      contact: {
+        q: "Where can we reach you?",
+        subtitle: "We’ll follow up about your free consultation.",
+      },
+    },
+    submit: "Request my free consultation",
+    thankYouTitle: "Thanks — we’ll be in touch about your free consultation.",
+    thankYouBody:
+      "Someone may call or email you soon. Every case is different.",
+    backHome: "Back to home page",
+    everyCase: "Every case is different.",
+  },
   footer: {
     tagline: "Free consultations for people stuck with solar contracts",
     disclaimer:

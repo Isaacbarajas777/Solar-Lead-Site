@@ -71,6 +71,58 @@ export type Dictionary = {
     formTitle: string;
     formSubtitle: string;
   };
+  quiz: {
+    metaTitle: string;
+    metaDescription: string;
+    badge: string;
+    title: string;
+    subtitle: string;
+    stepOf: string; // e.g. "Step {current} of {total}"
+    back: string;
+    next: string;
+    skip: string;
+    selectAll: string;
+    questions: {
+      ownHome: { q: string; options: { yes: string; no: string } };
+      setup: {
+        q: string;
+        options: { lease: string; loan: string; ppa: string; paid: string; unsure: string };
+      };
+      payment: {
+        q: string;
+        options: {
+          under100: string;
+          "100to200": string;
+          "200to300": string;
+          over300: string;
+          unsure: string;
+        };
+      };
+      billHigher: { q: string; options: { yes: string; no: string; unsure: string } };
+      issues: {
+        q: string;
+        options: {
+          savings: string;
+          outOfBusiness: string;
+          notWorking: string;
+          fees: string;
+          pressured: string;
+          other: string;
+        };
+      };
+      installer: { q: string; placeholder: string };
+      installedWhen: {
+        q: string;
+        options: { lt1: string; "1to3": string; "3to5": string; "5plus": string };
+      };
+      contact: { q: string; subtitle: string };
+    };
+    submit: string;
+    thankYouTitle: string;
+    thankYouBody: string;
+    backHome: string;
+    everyCase: string;
+  };
   footer: {
     tagline: string;
     disclaimer: string;

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { appendFile, mkdir } from "fs/promises";
 import path from "path";
 import { siteConfig } from "@/config/site";
+import { QUIZ_SOURCE, quizOptions, setupToFinanceType, type QuizAnswers } from "@/config/quiz";
+import { en } from "@/i18n/en";
 
 type LeadBody = {
   fullName?: unknown;
@@ -12,6 +14,8 @@ type LeadBody = {
   financeType?: unknown;
   message?: unknown;
   locale?: unknown;
+  source?: unknown;
+  quiz?: unknown;
 };
 
 type LeadRecord = {
@@ -19,8 +23,10 @@ type LeadRecord = {
   createdAt: string;
   fullName: string;
   phone: string;
-  email: string;
-  zip: string;
+  email?: string;
+  zip?: string;
+  source?: string;
+  quiz?: QuizAnswers;
   solarInstaller?: string;
   financeType?: string;
   message?: string;
@@ -55,22 +61,71 @@ const ALLOWED_FINANCE = new Set([
 
 const ALLOWED_LOCALE = new Set(["en", "es"]);
 
+function pickOption<T extends readonly string[]>(
+  allowed: T,
+  value: unknown
+): T[number] | undefined {
+  return typeof value === "string" && (allowed as readonly string[]).includes(value)
+    ? (value as T[number])
+    : undefined;
+}
+
+/** Whitelists quiz answers against the known option keys. */
+function parseQuiz(raw: unknown): QuizAnswers {
+  const q = (raw && typeof raw === "object" ? raw : {}) as Record<string, unknown>;
+  const issues = Array.isArray(q.issues)
+    ? quizOptions.issues.filter((k) => (q.issues as unknown[]).includes(k))
+    : [];
+  return {
+    ownHome: pickOption(quizOptions.ownHome, q.ownHome),
+    setup: pickOption(quizOptions.setup, q.setup),
+    payment: pickOption(quizOptions.payment, q.payment),
+    billHigher: pickOption(quizOptions.billHigher, q.billHigher),
+    ...(issues.length ? { issues } : {}),
+    installedWhen: pickOption(quizOptions.installedWhen, q.installedWhen),
+  };
+}
+
+function formatQuizBlock(quiz: QuizAnswers, installer?: string) {
+  const qs = en.quiz.questions;
+  const label = (map: Record<string, string>, key?: string) =>
+    key ? map[key] ?? key : "(no answer)";
+  return [
+    "Questionnaire answers (BETA quiz):",
+    `1. ${qs.ownHome.q} ${label(qs.ownHome.options, quiz.ownHome)}`,
+    `2. ${qs.setup.q} ${label(qs.setup.options, quiz.setup)}`,
+    `3. ${qs.payment.q} ${label(qs.payment.options, quiz.payment)}`,
+    `4. ${qs.billHigher.q} ${label(qs.billHigher.options, quiz.billHigher)}`,
+    `5. ${qs.issues.q} ${
+      quiz.issues?.length
+        ? quiz.issues.map((k) => qs.issues.options[k]).join("; ")
+        : "(no answer)"
+    }`,
+    `6. ${qs.installer.q} ${installer || "(not provided)"}`,
+    `7. ${qs.installedWhen.q} ${label(qs.installedWhen.options, quiz.installedWhen)}`,
+  ];
+}
+
 function formatLeadEmail(record: LeadRecord) {
   const lines = [
     "New Nevada Energy Advisors lead",
     "",
     `Name: ${record.fullName}`,
     `Phone: ${record.phone}`,
-    `Email: ${record.email}`,
-    `ZIP: ${record.zip}`,
+    `Email: ${record.email || "n/a"}`,
+    `ZIP: ${record.zip || "n/a"}`,
     `Solar installer: ${record.solarInstaller || "n/a"}`,
     `Locale: ${record.locale || "n/a"}`,
     `Submitted: ${record.createdAt}`,
     `Lead ID: ${record.id}`,
+    `Source: ${record.source || "website-form"}`,
   ];
   if (record.financeType) lines.push(`Finance type: ${record.financeType}`);
   if (record.message) {
     lines.push("", "Message:", record.message);
+  }
+  if (record.quiz) {
+    lines.push("", ...formatQuizBlock(record.quiz, record.solarInstaller));
   }
   lines.push("", "— Sent automatically from the website form");
   return lines.join("\n");
@@ -99,8 +154,10 @@ async function sendLeadEmail(record: LeadRecord): Promise<{
     body: JSON.stringify({
       from,
       to,
-      reply_to: record.email,
-      subject: `New lead: ${record.fullName} (${record.zip})`,
+      ...(record.email ? { reply_to: record.email } : {}),
+      subject: `${record.source === QUIZ_SOURCE ? "New quiz lead (beta)" : "New lead"}: ${
+        record.fullName
+      } (${record.zip || "no ZIP"})`,
       text: formatLeadEmail(record),
     }),
   });
@@ -152,10 +209,14 @@ export async function POST(request: NextRequest) {
     typeof body.solarInstaller === "string" && body.solarInstaller.trim()
       ? body.solarInstaller.trim()
       : undefined;
+  const isQuiz = body.source === QUIZ_SOURCE;
+  const quiz = isQuiz ? parseQuiz(body.quiz) : undefined;
   const financeType =
     typeof body.financeType === "string" && body.financeType.trim()
       ? body.financeType.trim()
-      : undefined;
+      : quiz?.setup
+        ? setupToFinanceType[quiz.setup]
+        : undefined;
   const message =
     typeof body.message === "string" && body.message.trim()
       ? body.message.trim()
@@ -177,13 +238,14 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     );
   }
-  if (!email || !isValidEmail(email)) {
+  // Quiz (beta) only requires name + phone; email/ZIP are validated if given.
+  if (isQuiz ? email !== null && !isValidEmail(email) : !email || !isValidEmail(email)) {
     return NextResponse.json(
       { success: false, error: "A valid email is required." },
       { status: 400 }
     );
   }
-  if (!zip || !isValidZip(zip)) {
+  if (isQuiz ? zip !== null && !isValidZip(zip) : !zip || !isValidZip(zip)) {
     return NextResponse.json(
       { success: false, error: "A valid ZIP code is required." },
       { status: 400 }
@@ -213,8 +275,9 @@ export async function POST(request: NextRequest) {
     createdAt: new Date().toISOString(),
     fullName,
     phone,
-    email,
-    zip,
+    ...(email ? { email } : {}),
+    ...(zip ? { zip } : {}),
+    ...(isQuiz ? { source: QUIZ_SOURCE, quiz } : {}),
     ...(solarInstaller ? { solarInstaller } : {}),
     ...(financeType ? { financeType } : {}),
     ...(message ? { message } : {}),
