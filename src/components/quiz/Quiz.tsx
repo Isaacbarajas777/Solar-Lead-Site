@@ -5,7 +5,7 @@ import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { QUIZ_SOURCE, quizOptions, type QuizAnswers } from "@/config/quiz";
 import type { Dictionary, Locale } from "@/i18n";
-import { localePath } from "@/i18n";
+import { landingPath } from "@/i18n";
 
 type Props = {
   locale: Locale;
@@ -210,10 +210,10 @@ export function Quiz({ locale, dict }: Props) {
             </a>
           </p>
           <Link
-            href={localePath(locale)}
-            className="mt-6 inline-block text-sm font-medium text-navy-800 underline-offset-2 hover:underline"
+            href={landingPath(locale)}
+            className="mt-6 inline-block rounded-xl bg-navy-900 px-6 py-3.5 text-base font-semibold text-white shadow-md transition hover:bg-navy-800"
           >
-            {q.backHome}
+            {q.learnMore}
           </Link>
         </div>
       ) : (

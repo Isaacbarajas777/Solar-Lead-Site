@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import type { Dictionary, Locale } from "@/i18n";
-import { localePath, otherLocale } from "@/i18n";
+import { landingPath, localePath, otherLocale } from "@/i18n";
 import { Quiz } from "./Quiz";
 
 type Props = {
@@ -10,11 +10,7 @@ type Props = {
   dict: Dictionary;
 };
 
-function quizPath(locale: Locale) {
-  return locale === "es" ? "/es/quiz" : "/quiz";
-}
-
-/** BETA standalone questionnaire page (not linked from the main navigation). */
+/** Questionnaire homepage (`/` and `/es`). The full landing page lives at /home. */
 export function QuizPage({ locale, dict }: Props) {
   const toggleLocale = otherLocale(locale);
   const year = new Date().getFullYear();
@@ -41,7 +37,7 @@ export function QuizPage({ locale, dict }: Props) {
               {siteConfig.phone}
             </a>
             <Link
-              href={quizPath(toggleLocale)}
+              href={localePath(toggleLocale)}
               hrefLang={toggleLocale}
               className="rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-slate-700 transition hover:border-gold-500 hover:text-navy-900"
               aria-label={dict.header.langToggleAria}
@@ -54,7 +50,7 @@ export function QuizPage({ locale, dict }: Props) {
 
       <main className="flex-1">
         <section className="bg-navy-900 text-white">
-          <div className="mx-auto max-w-2xl px-4 pb-16 pt-6 text-center sm:pt-8">
+          <div className="mx-auto max-w-2xl px-4 pb-16 pt-5 text-center sm:pt-8">
             <p className="inline-flex rounded-full border border-gold-400/50 bg-gold-500/10 px-3 py-1 text-xs font-medium uppercase tracking-wide text-gold-200">
               {dict.quiz.badge}
             </p>
@@ -62,6 +58,12 @@ export function QuizPage({ locale, dict }: Props) {
               {dict.quiz.title}
             </h1>
             <p className="mt-2 text-sm text-slate-300 sm:text-base">{dict.quiz.subtitle}</p>
+            <Link
+              href={landingPath(locale)}
+              className="mt-3 inline-block text-xs font-medium text-slate-300 underline decoration-slate-500 underline-offset-2 hover:text-white"
+            >
+              {dict.quiz.skipToSite} →
+            </Link>
           </div>
         </section>
         <div className="mx-auto -mt-10 max-w-2xl px-3 pb-10 sm:px-4">

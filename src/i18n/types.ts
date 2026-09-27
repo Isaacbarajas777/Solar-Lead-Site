@@ -72,8 +72,7 @@ export type Dictionary = {
     formSubtitle: string;
   };
   quiz: {
-    metaTitle: string;
-    metaDescription: string;
+    skipToSite: string;
     badge: string;
     title: string;
     subtitle: string;
@@ -120,7 +119,7 @@ export type Dictionary = {
     submit: string;
     thankYouTitle: string;
     thankYouBody: string;
-    backHome: string;
+    learnMore: string;
     everyCase: string;
   };
   footer: {

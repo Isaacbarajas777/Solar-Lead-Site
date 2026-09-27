@@ -17,7 +17,12 @@ export function otherLocale(locale: Locale): Locale {
   return locale === "en" ? "es" : "en";
 }
 
-/** Path for a given locale (English stays at `/`). */
+/** Homepage (questionnaire) for a given locale (English stays at `/`). */
 export function localePath(locale: Locale): string {
   return locale === "es" ? "/es" : "/";
+}
+
+/** Full landing page for a given locale. */
+export function landingPath(locale: Locale): string {
+  return locale === "es" ? "/es/home" : "/home";
 }

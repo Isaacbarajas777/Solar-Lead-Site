@@ -150,9 +150,7 @@ export const es: Dictionary = {
     formSubtitle: "El mismo formulario de arriba — use el que le resulte más fácil.",
   },
   quiz: {
-    metaTitle: "Vea si una consulta gratuita tiene sentido | Nevada Energy Advisors",
-    metaDescription:
-      "Responda unas preguntas rápidas sobre su sistema solar. Cada caso es distinto.",
+    skipToSite: "Ir a nuestro sitio",
     badge: "Consulta gratuita",
     title: "Vea si una consulta gratuita tiene sentido para usted",
     subtitle: "Unas preguntas rápidas. Toma alrededor de un minuto.",
@@ -221,7 +219,7 @@ export const es: Dictionary = {
       "Gracias — nos comunicaremos con usted sobre su consulta gratuita.",
     thankYouBody:
       "Alguien podría llamarlo o escribirle pronto. Cada caso es distinto.",
-    backHome: "Volver a la página principal",
+    learnMore: "Conozca más sobre nosotros",
     everyCase: "Cada caso es distinto.",
   },
   footer: {
