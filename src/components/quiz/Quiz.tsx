@@ -1,9 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState, FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, FormEvent } from "react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { QUIZ_SOURCE, quizOptions, type QuizAnswers } from "@/config/quiz";
+import {
+  COMPANY_OTHER,
+  QUIZ_SOURCE,
+  quizOptions,
+  solarCompanies,
+  type QuizAnswers,
+  type SolarCompany,
+} from "@/config/quiz";
 import type { Dictionary, Locale } from "@/i18n";
 import { landingPath } from "@/i18n";
 
@@ -12,26 +19,21 @@ type Props = {
   dict: Dictionary;
 };
 
-type SingleKey = "ownHome" | "setup" | "payment" | "billHigher" | "installedWhen";
+type SingleKey = "wantCancel" | "misled" | "paymentStructure" | "salesStart" | "payment";
 
-type Step =
-  | { kind: "single"; key: SingleKey }
-  | { kind: "multi"; key: "issues" }
-  | { kind: "installer" }
-  | { kind: "contact" };
+type Step = { kind: "single"; key: SingleKey } | { kind: "company" } | { kind: "contact" };
 
 const STEPS: Step[] = [
-  { kind: "single", key: "ownHome" },
-  { kind: "single", key: "setup" },
+  { kind: "single", key: "wantCancel" },
+  { kind: "single", key: "misled" },
+  { kind: "single", key: "paymentStructure" },
+  { kind: "single", key: "salesStart" },
+  { kind: "company" },
   { kind: "single", key: "payment" },
-  { kind: "single", key: "billHigher" },
-  { kind: "multi", key: "issues" },
-  { kind: "installer" },
-  { kind: "single", key: "installedWhen" },
   { kind: "contact" },
 ];
 
-type FieldErrors = Partial<Record<"fullName" | "phone" | "email" | "zip", string>>;
+type FieldErrors = Partial<Record<"firstName" | "lastName" | "phone" | "email", string>>;
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -40,10 +42,6 @@ function isValidEmail(email: string) {
 function isValidPhone(phone: string) {
   const digits = phone.replace(/\D/g, "");
   return digits.length >= 10 && digits.length <= 15;
-}
-
-function isValidZip(zip: string) {
-  return /^\d{5}(-\d{4})?$/.test(zip.trim());
 }
 
 const optionBase =
@@ -57,15 +55,35 @@ export function Quiz({ locale, dict }: Props) {
 
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswers>({});
-  const [installer, setInstaller] = useState("");
-  const [fullName, setFullName] = useState("");
+  const [companyOther, setCompanyOther] = useState("");
+  const [companyOpen, setCompanyOpen] = useState(false);
+  const [companySearch, setCompanySearch] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [zip, setZip] = useState("");
+  const [bestTime, setBestTime] = useState<QuizAnswers["bestTime"]>();
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [serverMessage, setServerMessage] = useState("");
   const cardRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  const companyLabel = (c: SolarCompany) =>
+    c === COMPANY_OTHER ? q.questions.company.otherOption : c;
+
+  const filteredCompanies = useMemo(() => {
+    const term = companySearch.trim().toLowerCase();
+    if (!term) return solarCompanies;
+    return solarCompanies.filter(
+      (c) => c === COMPANY_OTHER || companyLabel(c).toLowerCase().includes(term)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [companySearch, q.questions.company.otherOption]);
+
+  useEffect(() => {
+    if (companyOpen) searchRef.current?.focus();
+  }, [companyOpen]);
   const firstRender = useRef(true);
 
   const total = STEPS.length;
@@ -99,21 +117,19 @@ export function Quiz({ locale, dict }: Props) {
     window.setTimeout(goNext, 180);
   }
 
-  function toggleIssue(value: (typeof quizOptions.issues)[number]) {
-    setAnswers((a) => {
-      const set = new Set(a.issues ?? []);
-      if (set.has(value)) set.delete(value);
-      else set.add(value);
-      return { ...a, issues: quizOptions.issues.filter((k) => set.has(k)) };
-    });
+  function chooseCompany(value: SolarCompany) {
+    setAnswers((a) => ({ ...a, company: value }));
+    setCompanyOpen(false);
+    setCompanySearch("");
+    if (value !== COMPANY_OTHER) window.setTimeout(goNext, 180);
   }
 
   function validate(): FieldErrors {
     const next: FieldErrors = {};
-    if (!fullName.trim() || fullName.trim().length < 2) next.fullName = form.errors.fullName;
+    if (!firstName.trim()) next.firstName = form.errors.fullName;
+    if (!lastName.trim()) next.lastName = form.errors.fullName;
     if (!phone.trim() || !isValidPhone(phone)) next.phone = form.errors.phone;
-    if (email.trim() && !isValidEmail(email.trim())) next.email = form.errors.email;
-    if (zip.trim() && !isValidZip(zip)) next.zip = form.errors.zip;
+    if (!email.trim() || !isValidEmail(email.trim())) next.email = form.errors.email;
     return next;
   }
 
@@ -131,13 +147,24 @@ export function Quiz({ locale, dict }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           source: QUIZ_SOURCE,
-          fullName: fullName.trim(),
+          firstName: firstName.trim(),
+          lastName: lastName.trim(),
+          fullName: `${firstName.trim()} ${lastName.trim()}`,
           phone: phone.trim(),
-          email: email.trim() || undefined,
-          zip: zip.trim() || undefined,
-          solarInstaller: installer.trim() || undefined,
+          email: email.trim(),
+          solarInstaller:
+            answers.company === COMPANY_OTHER
+              ? companyOther.trim() || undefined
+              : answers.company,
           locale,
-          quiz: answers,
+          quiz: {
+            ...answers,
+            companyOther:
+              answers.company === COMPANY_OTHER && companyOther.trim()
+                ? companyOther.trim()
+                : undefined,
+            bestTime,
+          },
         }),
       });
       const data = (await res.json().catch(() => ({}))) as {
@@ -251,79 +278,97 @@ export function Quiz({ locale, dict }: Props) {
             </div>
           )}
 
-          {current.kind === "multi" && (
+          {current.kind === "company" && (
             <div>
               <h2 data-step-heading tabIndex={-1} className={headingClass}>
-                {q.questions.issues.q}
+                <label id="quiz-company-label">{q.questions.company.q}</label>
               </h2>
-              <p className="mt-1 text-sm text-slate-500">{q.selectAll}</p>
-              <div className="mt-5 space-y-3">
-                {quizOptions.issues.map((opt) => {
-                  const selected = answers.issues?.includes(opt) ?? false;
-                  return (
-                    <button
-                      key={opt}
-                      type="button"
-                      role="checkbox"
-                      aria-checked={selected}
-                      onClick={() => toggleIssue(opt)}
-                      className={`${optionBase} ${selected ? optionActive : optionIdle}`}
-                    >
-                      <span>{q.questions.issues.options[opt]}</span>
-                      <span
-                        aria-hidden="true"
-                        className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2 ${
-                          selected ? "border-gold-400 bg-gold-400 text-navy-900" : "border-slate-300"
-                        }`}
-                      >
-                        {selected && (
-                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                          </svg>
-                        )}
-                      </span>
-                    </button>
-                  );
-                })}
+              <div className="relative mt-5">
+                <button
+                  type="button"
+                  aria-haspopup="listbox"
+                  aria-expanded={companyOpen}
+                  aria-labelledby="quiz-company-label"
+                  onClick={() => setCompanyOpen((o) => !o)}
+                  className={`${optionBase} ${optionIdle} font-medium`}
+                >
+                  <span className={answers.company ? "text-navy-900" : "text-slate-500"}>
+                    {answers.company ? companyLabel(answers.company) : q.questions.company.placeholder}
+                  </span>
+                  <svg
+                    className={`h-5 w-5 shrink-0 text-slate-500 transition ${companyOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {companyOpen && (
+                  <div className="mt-2 overflow-hidden rounded-xl border-2 border-slate-200 bg-white shadow-lg">
+                    <div className="border-b border-slate-200 p-2">
+                      <input
+                        ref={searchRef}
+                        type="search"
+                        value={companySearch}
+                        onChange={(e) => setCompanySearch(e.target.value)}
+                        placeholder={q.questions.company.searchPlaceholder}
+                        aria-label={q.questions.company.searchPlaceholder}
+                        className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-base outline-none focus:border-navy-800 focus:ring-2 focus:ring-gold-400/50"
+                      />
+                    </div>
+                    <ul role="listbox" aria-labelledby="quiz-company-label" className="max-h-72 overflow-y-auto py-1">
+                      {filteredCompanies.length === 1 && companySearch.trim() && (
+                        <li className="px-4 py-2 text-sm text-slate-500">{q.questions.company.noResults}</li>
+                      )}
+                      {filteredCompanies.map((c) => {
+                        const selected = answers.company === c;
+                        return (
+                          <li key={c} role="option" aria-selected={selected}>
+                            <button
+                              type="button"
+                              onClick={() => chooseCompany(c)}
+                              className={`flex min-h-[48px] w-full items-center justify-between px-4 py-3 text-left text-base ${
+                                selected ? "bg-navy-900 font-semibold text-white" : "text-navy-900 hover:bg-gold-50"
+                              }`}
+                            >
+                              {companyLabel(c)}
+                              {selected && <span aria-hidden="true">✓</span>}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
               </div>
-              <button
-                type="button"
-                onClick={goNext}
-                disabled={!answers.issues || answers.issues.length === 0}
-                className="mt-5 w-full rounded-xl bg-gold-500 px-5 py-4 text-base font-bold text-navy-900 shadow-md transition hover:bg-gold-400 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {q.next}
-              </button>
+              {answers.company === COMPANY_OTHER && !companyOpen && (
+                <div className="mt-4">
+                  <label htmlFor="quiz-companyOther" className={labelClass}>
+                    {q.questions.company.otherLabel}{" "}
+                    <span className="font-normal text-slate-500">{form.optional}</span>
+                  </label>
+                  <input
+                    id="quiz-companyOther"
+                    type="text"
+                    value={companyOther}
+                    onChange={(e) => setCompanyOther(e.target.value)}
+                    maxLength={120}
+                    className={fieldClass}
+                  />
+                </div>
+              )}
+              {answers.company && !companyOpen && (
+                <button
+                  type="button"
+                  onClick={goNext}
+                  className="mt-5 w-full rounded-xl bg-gold-500 px-5 py-4 text-base font-bold text-navy-900 shadow-md transition hover:bg-gold-400"
+                >
+                  {q.next}
+                </button>
+              )}
             </div>
-          )}
-
-          {current.kind === "installer" && (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                goNext();
-              }}
-            >
-              <h2 data-step-heading tabIndex={-1} className={headingClass}>
-                <label htmlFor="quiz-installer">{q.questions.installer.q}</label>
-              </h2>
-              <p className="mt-1 text-sm text-slate-500">{form.optional}</p>
-              <input
-                id="quiz-installer"
-                type="text"
-                value={installer}
-                onChange={(e) => setInstaller(e.target.value)}
-                maxLength={120}
-                placeholder={q.questions.installer.placeholder}
-                className={`${fieldClass} mt-4`}
-              />
-              <button
-                type="submit"
-                className="mt-5 w-full rounded-xl bg-gold-500 px-5 py-4 text-base font-bold text-navy-900 shadow-md transition hover:bg-gold-400"
-              >
-                {installer.trim() ? q.next : q.skip}
-              </button>
-            </form>
           )}
 
           {current.kind === "contact" && (
@@ -333,20 +378,37 @@ export function Quiz({ locale, dict }: Props) {
               </h2>
               <p className="mt-1 text-sm text-slate-500">{q.questions.contact.subtitle}</p>
               <div className="mt-5 space-y-4">
+                <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label htmlFor="quiz-fullName" className={labelClass}>
-                    {form.fullName} <span className="text-red-500">*</span>
+                  <label htmlFor="quiz-firstName" className={labelClass}>
+                    {q.questions.contact.firstName} <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="quiz-fullName"
+                    id="quiz-firstName"
                     type="text"
-                    autoComplete="name"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
+                    autoComplete="given-name"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
                     className={fieldClass}
                     required
                   />
-                  {errors.fullName && <p className={errorClass}>{errors.fullName}</p>}
+                  {errors.firstName && <p className={errorClass}>{errors.firstName}</p>}
+                </div>
+                <div>
+                  <label htmlFor="quiz-lastName" className={labelClass}>
+                    {q.questions.contact.lastName} <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="quiz-lastName"
+                    type="text"
+                    autoComplete="family-name"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className={fieldClass}
+                    required
+                  />
+                  {errors.lastName && <p className={errorClass}>{errors.lastName}</p>}
+                </div>
                 </div>
                 <div>
                   <label htmlFor="quiz-phone" className={labelClass}>
@@ -357,9 +419,9 @@ export function Quiz({ locale, dict }: Props) {
                     type="tel"
                     autoComplete="tel"
                     inputMode="tel"
+                    placeholder={form.phonePlaceholder}
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder={form.phonePlaceholder}
                     className={fieldClass}
                     required
                   />
@@ -367,7 +429,7 @@ export function Quiz({ locale, dict }: Props) {
                 </div>
                 <div>
                   <label htmlFor="quiz-email" className={labelClass}>
-                    {form.email} <span className="font-normal text-slate-500">{form.optional}</span>
+                    {form.email} <span className="text-red-500">*</span>
                   </label>
                   <input
                     id="quiz-email"
@@ -377,25 +439,34 @@ export function Quiz({ locale, dict }: Props) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className={fieldClass}
+                    required
                   />
                   {errors.email && <p className={errorClass}>{errors.email}</p>}
                 </div>
-                <div>
-                  <label htmlFor="quiz-zip" className={labelClass}>
-                    {form.zip} <span className="font-normal text-slate-500">{form.optional}</span>
-                  </label>
-                  <input
-                    id="quiz-zip"
-                    type="text"
-                    autoComplete="postal-code"
-                    inputMode="numeric"
-                    value={zip}
-                    onChange={(e) => setZip(e.target.value)}
-                    placeholder={form.zipPlaceholder}
-                    className={fieldClass}
-                  />
-                  {errors.zip && <p className={errorClass}>{errors.zip}</p>}
-                </div>
+                <fieldset>
+                  <legend className={labelClass}>
+                    {q.questions.contact.bestTime}{" "}
+                    <span className="font-normal text-slate-500">{form.optional}</span>
+                  </legend>
+                  <div className="mt-2 grid grid-cols-3 gap-2">
+                    {quizOptions.bestTime.map((t) => {
+                      const selected = bestTime === t;
+                      return (
+                        <button
+                          key={t}
+                          type="button"
+                          aria-pressed={selected}
+                          onClick={() => setBestTime(selected ? undefined : t)}
+                          className={`min-h-[48px] rounded-xl border-2 px-2 py-2.5 text-sm font-semibold transition ${
+                            selected ? optionActive : optionIdle
+                          }`}
+                        >
+                          {q.questions.contact.bestTimeOptions[t]}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </fieldset>
               </div>
 
               {status === "error" && serverMessage && (

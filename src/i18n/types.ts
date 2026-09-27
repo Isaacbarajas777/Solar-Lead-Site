@@ -79,42 +79,34 @@ export type Dictionary = {
     stepOf: string; // e.g. "Step {current} of {total}"
     back: string;
     next: string;
-    skip: string;
-    selectAll: string;
     questions: {
-      ownHome: { q: string; options: { yes: string; no: string } };
-      setup: {
+      wantCancel: { q: string; options: { yes: string; no: string } };
+      misled: { q: string; options: { yes: string; no: string } };
+      paymentStructure: { q: string; options: { lease: string; loan: string; ppa: string } };
+      salesStart: {
         q: string;
-        options: { lease: string; loan: string; ppa: string; paid: string; unsure: string };
+        options: { doorToDoor: string; onlineAd: string; coldCall: string; other: string };
+      };
+      company: {
+        q: string;
+        placeholder: string;
+        searchPlaceholder: string;
+        noResults: string;
+        otherOption: string;
+        otherLabel: string;
       };
       payment: {
         q: string;
-        options: {
-          under100: string;
-          "100to200": string;
-          "200to300": string;
-          over300: string;
-          unsure: string;
-        };
+        options: { under200: string; "201to500": string; over500: string };
       };
-      billHigher: { q: string; options: { yes: string; no: string; unsure: string } };
-      issues: {
+      contact: {
         q: string;
-        options: {
-          savings: string;
-          outOfBusiness: string;
-          notWorking: string;
-          fees: string;
-          pressured: string;
-          other: string;
-        };
+        subtitle: string;
+        firstName: string;
+        lastName: string;
+        bestTime: string;
+        bestTimeOptions: { morning: string; afternoon: string; evening: string };
       };
-      installer: { q: string; placeholder: string };
-      installedWhen: {
-        q: string;
-        options: { lt1: string; "1to3": string; "3to5": string; "5plus": string };
-      };
-      contact: { q: string; subtitle: string };
     };
     submit: string;
     thankYouTitle: string;

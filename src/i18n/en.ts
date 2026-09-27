@@ -157,61 +157,55 @@ export const en: Dictionary = {
     stepOf: "Step {current} of {total}",
     back: "Back",
     next: "Next",
-    skip: "Skip",
-    selectAll: "Select all that apply.",
     questions: {
-      ownHome: { q: "Do you own your home?", options: { yes: "Yes", no: "No" } },
-      setup: {
-        q: "How is your solar set up?",
+      wantCancel: {
+        q: "Do you have a solar system you want to cancel?",
+        options: { yes: "Yes", no: "No" },
+      },
+      misled: {
+        q: "Were you lied to or misled in any way during the solar sales process?",
+        options: { yes: "Yes", no: "No" },
+      },
+      paymentStructure: {
+        q: "How is your solar payment structured?",
         options: {
-          lease: "Lease",
-          loan: "Loan",
-          ppa: "PPA (Power Purchase Agreement)",
-          paid: "Paid in full",
-          unsure: "Not sure",
+          lease: "Solar lease",
+          loan: "Solar loan (financing)",
+          ppa: "Power Purchase Agreement (PPA)",
         },
       },
-      payment: {
-        q: "About how much is your monthly solar payment?",
+      salesStart: {
+        q: "What started the solar sales process for you?",
         options: {
-          under100: "Under $100",
-          "100to200": "$100–$200",
-          "200to300": "$200–$300",
-          over300: "Over $300",
-          unsure: "Not sure",
-        },
-      },
-      billHigher: {
-        q: "Is your electric bill still higher than you expected?",
-        options: { yes: "Yes", no: "No", unsure: "Not sure" },
-      },
-      issues: {
-        q: "What’s going on?",
-        options: {
-          savings: "Savings didn’t match what I was told",
-          outOfBusiness: "Installer went out of business",
-          notWorking: "System isn’t working or not serviced",
-          fees: "Hidden fees or rate increases",
-          pressured: "Pressured or misled during the sale",
+          doorToDoor: "Door-to-door salesperson",
+          onlineAd: "I saw an online ad",
+          coldCall: "I was cold-called",
           other: "Other",
         },
       },
-      installer: {
-        q: "Who installed your system?",
-        placeholder: "Company or installer name (optional)",
+      company: {
+        q: "Solar company",
+        placeholder: "Please select an option",
+        searchPlaceholder: "Search…",
+        noResults: "No matches. Choose “Other” below.",
+        otherOption: "Other",
+        otherLabel: "Company name",
       },
-      installedWhen: {
-        q: "When was it installed?",
+      payment: {
+        q: "Monthly loan payment",
         options: {
-          lt1: "Less than 1 year ago",
-          "1to3": "1–3 years ago",
-          "3to5": "3–5 years ago",
-          "5plus": "5+ years ago",
+          under200: "Less than $200",
+          "201to500": "$201 to $500",
+          over500: "More than $500",
         },
       },
       contact: {
-        q: "Where can we reach you?",
+        q: "Almost done — where can we reach you?",
         subtitle: "We’ll follow up about your free consultation.",
+        firstName: "First name",
+        lastName: "Last name",
+        bestTime: "What is the best time to reach you?",
+        bestTimeOptions: { morning: "Morning", afternoon: "Afternoon", evening: "Evening" },
       },
     },
     submit: "Request my free consultation",
