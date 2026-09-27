@@ -10,6 +10,7 @@ export const COMPANY_OTHER = "Other" as const;
 export const solarCompanies = [
   "ADT Solar",
   "Arcadia Solar",
+  "Bell Solar",
   "Empire Solar Group",
   "Erus Energy",
   "Freedom Forever",
@@ -30,6 +31,7 @@ export const solarCompanies = [
   "SunPower",
   "Sunworks",
   "Titan Solar Power",
+  "Universal Solar Direct",
   "Vision Solar",
   COMPANY_OTHER,
 ] as const;
