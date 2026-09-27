@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import type { Dictionary, Locale } from "@/i18n";
-import { localePath, otherLocale } from "@/i18n";
+import { landingPath, otherLocale } from "@/i18n";
 
 type Props = {
   locale: Locale;
@@ -11,12 +11,12 @@ type Props = {
 
 export function Header({ locale, dict }: Props) {
   const toggleLocale = otherLocale(locale);
-  const toggleHref = localePath(toggleLocale);
+  const toggleHref = landingPath(toggleLocale);
 
   return (
     <header className="border-b border-slate-200/80 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-        <a href="#top" className="group flex items-center">
+        <Link href={landingPath(locale)} className="group flex items-center">
           <Image
             src="/logo.png"
             alt={siteConfig.brandName}
@@ -25,7 +25,7 @@ export function Header({ locale, dict }: Props) {
             className="h-14 w-auto sm:h-20"
             priority
           />
-        </a>
+        </Link>
         <div className="flex items-center gap-2 text-sm sm:gap-3">
           <a
             href={`tel:${siteConfig.phone.replace(/\D/g, "")}`}

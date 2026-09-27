@@ -150,9 +150,7 @@ export const en: Dictionary = {
     formSubtitle: "Same form as above — use whichever is easier.",
   },
   quiz: {
-    metaTitle: "See if a free consultation makes sense | Nevada Energy Advisors",
-    metaDescription:
-      "Answer a few quick questions about your solar setup. Every case is different.",
+    skipToSite: "Skip to our site",
     badge: "Free Consultation",
     title: "See if a free consultation makes sense for you",
     subtitle: "A few quick questions. It takes about a minute.",
@@ -220,7 +218,7 @@ export const en: Dictionary = {
     thankYouTitle: "Thanks — we’ll be in touch about your free consultation.",
     thankYouBody:
       "Someone may call or email you soon. Every case is different.",
-    backHome: "Back to home page",
+    learnMore: "Learn more about us",
     everyCase: "Every case is different.",
   },
   footer: {
