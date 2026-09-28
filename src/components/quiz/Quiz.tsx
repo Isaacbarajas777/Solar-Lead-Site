@@ -13,6 +13,7 @@ import {
 } from "@/config/quiz";
 import type { Dictionary, Locale } from "@/i18n";
 import { landingPath } from "@/i18n";
+import { trackMetaLead } from "@/lib/metaPixel";
 
 type Props = {
   locale: Locale;
@@ -177,6 +178,7 @@ export function Quiz({ locale, dict }: Props) {
         return;
       }
       setStatus("success");
+      trackMetaLead("quiz", locale);
     } catch {
       setStatus("error");
       setServerMessage(form.errors.network);
