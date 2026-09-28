@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { siteConfig } from "@/config/site";
+import { MetaPixel } from "@/components/MetaPixel";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -45,6 +46,8 @@ export const metadata: Metadata = {
   },
 };
 
+const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -56,6 +59,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        {metaPixelId ? <MetaPixel pixelId={metaPixelId} /> : null}
       </body>
     </html>
   );

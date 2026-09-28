@@ -3,6 +3,7 @@
 import { useState, FormEvent } from "react";
 import { siteConfig } from "@/config/site";
 import type { Dictionary, Locale } from "@/i18n";
+import { trackMetaLead } from "@/lib/metaPixel";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -101,6 +102,7 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
       }
 
       setState("success");
+      trackMetaLead("home_form", locale);
       setFullName("");
       setPhone("");
       setEmail("");

@@ -54,6 +54,25 @@ All UI contact/brand text reads from this config. Do not hardcode contact detail
 - `data/.gitkeep` keeps the folder in git; `data/leads.jsonl` is gitignored
 - Production: point the API at a CRM/webhook if needed (see notes in `site.ts`)
 
+## Meta (Facebook) Pixel
+
+The Meta Pixel is wired up but **disabled until a Pixel ID is provided**.
+
+| Env var | Example | Notes |
+|---------|---------|-------|
+| `NEXT_PUBLIC_META_PIXEL_ID` | `123456789012345` | Meta Pixel (dataset) ID. If unset/empty, **nothing** pixel-related is rendered. |
+
+- Base code: `src/components/MetaPixel.tsx`, loaded from `src/app/layout.tsx` on every page (EN + ES) via `next/script` (`afterInteractive`) + `<noscript>` image fallback.
+- `PageView`: fired on first load by the snippet, and on client-side route changes (no duplicate on first load).
+- `Lead`: fired only after a **successful** submit (`res.ok` + `success`) in the quiz (`content_name: "quiz"`) and the `/home` LeadForm (`content_name: "home_form"`), with `language` (`en`/`es`). No personal data is sent. Helper: `src/lib/metaPixel.ts`.
+- `NEXT_PUBLIC_*` vars are inlined at **build time**: after setting/changing it on Vercel (Production), trigger a redeploy.
+
+Local test:
+
+```bash
+NEXT_PUBLIC_META_PIXEL_ID=123456789 npm run build && npm start
+```
+
 ## Project structure
 
 ```
