@@ -75,7 +75,6 @@ export type Dictionary = {
     skipToSite: string;
     badge: string;
     title: string;
-    subtitle: string;
     stepOf: string; // e.g. "Step {current} of {total}"
     back: string;
     next: string;

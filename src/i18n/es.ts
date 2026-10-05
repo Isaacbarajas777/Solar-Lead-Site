@@ -153,7 +153,6 @@ export const es: Dictionary = {
     skipToSite: "Ir a nuestro sitio",
     badge: "Verifique su elegibilidad",
     title: "¿Listo para salir de su contrato solar?",
-    subtitle: "Unas preguntas rápidas. Toma alrededor de un minuto.",
     stepOf: "Paso {current} de {total}",
     back: "Atrás",
     next: "Siguiente",

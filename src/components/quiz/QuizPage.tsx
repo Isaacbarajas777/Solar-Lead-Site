@@ -57,7 +57,6 @@ export function QuizPage({ locale, dict }: Props) {
             <h1 className="mt-3 text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
               {dict.quiz.title}
             </h1>
-            <p className="mt-2 text-sm text-slate-300 sm:text-base">{dict.quiz.subtitle}</p>
             <Link
               href={landingPath(locale)}
               className="mt-3 inline-block text-xs font-medium text-slate-300 underline decoration-slate-500 underline-offset-2 hover:text-white"
