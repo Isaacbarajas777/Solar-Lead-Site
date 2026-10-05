@@ -47,7 +47,7 @@ export const en: Dictionary = {
     submit: "Ask for a free consultation",
     submitting: "Sending...",
     consent:
-      "By submitting, you agree we may contact you about a free consultation. This is not legal advice. Every case is different — we do not guarantee cancellation, refunds, or any specific outcome.",
+      "By submitting, you agree we may contact you about a free consultation. We won't sell your information. This isn't legal advice, and every case is different, so we can't promise cancellation, a refund, or any specific outcome.",
     successTitle: "Thank you",
     successBody:
       "We got your request. Someone may call or email you about a free consultation. If it makes sense, we may connect you with specialists for a closer look at your options.",
@@ -218,7 +218,7 @@ export const en: Dictionary = {
   footer: {
     tagline: "Free consultations for people stuck with solar contracts",
     disclaimer:
-      "Submitting this form is not legal advice. It is not a promise of cancellation, relief, refund, or any result. We may use your info to contact you about a free consultation and to connect you with specialists when it makes sense. Nevada Energy Advisors is a private company. We are not a state or government program, and we are not affiliated with NV Energy or any utility.",
+      "After you submit, we may reach out about a free consultation. When it makes sense, we can also connect you with specialists. We won't sell your information. This isn't legal advice, and we can't promise any result, like cancellation, relief, or a refund. Nevada Energy Advisors is a private company. We're not a state or government program, and we're not affiliated with NV Energy or any utility.",
     rights: "All rights reserved.",
   },
 };

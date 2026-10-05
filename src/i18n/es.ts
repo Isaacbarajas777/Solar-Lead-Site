@@ -47,7 +47,7 @@ export const es: Dictionary = {
     submit: "Pedir una consulta gratuita",
     submitting: "Enviando...",
     consent:
-      "Al enviar, acepta que podamos contactarlo sobre una consulta gratuita. Esto no es asesoría legal. Cada caso es distinto — no garantizamos cancelación, reembolsos ni ningún resultado específico.",
+      "Al enviar, acepta que podamos contactarlo sobre una consulta gratuita. No venderemos su información. Esto no es asesoría legal y cada caso es distinto, así que no podemos prometer cancelación, reembolso ni ningún resultado específico.",
     successTitle: "Gracias",
     successBody:
       "Recibimos su solicitud. Alguien podría llamarlo o escribirle sobre una consulta gratuita. Si corresponde, podemos conectarlo con especialistas para revisar sus opciones con más detalle.",
@@ -219,7 +219,7 @@ export const es: Dictionary = {
   footer: {
     tagline: "Consultas gratuitas para personas atrapadas con contratos solares",
     disclaimer:
-      "Enviar este formulario no es asesoría legal. No es una promesa de cancelación, alivio, reembolso ni de ningún resultado. Podemos usar su información para contactarlo sobre una consulta gratuita y para conectar con especialistas cuando tenga sentido. Nevada Energy Advisors es una empresa privada. No somos un programa estatal ni gubernamental, y no estamos afiliados a NV Energy ni a ninguna empresa de servicios públicos.",
+      "Después de enviar, podríamos comunicarnos con usted sobre una consulta gratuita. Cuando tenga sentido, también podemos conectarlo con especialistas. No venderemos su información. Esto no es asesoría legal, y no podemos prometer ningún resultado, como cancelación, alivio o reembolso. Nevada Energy Advisors es una empresa privada. No somos un programa estatal ni gubernamental, y no estamos afiliados a NV Energy ni a ninguna empresa de servicios públicos.",
     rights: "Todos los derechos reservados.",
   },
 };
