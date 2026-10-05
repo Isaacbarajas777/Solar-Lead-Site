@@ -151,8 +151,8 @@ export const es: Dictionary = {
   },
   quiz: {
     skipToSite: "Ir a nuestro sitio",
-    badge: "Consulta gratuita",
-    title: "Vea si una consulta gratuita tiene sentido para usted",
+    badge: "Verifique su elegibilidad",
+    title: "¿Listo para salir de su contrato solar?",
     subtitle: "Unas preguntas rápidas. Toma alrededor de un minuto.",
     stepOf: "Paso {current} de {total}",
     back: "Atrás",
