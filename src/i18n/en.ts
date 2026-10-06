@@ -69,15 +69,15 @@ export const en: Dictionary = {
     items: [
       {
         title: "Bills that keep climbing",
-        body: "Your solar payment is higher than you planned for.",
+        body: "Your solar payment is higher than you planned for",
       },
       {
         title: "Sold on promises that didn’t happen",
-        body: "The savings, incentives, or terms you were promised don’t match what you got.",
+        body: "The savings, incentives, or terms you were promised don’t match what you got",
       },
       {
         title: "Stuck in a contract you don’t understand",
-        body: "Lease, loan, and PPA paperwork is hard to read.",
+        body: "Lease, loan, and PPA paperwork is hard to read",
       },
     ],
   },

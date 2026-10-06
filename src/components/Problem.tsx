@@ -22,10 +22,10 @@ export function Problem({ dict }: Props) {
               key={item.title}
               className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
             >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-red-50 text-red-600">
                 <svg
                   className="h-5 w-5"
-                  fill="none"
+                  fill="currentColor"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   aria-hidden="true"
@@ -34,12 +34,13 @@ export function Problem({ dict }: Props) {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"
+                    d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"
                   />
+                  <line x1="4" x2="4" y1="22" y2="15" fill="none" strokeLinecap="round" strokeWidth={2} />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold leading-snug text-navy-900">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.body}</p>
+              <h3 className="text-2xl font-semibold leading-snug text-navy-900">{item.title}</h3>
+              <p className="mt-2 text-lg leading-relaxed text-slate-600">{item.body}</p>
             </article>
           ))}
         </div>

@@ -69,15 +69,15 @@ export const es: Dictionary = {
     items: [
       {
         title: "Pagos que no dejan de subir",
-        body: "Su pago solar es más alto de lo que planeó.",
+        body: "Su pago solar es más alto de lo que planeó",
       },
       {
         title: "Le vendieron promesas que no se cumplieron",
-        body: "El ahorro, los incentivos o los términos que le prometieron no coinciden con lo que recibió.",
+        body: "El ahorro, los incentivos o los términos que le prometieron no coinciden con lo que recibió",
       },
       {
         title: "Atrapado en un contrato que no entiende",
-        body: "Los documentos de arrendamiento, préstamo y PPA son difíciles de leer.",
+        body: "Los documentos de arrendamiento, préstamo y PPA son difíciles de leer",
       },
     ],
   },
