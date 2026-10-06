@@ -21,10 +21,10 @@ export const en: Dictionary = {
     badge: "Free Consultation",
     title: "Stuck with a solar contract?",
     subtitle:
-      "Are your solar bills higher than expected? Did the sale not match what you were told? Request a free consultation. We’ll take an honest look at your options and give you clear next steps.",
+      "Higher bills than you were promised? A sale that didn’t match the pitch? Get straight answers about your contract and a clear plan for what comes next.",
     bullets: [
-      "Free consultation",
-      "An honest look at your options",
+      "No cost, no pressure",
+      "Straight answers about your contract",
       "A clearer path from here",
     ],
     questionsPrefix: "Questions? Call",
@@ -65,82 +65,74 @@ export const en: Dictionary = {
   problem: {
     title: "Why people call us",
     subtitle:
-      "Solar deals can feel confusing or too expensive. We start with a free consultation — an honest look at your options.",
+      "Solar deals get confusing and expensive fast. You deserve straight answers about where you stand.",
     items: [
       {
-        title: "Bills that feel too high",
-        body: "Your solar payment may cost more than you expected. Many people want clearer answers about what they can do next.",
+        title: "Bills that keep climbing",
+        body: "Your solar payment is higher than you planned for",
       },
       {
-        title: "The sale did not match what you heard",
-        body: "If savings, incentives, or contract terms feel different from what you were told, it is okay to ask for another look.",
+        title: "Sold on promises that didn’t happen",
+        body: "The savings, incentives, or terms you were promised don’t match what you got",
       },
       {
-        title: "Not sure what to do next",
-        body: "Lease, loan, and PPA papers can be hard to read. A free consultation can help you see clear next steps. Every case is different.",
+        title: "Stuck in a contract you don’t understand",
+        body: "Lease, loan, and PPA paperwork is hard to read",
       },
     ],
   },
   process: {
     title: "How it works",
     subtitle:
-      "Start with a free consultation. Specialists only when it makes sense.",
+      "Four steps. No cost. No pressure.",
     steps: [
       {
         step: "1",
         title: "Submit your info",
-        body: "Fill out the short form with your name, phone, email, ZIP, solar installer, and an optional note.",
+        body: "Fill out the short form with your contact details and solar installer.",
       },
       {
         step: "2",
         title: "Free Consultation",
-        body: "We follow up to learn more about your situation — free, with no pressure.",
+        body: "We reach out, learn your situation, and answer your questions. No pressure.",
       },
       {
         step: "3",
         title: "Specialist review",
-        body: "If it makes sense, we may connect you with people who can review your case.",
+        body: "When your case calls for it, we connect you with specialists who review it in detail.",
       },
       {
         step: "4",
         title: "Clear next steps",
-        body: "You get plain next steps based on your situation. Every case is different.",
+        body: "You get a plain-language rundown of your options and what to do next.",
       },
     ],
   },
   faq: {
     title: "Common questions",
-    subtitle: "Short answers. Every case is different. Not legal advice.",
+    subtitle: "Straight answers. Not legal advice.",
     items: [
       {
         q: "What happens after I submit the form?",
-        a: "Someone may contact you for a free consultation, ask a few questions, and see if connecting you with specialists makes sense.",
+        a: "We contact you, ask a few questions about your contract, and explain your next step. If your case needs a specialist, we connect you.",
       },
       {
         q: "Is the consultation really free?",
-        a: "Yes. Asking for a consultation on this site is free. You do not have to do anything after you speak with us.",
-      },
-      {
-        q: "Do you guarantee my solar contract will be cancelled?",
-        a: "No. We do not promise cancellation, refunds, lower payments, or any specific result. Every case is different.",
+        a: "Yes. It costs nothing, and you’re under no obligation afterward.",
       },
       {
         q: "What information should I have ready?",
-        a: "It helps to know your contract type (lease, loan, PPA, or owned), about how much you pay each month, and any papers you are okay sharing during a consultation.",
-      },
-      {
-        q: "Is this legal advice?",
-        a: "No. This site and consultations that start from the form are not legal advice. Specialists may discuss options, but results are never promised.",
+        a: "Your contract type (lease, loan, PPA, or owned), your monthly payment, and any paperwork you want to share. Don’t have it all? Reach out anyway.",
       },
       {
         q: "Who will contact me?",
-        a: "Someone from this brand may call or email using the info you give. If your case looks like a fit, we may connect you with specialists for a closer look.",
+        a: "A member of the Nevada Energy Advisors team, by phone or email, using the info you provide. When it makes sense, we connect you with specialists for a closer review.",
       },
     ],
   },
   finalCta: {
-    title: "Want a free consultation?",
-    body: "Ask for a free consultation. We will take an honest look at what you share and follow up with clear next steps. If it makes sense, we may connect you with specialists.",
+    title: "Ready for straight answers?",
+    body: "Tell us about your contract. We review what you share, explain where you stand, and give you clear next steps. When it makes sense, we connect you with specialists.",
     bullets: [
       "Share a few details — we follow up",
       "We may connect you with specialists when it makes sense",

@@ -25,7 +25,7 @@ export function Process({ dict }: Props) {
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy-900 text-sm font-bold text-white">
                 {item.step}
               </span>
-              <h3 className="mt-4 text-lg font-semibold text-navy-900">{item.title}</h3>
+              <h3 className="mt-4 text-xl font-semibold leading-snug text-navy-900">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.body}</p>
             </li>
           ))}
