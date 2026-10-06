@@ -22,7 +22,7 @@ export function FAQ({ dict }: Props) {
               key={item.q}
               className="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm open:shadow-md"
             >
-              <summary className="cursor-pointer list-none text-left text-base font-semibold text-navy-900 marker:content-none [&::-webkit-details-marker]:hidden">
+              <summary className="cursor-pointer list-none text-left text-lg font-semibold leading-snug text-navy-900 marker:content-none [&::-webkit-details-marker]:hidden">
                 <span className="flex items-start justify-between gap-4">
                   {item.q}
                   <span className="mt-0.5 text-teal-600 transition group-open:rotate-45">

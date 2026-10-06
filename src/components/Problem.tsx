@@ -38,7 +38,7 @@ export function Problem({ dict }: Props) {
                   />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-navy-900">{item.title}</h3>
+              <h3 className="text-xl font-semibold leading-snug text-navy-900">{item.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.body}</p>
             </article>
           ))}
