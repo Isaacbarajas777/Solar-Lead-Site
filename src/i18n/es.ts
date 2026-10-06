@@ -21,10 +21,10 @@ export const es: Dictionary = {
     badge: "Consulta gratuita",
     title: "¿Se siente atrapado con un contrato solar?",
     subtitle:
-      "¿Sus pagos solares son más altos de lo esperado? ¿La venta no coincidió con lo que le dijeron? Solicite una consulta gratuita. Revisamos sus opciones con honestidad y le damos pasos claros.",
+      "¿Paga más de lo que le prometieron? ¿La venta no coincidió con lo que le dijeron? Obtenga respuestas directas sobre su contrato y un plan claro para lo que sigue.",
     bullets: [
-      "Consulta gratuita",
-      "Una mirada honesta a sus opciones",
+      "Sin costo y sin presión",
+      "Respuestas directas sobre su contrato",
       "Un camino más claro desde aquí",
     ],
     questionsPrefix: "¿Preguntas? Llame al",
@@ -65,82 +65,74 @@ export const es: Dictionary = {
   problem: {
     title: "Por qué nos llaman",
     subtitle:
-      "Los contratos solares pueden confundir o costar demasiado. Empezamos con una consulta gratuita — una mirada honesta a sus opciones.",
+      "Los contratos solares se vuelven confusos y caros muy rápido. Usted merece respuestas directas sobre su situación.",
     items: [
       {
-        title: "Pagos que se sienten muy altos",
-        body: "Su pago solar puede costar más de lo que esperaba. Muchas personas quieren respuestas más claras sobre qué pueden hacer.",
+        title: "Pagos que no dejan de subir",
+        body: "Su pago solar es más alto de lo que planeó. Descubra qué opciones tiene.",
       },
       {
-        title: "La venta no coincidió con lo que le dijeron",
-        body: "Si el ahorro, los incentivos o los términos se sienten distintos de lo que le dijeron, está bien pedir otra revisión.",
+        title: "Le vendieron promesas que no se cumplieron",
+        body: "El ahorro, los incentivos o los términos que le prometieron no coinciden con lo que recibió. Revisamos su contrato y le explicamos en qué punto está.",
       },
       {
-        title: "No sabe qué hacer después",
-        body: "El papeleo de arrendamiento, préstamo y PPA puede ser difícil de leer. Una consulta gratuita puede ayudarle a ver pasos claros. Cada caso es distinto.",
+        title: "Atrapado en un contrato que no entiende",
+        body: "Los documentos de arrendamiento, préstamo y PPA son difíciles de leer. Se los explicamos en palabras sencillas para que sepa cuál es su siguiente paso.",
       },
     ],
   },
   process: {
     title: "Cómo funciona",
     subtitle:
-      "Empiece con una consulta gratuita. Especialistas solo cuando tenga sentido.",
+      "Cuatro pasos. Sin costo. Sin presión.",
     steps: [
       {
         step: "1",
         title: "Envíe su información",
-        body: "Complete el formulario breve con su nombre, teléfono, correo, código postal, instalador solar y una nota opcional.",
+        body: "Complete el formulario breve con sus datos de contacto y su instalador solar.",
       },
       {
         step: "2",
         title: "Consulta gratuita",
-        body: "Damos seguimiento para conocer más sobre su situación — gratis y sin presión.",
+        body: "Nos comunicamos con usted, conocemos su situación y respondemos sus preguntas. Sin presión.",
       },
       {
         step: "3",
         title: "Revisión de especialista",
-        body: "Si tiene sentido, podemos conectarlo con personas que revisen su caso.",
+        body: "Cuando su caso lo requiere, lo conectamos con especialistas que lo revisan a fondo.",
       },
       {
         step: "4",
         title: "Pasos claros",
-        body: "Recibe pasos sencillos según su situación. Cada caso es distinto.",
+        body: "Recibe una explicación clara de sus opciones y de qué hacer después.",
       },
     ],
   },
   faq: {
     title: "Preguntas frecuentes",
-    subtitle: "Respuestas cortas. Cada caso es distinto. No es asesoría legal.",
+    subtitle: "Respuestas directas. No es asesoría legal.",
     items: [
       {
         q: "¿Qué ocurre después de enviar el formulario?",
-        a: "Alguien podría contactarlo para una consulta gratuita, hacer algunas preguntas y ver si conectar con especialistas tiene sentido.",
+        a: "Lo contactamos, le hacemos algunas preguntas sobre su contrato y le explicamos el siguiente paso. Si su caso necesita un especialista, lo conectamos.",
       },
       {
         q: "¿La consulta es realmente gratis?",
-        a: "Sí. Pedir una consulta en este sitio es gratis. No tiene que continuar después de hablar con nosotros.",
-      },
-      {
-        q: "¿Garantizan que se cancelará mi contrato solar?",
-        a: "No. No prometemos cancelación, reembolsos, pagos más bajos ni ningún resultado específico. Cada caso es distinto.",
+        a: "Sí. No cuesta nada y no tiene ninguna obligación después.",
       },
       {
         q: "¿Qué información debo tener lista?",
-        a: "Ayuda saber el tipo de contrato (arrendamiento, préstamo, PPA o propio), cuánto paga al mes más o menos, y cualquier documento con el que se sienta cómodo compartiendo en la consulta.",
-      },
-      {
-        q: "¿Esto es asesoría legal?",
-        a: "No. Este sitio y las consultas que empiezan desde el formulario no son asesoría legal. Los especialistas pueden hablar de opciones, pero nunca se prometen resultados.",
+        a: "El tipo de contrato (arrendamiento, préstamo, PPA o propio), su pago mensual y cualquier documento que quiera compartir. ¿No lo tiene todo? Contáctenos de todos modos.",
       },
       {
         q: "¿Quién me contactará?",
-        a: "Alguien de esta marca podría llamar o escribir usando los datos que dé. Si su caso parece adecuado, podemos conectarlo con especialistas para una revisión más cercana.",
+        a: "Un miembro del equipo de Nevada Energy Advisors, por teléfono o correo, con los datos que nos dé. Cuando tiene sentido, lo conectamos con especialistas para una revisión más detallada.",
       },
     ],
   },
   finalCta: {
-    title: "¿Quiere una consulta gratuita?",
-    body: "Pida una consulta gratuita. Revisamos con honestidad lo que comparta y le damos seguimiento con pasos claros. Si corresponde, podemos conectarlo con especialistas.",
+    title: "¿Listo para obtener respuestas directas?",
+    body: "Cuéntenos sobre su contrato. Revisamos lo que comparta, le explicamos en qué punto está y le damos pasos claros. Cuando tiene sentido, lo conectamos con especialistas.",
     bullets: [
       "Comparta unos datos — le damos seguimiento",
       "Podemos conectarlo con especialistas cuando haga falta",
