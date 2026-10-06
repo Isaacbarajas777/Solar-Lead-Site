@@ -77,7 +77,7 @@ export const es: Dictionary = {
       },
       {
         title: "Atrapado en un contrato que no entiende",
-        body: "Los documentos de arrendamiento, préstamo y PPA son difíciles de leer",
+        body: "Documentos de arrendamiento, préstamo o PPA difíciles de leer y llenos de cargos ocultos",
       },
     ],
   },
