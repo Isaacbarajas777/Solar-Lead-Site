@@ -77,7 +77,7 @@ export const en: Dictionary = {
       },
       {
         title: "Stuck in a contract you don’t understand",
-        body: "Lease, loan, and PPA paperwork is hard to read",
+        body: "Lease, loan, or PPA paperwork that's hard to read and full of hidden fees",
       },
     ],
   },
