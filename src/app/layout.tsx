@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -60,6 +61,7 @@ export default function RootLayout({
     >
       <body className="antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );
