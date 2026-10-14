@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { Honeypot } from "@/components/Honeypot";
 import { siteConfig } from "@/config/site";
 import type { Dictionary, Locale } from "@/i18n";
 
@@ -41,6 +42,9 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [state, setState] = useState<FormState>("idle");
   const [serverMessage, setServerMessage] = useState("");
+  const [website, setWebsite] = useState("");
+  // Measured from mount (for the quiz: before step 1), used by the API time trap.
+  const [startedAt] = useState(() => Date.now());
 
   function validate(): FieldErrors {
     const next: FieldErrors = {};
@@ -88,6 +92,8 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
           zip: zip.trim(),
           solarInstaller: solarInstaller.trim() || undefined,
           message: message.trim() || undefined,
+          website,
+          startedAt,
           locale,
         }),
       });
@@ -162,6 +168,7 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
       noValidate
       aria-labelledby={`${idPrefix}-form-title`}
     >
+              <Honeypot value={website} onChange={setWebsite} />
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label htmlFor={`${idPrefix}-fullName`} className={labelClass}>
