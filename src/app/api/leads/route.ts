@@ -25,6 +25,8 @@ type LeadBody = {
   locale?: unknown;
   source?: unknown;
   quiz?: unknown;
+  website?: unknown;
+  startedAt?: unknown;
 };
 
 type LeadRecord = {
@@ -149,6 +151,85 @@ function formatLeadEmail(record: LeadRecord) {
   return lines.join("\n");
 }
 
+// ---- Spam protection -------------------------------------------------------
+const MIN_FILL_MS = 3000;
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+// Best effort: per serverless instance, resets on cold start.
+const rateHits = new Map<string, number[]>();
+
+const LIMITS = {
+  name: 80,
+  email: 254,
+  phone: 30,
+  zip: 10,
+  text: 1000,
+  quizAnswer: 200,
+} as const;
+
+function clientIp(request: NextRequest) {
+  const fwd = request.headers.get("x-forwarded-for");
+  return (fwd?.split(",")[0].trim() || request.headers.get("x-real-ip") || "unknown");
+}
+
+function isRateLimited(ip: string) {
+  const now = Date.now();
+  const hits = (rateHits.get(ip) || []).filter((t) => now - t < RATE_WINDOW_MS);
+  hits.push(now);
+  rateHits.set(ip, hits);
+  if (rateHits.size > 5000) {
+    for (const [k, v] of rateHits) {
+      if (!v.some((t) => now - t < RATE_WINDOW_MS)) rateHits.delete(k);
+    }
+  }
+  return hits.length > RATE_LIMIT;
+}
+
+function tooLong(value: unknown, max: number) {
+  return typeof value === "string" && value.length > max;
+}
+
+function oversized(body: LeadBody): boolean {
+  if (
+    tooLong(body.fullName, LIMITS.name * 2 + 1) ||
+    tooLong(body.firstName, LIMITS.name) ||
+    tooLong(body.lastName, LIMITS.name) ||
+    tooLong(body.email, LIMITS.email) ||
+    tooLong(body.phone, LIMITS.phone) ||
+    tooLong(body.zip, LIMITS.zip) ||
+    tooLong(body.solarInstaller, LIMITS.text) ||
+    tooLong(body.message, LIMITS.text) ||
+    tooLong(body.financeType, LIMITS.quizAnswer) ||
+    tooLong(body.locale, LIMITS.quizAnswer) ||
+    tooLong(body.source, LIMITS.quizAnswer)
+  ) {
+    return true;
+  }
+  if (body.quiz && typeof body.quiz === "object") {
+    const q = body.quiz as Record<string, unknown>;
+    if (Object.keys(q).length > 20) return true;
+    for (const [k, v] of Object.entries(q)) {
+      const max = k === "companyOther" ? LIMITS.text : LIMITS.quizAnswer;
+      if (tooLong(v, max) || (v !== null && typeof v === "object")) return true;
+    }
+  }
+  return false;
+}
+
+/** Removes CR/LF and other control chars so header-bound values stay single-line. */
+function oneLine(value: string) {
+  return value.replace(/[\r\n\t\u0000-\u001f\u007f]+/g, " ").trim();
+}
+
+const fakeSuccess = () => NextResponse.json({ success: true });
+
+export async function GET() {
+  return NextResponse.json(
+    { success: false, error: "Method not allowed." },
+    { status: 405, headers: { Allow: "POST" } }
+  );
+}
+
 async function sendLeadEmail(record: LeadRecord): Promise<{
   ok: boolean;
   error?: string;
@@ -173,9 +254,11 @@ async function sendLeadEmail(record: LeadRecord): Promise<{
       from,
       to,
       ...(record.email ? { reply_to: record.email } : {}),
-      subject: `${record.source === QUIZ_SOURCE ? "New quiz lead (beta)" : "New lead"}: ${
-        record.fullName
-      } (${record.zip || "no ZIP"})`,
+      subject: oneLine(
+        `${record.source === QUIZ_SOURCE ? "New quiz lead (beta)" : "New lead"}: ${
+          record.fullName
+        } (${record.zip || "no ZIP"})`
+      ),
       text: formatLeadEmail(record),
     }),
   });
@@ -208,11 +291,48 @@ async function persistLeadLocally(record: LeadRecord): Promise<boolean> {
 export async function POST(request: NextRequest) {
   let body: LeadBody;
 
+  const ip = clientIp(request);
+  if (isRateLimited(ip)) {
+    return NextResponse.json(
+      {
+        success: false,
+        error:
+          "Too many tries. Please wait a few minutes and try again, or call us at (702) 313-3073.",
+      },
+      { status: 429, headers: { "Retry-After": "600" } }
+    );
+  }
+
   try {
     body = (await request.json()) as LeadBody;
   } catch {
     return NextResponse.json(
       { success: false, error: "Invalid JSON body." },
+      { status: 400 }
+    );
+  }
+
+  if (!body || typeof body !== "object") {
+    return NextResponse.json(
+      { success: false, error: "Invalid JSON body." },
+      { status: 400 }
+    );
+  }
+
+  // Honeypot: humans never see this field. Pretend success, send nothing.
+  if (typeof body.website === "string" && body.website.trim() !== "") {
+    return fakeSuccess();
+  }
+
+  // Time trap: forms filled faster than a human could are bots.
+  if (typeof body.startedAt === "number" && Number.isFinite(body.startedAt)) {
+    const elapsed = Date.now() - body.startedAt;
+    if (elapsed >= 0 && elapsed < MIN_FILL_MS) return fakeSuccess();
+  }
+
+  if (oversized(body)) {
+    return NextResponse.json(
+      { success: false, error: "One or more fields are too long." },
       { status: 400 }
     );
   }
@@ -288,9 +408,9 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     );
   }
-  if (message && message.length > 500) {
+  if (message && message.length > LIMITS.text) {
     return NextResponse.json(
-      { success: false, error: "Message must be 500 characters or fewer." },
+      { success: false, error: "Message must be 1000 characters or fewer." },
       { status: 400 }
     );
   }
@@ -315,6 +435,11 @@ export async function POST(request: NextRequest) {
     ...(locale ? { locale } : {}),
     userAgent: request.headers.get("user-agent") || undefined,
   };
+
+  if (process.env.LEADS_DRY_RUN === "1" && !process.env.VERCEL) {
+    console.log("[leads] dry run: would send lead email", record.id);
+    return NextResponse.json({ success: true, dryRun: true });
+  }
 
   const emailed = await sendLeadEmail(record);
   const savedLocally = await persistLeadLocally(record);

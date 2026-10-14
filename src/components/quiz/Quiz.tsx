@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, FormEvent } from "react";
+import { Honeypot } from "@/components/Honeypot";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import {
@@ -66,6 +67,9 @@ export function Quiz({ locale, dict }: Props) {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [serverMessage, setServerMessage] = useState("");
+  const [website, setWebsite] = useState("");
+  // Measured from mount (for the quiz: before step 1), used by the API time trap.
+  const [startedAt] = useState(() => Date.now());
   const cardRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -156,6 +160,8 @@ export function Quiz({ locale, dict }: Props) {
             answers.company === COMPANY_OTHER
               ? companyOther.trim() || undefined
               : answers.company,
+          website,
+          startedAt,
           locale,
           quiz: {
             ...answers,
@@ -373,6 +379,7 @@ export function Quiz({ locale, dict }: Props) {
 
           {current.kind === "contact" && (
             <form onSubmit={handleSubmit} noValidate>
+              <Honeypot value={website} onChange={setWebsite} />
               <h2 data-step-heading tabIndex={-1} className={headingClass}>
                 {q.questions.contact.q}
               </h2>
