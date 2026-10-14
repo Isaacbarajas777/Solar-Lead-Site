@@ -179,7 +179,10 @@ export function Quiz({ locale, dict }: Props) {
       };
       if (!res.ok || !data.success) {
         setStatus("error");
-        setServerMessage(data.error || form.errors.generic);
+        // Prefer i18n over the English API error body (ES pages must stay Spanish).
+        setServerMessage(
+          res.status === 429 ? form.errors.rateLimit : form.errors.generic
+        );
         return;
       }
       setStatus("success");

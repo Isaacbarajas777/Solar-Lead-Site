@@ -102,7 +102,10 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
 
       if (!res.ok || !data.success) {
         setState("error");
-        setServerMessage(data.error || copy.errors.generic);
+        // Prefer i18n over the English API error body (ES pages must stay Spanish).
+        setServerMessage(
+          res.status === 429 ? copy.errors.rateLimit : copy.errors.generic
+        );
         return;
       }
 
