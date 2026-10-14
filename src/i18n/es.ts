@@ -60,6 +60,8 @@ export const es: Dictionary = {
       message: "El mensaje debe tener 500 caracteres o menos.",
       generic: "Algo salió mal. Inténtelo de nuevo.",
       network: "No se pudo enviar ahora. Inténtelo de nuevo en breve.",
+      rateLimit:
+        "Demasiados intentos. Espere unos minutos e inténtelo de nuevo, o llámenos al (702) 313-3073.",
     },
   },
   problem: {

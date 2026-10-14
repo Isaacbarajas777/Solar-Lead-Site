@@ -47,6 +47,7 @@ export type Dictionary = {
       message: string;
       generic: string;
       network: string;
+      rateLimit: string;
     };
   };
   problem: {

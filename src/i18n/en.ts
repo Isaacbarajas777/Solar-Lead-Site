@@ -60,6 +60,8 @@ export const en: Dictionary = {
       message: "Message must be 500 characters or fewer.",
       generic: "Something went wrong. Please try again.",
       network: "Unable to submit right now. Please try again shortly.",
+      rateLimit:
+        "Too many tries. Please wait a few minutes and try again, or call us at (702) 313-3073.",
     },
   },
   problem: {
