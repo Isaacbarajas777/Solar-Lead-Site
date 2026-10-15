@@ -9,7 +9,7 @@ import heroImg from "../../../public/images/hero-solar-homes.jpg";
 import cardPayments from "../../../public/images/card-powerbill.jpg";
 import cardInstaller from "../../../public/images/card-installer.jpg";
 import cardPaperwork from "../../../public/images/card-paperwork.jpg";
-import cardSelling from "../../../public/images/card-selling.jpg";
+import cardSales from "../../../public/images/card-pushy-sales.jpg";
 import { Quiz } from "./Quiz";
 
 type Props = {
@@ -17,7 +17,7 @@ type Props = {
   dict: Dictionary;
 };
 
-const cardImages = [cardPayments, cardInstaller, cardPaperwork, cardSelling];
+const cardImages = [cardPayments, cardInstaller, cardPaperwork, cardSales];
 
 /** Questionnaire homepage (`/` and `/es`). The full landing page lives at /home. */
 export function QuizPage({ locale, dict }: Props) {

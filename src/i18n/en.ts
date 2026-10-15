@@ -243,9 +243,9 @@ export const en: Dictionary = {
         "Payments higher than promised",
         "Installer went out of business",
         "Lease, loan, or PPA paperwork full of hidden fees",
-        "Selling a home with solar",
+        "Pushy sales or misleading promises",
       ],
-      cardAlts: ["High electric bill", "", "", ""],
+      cardAlts: ["High electric bill", "", "", "Salesperson pressuring a homeowner to sign a contract"],
       go: "Check my options",
     },
     how: {
