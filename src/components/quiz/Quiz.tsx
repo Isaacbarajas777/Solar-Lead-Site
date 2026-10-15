@@ -18,6 +18,8 @@ import { landingPath } from "@/i18n";
 type Props = {
   locale: Locale;
   dict: Dictionary;
+  /** Prefix for element ids so several quizzes can live on one page. */
+  idPrefix?: string;
 };
 
 type SingleKey = "wantCancel" | "misled" | "paymentStructure" | "salesStart" | "payment";
@@ -51,7 +53,7 @@ const optionIdle =
   "bg-cream text-ink hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#1f1712]";
 const optionActive = "bg-ink text-white";
 
-export function Quiz({ locale, dict }: Props) {
+export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
   const q = dict.quiz;
   const form = dict.form;
 
@@ -307,14 +309,14 @@ export function Quiz({ locale, dict }: Props) {
           {current.kind === "company" && (
             <div>
               <h2 data-step-heading tabIndex={-1} className={headingClass}>
-                <label id="quiz-company-label">{q.questions.company.q}</label>
+                <label id={`${idPrefix}-company-label`}>{q.questions.company.q}</label>
               </h2>
               <div className="relative mt-5">
                 <button
                   type="button"
                   aria-haspopup="listbox"
                   aria-expanded={companyOpen}
-                  aria-labelledby="quiz-company-label"
+                  aria-labelledby={`${idPrefix}-company-label`}
                   onClick={() => setCompanyOpen((o) => !o)}
                   className={`${optionBase} ${optionIdle} font-medium`}
                 >
@@ -344,7 +346,7 @@ export function Quiz({ locale, dict }: Props) {
                         className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-base outline-none focus:border-navy-800 focus:ring-2 focus:ring-gold-400/50"
                       />
                     </div>
-                    <ul role="listbox" aria-labelledby="quiz-company-label" className="max-h-72 overflow-y-auto py-1">
+                    <ul role="listbox" aria-labelledby={`${idPrefix}-company-label`} className="max-h-72 overflow-y-auto py-1">
                       {filteredCompanies.length === 1 && companySearch.trim() && (
                         <li className="px-4 py-2 text-sm text-slate-500">{q.questions.company.noResults}</li>
                       )}
@@ -371,12 +373,12 @@ export function Quiz({ locale, dict }: Props) {
               </div>
               {answers.company === COMPANY_OTHER && !companyOpen && (
                 <div className="mt-4">
-                  <label htmlFor="quiz-companyOther" className={labelClass}>
+                  <label htmlFor={`${idPrefix}-companyOther`} className={labelClass}>
                     {q.questions.company.otherLabel}{" "}
                     <span className="font-normal text-slate-500">{form.optional}</span>
                   </label>
                   <input
-                    id="quiz-companyOther"
+                    id={`${idPrefix}-companyOther`}
                     type="text"
                     value={companyOther}
                     onChange={(e) => setCompanyOther(e.target.value)}
@@ -407,11 +409,11 @@ export function Quiz({ locale, dict }: Props) {
               <div className="mt-5 space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label htmlFor="quiz-firstName" className={labelClass}>
+                  <label htmlFor={`${idPrefix}-firstName`} className={labelClass}>
                     {q.questions.contact.firstName} <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="quiz-firstName"
+                    id={`${idPrefix}-firstName`}
                     type="text"
                     autoComplete="given-name"
                     value={firstName}
@@ -422,11 +424,11 @@ export function Quiz({ locale, dict }: Props) {
                   {errors.firstName && <p className={errorClass}>{errors.firstName}</p>}
                 </div>
                 <div>
-                  <label htmlFor="quiz-lastName" className={labelClass}>
+                  <label htmlFor={`${idPrefix}-lastName`} className={labelClass}>
                     {q.questions.contact.lastName} <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="quiz-lastName"
+                    id={`${idPrefix}-lastName`}
                     type="text"
                     autoComplete="family-name"
                     value={lastName}
@@ -438,11 +440,11 @@ export function Quiz({ locale, dict }: Props) {
                 </div>
                 </div>
                 <div>
-                  <label htmlFor="quiz-phone" className={labelClass}>
+                  <label htmlFor={`${idPrefix}-phone`} className={labelClass}>
                     {form.phone} <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="quiz-phone"
+                    id={`${idPrefix}-phone`}
                     type="tel"
                     autoComplete="tel"
                     inputMode="tel"
@@ -455,11 +457,11 @@ export function Quiz({ locale, dict }: Props) {
                   {errors.phone && <p className={errorClass}>{errors.phone}</p>}
                 </div>
                 <div>
-                  <label htmlFor="quiz-email" className={labelClass}>
+                  <label htmlFor={`${idPrefix}-email`} className={labelClass}>
                     {form.email} <span className="text-red-500">*</span>
                   </label>
                   <input
-                    id="quiz-email"
+                    id={`${idPrefix}-email`}
                     type="email"
                     autoComplete="email"
                     inputMode="email"

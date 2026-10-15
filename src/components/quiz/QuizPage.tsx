@@ -103,7 +103,7 @@ export function QuizPage({ locale, dict }: Props) {
         </section>
 
         {/* Problem cards */}
-        <section id="problems" className="scroll-mt-24 pb-[110px] pt-16">
+        <section id="problems" className="scroll-mt-24 pb-14 pt-16 md:pb-16">
           <div className="mx-auto max-w-[1180px] px-6">
             <p className="kicker">{s.problems.kicker}</p>
             <h2 className="font-display mb-3.5 text-[clamp(36px,4.6vw,60px)] leading-[0.98]">
@@ -142,6 +142,14 @@ export function QuizPage({ locale, dict }: Props) {
                 </a>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Second questionnaire, right after the problem cards (independent state) */}
+        <section id="quiz-cards" aria-label={dict.quiz.badge} className="scroll-mt-4 px-4 pb-[110px] md:px-6">
+          <div className="mx-auto max-w-[760px]">
+            <Quiz locale={locale} dict={dict} idPrefix="quiz2" />
+            <p className="mt-5 text-center text-[13px] text-muted">{s.quizReassure}</p>
           </div>
         </section>
 
