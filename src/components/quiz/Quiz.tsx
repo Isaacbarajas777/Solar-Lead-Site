@@ -208,7 +208,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
   return (
     <div
       ref={cardRef}
-      className="rounded-[22px] border-[3px] border-ink bg-white px-5 pb-6 pt-[26px] shadow-[7px_7px_0_#1f1712] sm:rounded-[28px] sm:px-11 sm:pb-9 sm:pt-10 sm:shadow-[10px_10px_0_#1f1712]"
+      className="min-h-[480px] rounded-[22px] border-[3px] border-ink bg-white px-5 pb-10 pt-10 shadow-[7px_7px_0_#1f1712] sm:min-h-[560px] sm:rounded-[28px] sm:px-11 sm:pb-14 sm:pt-14 sm:shadow-[10px_10px_0_#1f1712]"
     >
       {/* Progress */}
       <div className="mb-6 sm:mb-7">
