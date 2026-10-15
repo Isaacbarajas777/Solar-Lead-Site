@@ -262,9 +262,11 @@ export function Quiz({ locale, dict }: Props) {
         </div>
       ) : (
         <>
-          <p className="font-display mb-2.5 text-[clamp(28px,3.2vw,40px)] leading-[1.02] text-ink">
-            {q.title}
-          </p>
+          {step === 0 && (
+            <p className="font-display mb-2.5 text-[clamp(28px,3.2vw,40px)] leading-[1.02] text-ink">
+              {q.title}
+            </p>
+          )}
           {current.kind === "single" && (
             <div>
               <h2 data-step-heading tabIndex={-1} className={headingClass}>
