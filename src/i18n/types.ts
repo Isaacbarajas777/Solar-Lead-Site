@@ -140,6 +140,8 @@ export type Dictionary = {
       titleAccent: string;
       subtitle: string;
       cards: [string, string, string, string];
+      /** Alt text for each card photo ("" = decorative). */
+      cardAlts: [string, string, string, string];
       go: string;
     };
     how: {

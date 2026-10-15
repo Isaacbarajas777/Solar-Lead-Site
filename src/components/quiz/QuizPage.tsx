@@ -6,7 +6,7 @@ import { CallBar } from "@/components/site/CallBar";
 import { SiteNav, telHref } from "@/components/site/SiteNav";
 import { ArrowIcon, FlagIcon, PhoneIcon, SunIcon } from "@/components/site/icons";
 import heroImg from "../../../public/images/hero-solar-homes.jpg";
-import cardPayments from "../../../public/images/card-payments.jpg";
+import cardPayments from "../../../public/images/card-powerbill.jpg";
 import cardInstaller from "../../../public/images/card-installer.jpg";
 import cardPaperwork from "../../../public/images/card-paperwork.jpg";
 import cardSelling from "../../../public/images/card-selling.jpg";
@@ -120,7 +120,7 @@ export function QuizPage({ locale, dict }: Props) {
                   <div className="relative aspect-video overflow-hidden border-b-[3px] border-ink sm:aspect-[4/3]">
                     <Image
                       src={cardImages[i]}
-                      alt=""
+                      alt={s.problems.cardAlts[i]}
                       fill
                       sizes="(min-width:1024px) 270px, (min-width:640px) 50vw, 100vw"
                       quality={70}
