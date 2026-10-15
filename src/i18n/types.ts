@@ -132,7 +132,7 @@ export type Dictionary = {
       ctaCheck: string;
       ctaCall: string;
     };
-    trust: [string, string, string, string];
+    trust: [string, string, string];
     quizReassure: string;
     problems: {
       kicker: string;
