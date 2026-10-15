@@ -46,9 +46,10 @@ function isValidPhone(phone: string) {
 }
 
 const optionBase =
-  "flex w-full items-center justify-between gap-3 rounded-xl border-2 px-4 py-4 text-left text-base font-semibold shadow-sm transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-500 min-h-[60px]";
-const optionIdle = "border-slate-200 bg-white text-navy-900 hover:border-gold-400 hover:bg-gold-50";
-const optionActive = "border-navy-900 bg-navy-900 text-white";
+  "flex w-full items-center justify-between gap-3 rounded-[18px] border-[2.5px] border-ink px-5 py-4 text-left text-[17px] font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust min-h-[64px] sm:px-6 sm:text-[19px]";
+const optionIdle =
+  "bg-cream text-ink hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#1f1712]";
+const optionActive = "bg-ink text-white";
 
 export function Quiz({ locale, dict }: Props) {
   const q = dict.quiz;
@@ -197,21 +198,28 @@ export function Quiz({ locale, dict }: Props) {
     .replace("{total}", String(total));
 
   const fieldClass =
-    "mt-1 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm outline-none transition focus:border-navy-800 focus:ring-2 focus:ring-gold-400/50";
-  const labelClass = "block text-sm font-medium text-slate-700";
+    "mt-1 w-full rounded-xl border-2 border-ink/80 bg-white px-4 py-3 text-base text-ink outline-none transition focus:border-ink focus:ring-2 focus:ring-gold-400/60";
+  const labelClass = "block text-sm font-medium text-brown";
   const errorClass = "mt-1 text-sm text-red-600";
-  const headingClass = "text-xl font-bold leading-snug text-navy-900 outline-none sm:text-2xl";
+  const headingClass = "font-sans text-lg font-medium leading-snug tracking-normal text-brown outline-none sm:text-xl";
 
   return (
-    <div ref={cardRef} className="rounded-2xl bg-white p-5 shadow-xl ring-1 ring-slate-200 sm:p-7">
+    <div
+      ref={cardRef}
+      className="rounded-[22px] border-[3px] border-ink bg-white px-5 pb-6 pt-[26px] shadow-[7px_7px_0_#1f1712] sm:rounded-[28px] sm:px-11 sm:pb-9 sm:pt-10 sm:shadow-[10px_10px_0_#1f1712]"
+    >
       {/* Progress */}
-      <div className="mb-5">
-        <div className="mb-2 flex items-center justify-between text-xs font-medium text-slate-500">
-          {status === "success" ? <span /> : <span>{stepLabel}</span>}
-          <span>{progress}%</span>
+      <div className="mb-6 sm:mb-7">
+        <div className="mb-[18px] flex flex-wrap items-center justify-between gap-2">
+          <span className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-[#f6c48a] bg-[#fff1e0] px-3.5 py-[7px] text-[12px] font-semibold uppercase tracking-[0.1em] text-rust sm:text-[13px]">
+            <span aria-hidden="true">●</span> {q.badge}
+          </span>
+          {status === "success" ? null : (
+            <span className="text-sm font-medium text-muted">{stepLabel}</span>
+          )}
         </div>
         <div
-          className="h-2.5 w-full overflow-hidden rounded-full bg-slate-200"
+          className="h-2 w-full overflow-hidden rounded-full bg-cream-2"
           role="progressbar"
           aria-valuemin={0}
           aria-valuemax={100}
@@ -219,7 +227,7 @@ export function Quiz({ locale, dict }: Props) {
           aria-label={stepLabel}
         >
           <div
-            className="h-full rounded-full bg-gold-500 transition-all duration-300"
+            className="bg-sun-gradient h-full rounded-full transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -227,12 +235,12 @@ export function Quiz({ locale, dict }: Props) {
 
       {status === "success" ? (
         <div className="py-6 text-center" role="status" aria-live="polite">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-gold-400">
+          <div className="bg-sun-gradient mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-ink text-white">
             <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h2 data-step-heading tabIndex={-1} className={headingClass}>
+          <h2 data-step-heading tabIndex={-1} className="font-display text-2xl leading-tight text-ink outline-none sm:text-3xl">
             {q.thankYouTitle}
           </h2>
           <p className="mt-3 text-base text-slate-600">{q.thankYouBody}</p>
@@ -247,19 +255,26 @@ export function Quiz({ locale, dict }: Props) {
           </p>
           <Link
             href={landingPath(locale)}
-            className="mt-6 inline-block rounded-xl bg-navy-900 px-6 py-3.5 text-base font-semibold text-white shadow-md transition hover:bg-navy-800"
+            className="btn btn-dark mt-6"
           >
             {q.learnMore}
           </Link>
         </div>
       ) : (
         <>
+          <p className="font-display mb-2.5 text-[clamp(28px,3.2vw,40px)] leading-[1.02] text-ink">
+            {q.title}
+          </p>
           {current.kind === "single" && (
             <div>
               <h2 data-step-heading tabIndex={-1} className={headingClass}>
                 {q.questions[current.key].q}
               </h2>
-              <div className="mt-5 space-y-3">
+              <div
+                className={`mt-5 grid gap-3.5 ${
+                  quizOptions[current.key].length % 2 === 0 ? "sm:grid-cols-2" : ""
+                }`}
+              >
                 {quizOptions[current.key].map((opt) => {
                   const selected = answers[current.key] === opt;
                   const label = (q.questions[current.key].options as Record<string, string>)[opt];
@@ -274,8 +289,8 @@ export function Quiz({ locale, dict }: Props) {
                       <span>{label}</span>
                       <span
                         aria-hidden="true"
-                        className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 ${
-                          selected ? "border-gold-400 bg-gold-400" : "border-slate-300"
+                        className={`flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full border-[2.5px] ${
+                          selected ? "border-gold-400 bg-gold-400" : "border-ink"
                         }`}
                       >
                         {selected && <span className="h-2 w-2 rounded-full bg-navy-900" />}
@@ -315,7 +330,7 @@ export function Quiz({ locale, dict }: Props) {
                   </svg>
                 </button>
                 {companyOpen && (
-                  <div className="mt-2 overflow-hidden rounded-xl border-2 border-slate-200 bg-white shadow-lg">
+                  <div className="mt-2 overflow-hidden rounded-xl border-[2.5px] border-ink bg-white shadow-[4px_4px_0_#1f1712]">
                     <div className="border-b border-slate-200 p-2">
                       <input
                         ref={searchRef}
@@ -372,7 +387,7 @@ export function Quiz({ locale, dict }: Props) {
                 <button
                   type="button"
                   onClick={goNext}
-                  className="mt-5 w-full rounded-xl bg-gold-500 px-5 py-4 text-base font-bold text-navy-900 shadow-md transition hover:bg-gold-400"
+                  className="btn btn-primary mt-5 w-full !text-base !font-bold"
                 >
                   {q.next}
                 </button>
@@ -488,7 +503,7 @@ export function Quiz({ locale, dict }: Props) {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="mt-5 w-full rounded-xl bg-gold-500 px-5 py-4 text-base font-bold text-navy-900 shadow-md transition hover:bg-gold-400 disabled:cursor-not-allowed disabled:opacity-70"
+                className="btn btn-primary mt-5 w-full !text-base !font-bold disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === "submitting" ? form.submitting : q.submit}
               </button>

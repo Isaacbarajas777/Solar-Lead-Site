@@ -292,7 +292,7 @@ export function LeadForm({ idPrefix = "lead", locale, dict }: Props) {
       <button
         type="submit"
         disabled={state === "submitting"}
-        className="w-full rounded-lg bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-teal-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600 disabled:cursor-not-allowed disabled:opacity-70"
+        className="btn btn-primary w-full !text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600 disabled:cursor-not-allowed disabled:opacity-70"
       >
         {state === "submitting" ? copy.submitting : copy.submit}
       </button>

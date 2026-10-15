@@ -21,7 +21,7 @@ export function Hero({ locale, dict }: Props) {
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-navy-950/90 via-navy-950/75 to-navy-900/55"
+        className="absolute inset-0 bg-gradient-to-r from-[#0e203a]/90 via-[#0e203a]/75 to-[#1e4068]/55"
         aria-hidden="true"
       />
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-12 lg:py-20">
@@ -64,7 +64,7 @@ export function Hero({ locale, dict }: Props) {
         </div>
         <div
           id="lead-form"
-          className="rounded-2xl border border-white/10 bg-white p-5 text-slate-900 shadow-2xl sm:p-7"
+          className="card-outline rounded-[28px] bg-white p-5 text-ink sm:p-7"
         >
           <h2
             id="hero-form-title"

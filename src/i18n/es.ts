@@ -209,6 +209,74 @@ export const es: Dictionary = {
     learnMore: "Conozca más sobre nosotros",
     everyCase: "Cada caso es distinto.",
   },
+  site: {
+    nav: {
+      home: "Inicio",
+      how: "Cómo funciona",
+      who: "A quién ayudamos",
+      check: "Verifique su elegibilidad",
+      call: "Llame ahora",
+      langShort: "EN",
+      menuAria: "Navegación principal",
+    },
+    areas: "Las Vegas · Henderson · North Las Vegas",
+    hero: {
+      titleLine1: "Salga de su",
+      titleAccent: "contrato solar",
+      subtitle:
+        "¿Pagos altos, un instalador que cerró o cargos ocultos? Revise sus opciones.",
+      ctaCheck: "Verifique su elegibilidad",
+      ctaCall: "Llámenos al (702) 313-3073",
+    },
+    trust: [
+      "Consulta gratis",
+      "Con sede en Nevada",
+      "English & Español",
+      "No venderemos su información",
+    ],
+    quizReassure: "Gratis · Sin compromiso · No venderemos su información",
+    problems: {
+      kicker: "A quién ayudamos",
+      titleStart: "Su contrato solar",
+      titleAccent: "salió mal.",
+      subtitle: "Elija lo que se parezca a su caso. Luego vea en qué situación está.",
+      cards: [
+        "Pagos más altos de lo prometido",
+        "Su instalador cerró",
+        "Arrendamiento, préstamo o PPA con cargos ocultos",
+        "Va a vender una casa con paneles solares",
+      ],
+      go: "Ver mis opciones",
+    },
+    how: {
+      kicker: "Cómo funciona",
+      titleStart: "Tres pasos.",
+      titleAccent: "Revisarlo es gratis.",
+      subtitle: "Sin presión y sin rodeos. Respuestas claras sobre su contrato.",
+      steps: [
+        {
+          title: "Responda unas preguntas",
+          body: "Cuéntenos sobre su sistema, sus pagos y su instalador.",
+        },
+        {
+          title: "Revisamos su contrato",
+          body: "Revisamos los términos, los cargos y lo que le dijeron.",
+        },
+        {
+          title: "Le explicamos sus opciones",
+          body: "Recibe pasos claros a seguir, en español o en inglés.",
+        },
+      ],
+    },
+    closing: {
+      kicker: "Consulta gratis",
+      titleStart: "¿Listo para salir de su",
+      titleAccent: "contrato solar?",
+      body: "Responda el cuestionario ahora. Sus respuestas llegan directo a nuestro equipo en Nevada.",
+    },
+    callbar: { call: "Llamar ahora", check: "Verificar elegibilidad" },
+    learnMore: "Conozca más sobre nosotros",
+  },
   footer: {
     tagline: "Consultas gratuitas para personas atrapadas con contratos solares",
     disclaimer:
