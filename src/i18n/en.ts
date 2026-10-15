@@ -245,7 +245,7 @@ export const en: Dictionary = {
         "Lease, loan, or PPA paperwork full of hidden fees",
         "Pushy sales or misleading promises",
       ],
-      cardAlts: ["High electric bill", "", "", "Salesperson pressuring a homeowner to sign a contract"],
+      cardAlts: ["High electric bill", "", "", "Door-to-door salesperson talking to homeowners outside their home"],
       go: "Check my options",
     },
     how: {
