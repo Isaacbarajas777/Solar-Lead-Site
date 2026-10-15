@@ -232,7 +232,6 @@ export const es: Dictionary = {
       "Consulta gratis",
       "Con sede en Nevada",
       "English & Español",
-      "No venderemos su información",
     ],
     quizReassure: "Gratis · Sin compromiso · No venderemos su información",
     problems: {
