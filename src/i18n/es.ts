@@ -244,8 +244,9 @@ export const es: Dictionary = {
         "Pagos más altos de lo prometido",
         "Su instalador cerró",
         "Arrendamiento, préstamo o PPA con cargos ocultos",
-        "Va a vender una casa con paneles solares",
+        "Ventas agresivas o promesas engañosas",
       ],
+      cardAlts: ["Factura de luz alta", "", "", "Vendedor de puerta en puerta hablando con los dueños frente a su casa"],
       go: "Ver mis opciones",
     },
     how: {
