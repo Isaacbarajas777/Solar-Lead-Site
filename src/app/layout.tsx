@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Poppins, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
@@ -7,6 +7,13 @@ import "./globals.css";
 const poppins = Poppins({
   variable: "--font-poppins",
   weight: ["400", "500", "600", "700"],
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  weight: ["700", "800"],
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
@@ -57,7 +64,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${poppins.variable} ${geistMono.variable}`}
+      className={`${poppins.variable} ${bricolage.variable} ${geistMono.variable}`}
     >
       <body className="antialiased">
         {children}

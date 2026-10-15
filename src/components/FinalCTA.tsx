@@ -13,7 +13,7 @@ export function FinalCTA({ locale, dict }: Props) {
     <section className="bg-navy-900 py-16 text-white sm:py-20" id="get-started">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-start">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             {finalCta.title}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-slate-200">
@@ -30,7 +30,7 @@ export function FinalCTA({ locale, dict }: Props) {
             ))}
           </ul>
         </div>
-        <div className="rounded-2xl bg-white p-5 text-slate-900 shadow-xl sm:p-7">
+        <div className="card-outline rounded-[28px] bg-white p-5 text-ink sm:p-7">
           <h3
             id="final-form-title"
             className="text-xl font-semibold text-navy-900"

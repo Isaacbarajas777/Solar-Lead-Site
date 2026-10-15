@@ -114,6 +114,54 @@ export type Dictionary = {
     learnMore: string;
     everyCase: string;
   };
+  site: {
+    nav: {
+      home: string;
+      how: string;
+      who: string;
+      check: string;
+      call: string;
+      langShort: string;
+      menuAria: string;
+    };
+    areas: string;
+    hero: {
+      titleLine1: string;
+      titleAccent: string;
+      subtitle: string;
+      ctaCheck: string;
+      ctaCall: string;
+    };
+    trust: [string, string, string, string];
+    quizReassure: string;
+    problems: {
+      kicker: string;
+      titleStart: string;
+      titleAccent: string;
+      subtitle: string;
+      cards: [string, string, string, string];
+      go: string;
+    };
+    how: {
+      kicker: string;
+      titleStart: string;
+      titleAccent: string;
+      subtitle: string;
+      steps: [
+        { title: string; body: string },
+        { title: string; body: string },
+        { title: string; body: string },
+      ];
+    };
+    closing: {
+      kicker: string;
+      titleStart: string;
+      titleAccent: string;
+      body: string;
+    };
+    callbar: { call: string; check: string };
+    learnMore: string;
+  };
   footer: {
     tagline: string;
     disclaimer: string;

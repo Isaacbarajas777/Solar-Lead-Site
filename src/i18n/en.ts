@@ -208,6 +208,74 @@ export const en: Dictionary = {
     learnMore: "Learn more about us",
     everyCase: "Every case is different.",
   },
+  site: {
+    nav: {
+      home: "Home",
+      how: "How it works",
+      who: "Who we help",
+      check: "Check eligibility",
+      call: "Call now",
+      langShort: "ES",
+      menuAria: "Main navigation",
+    },
+    areas: "Las Vegas · Henderson · North Las Vegas",
+    hero: {
+      titleLine1: "Escape your",
+      titleAccent: "solar contract",
+      subtitle:
+        "Stuck with high payments, a closed installer, or hidden fees? Check your options.",
+      ctaCheck: "Check eligibility",
+      ctaCall: "Call (702) 313-3073",
+    },
+    trust: [
+      "Free consultation",
+      "Nevada-based",
+      "English & Español",
+      "We won't sell your information",
+    ],
+    quizReassure: "Free · No obligation · We won't sell your information",
+    problems: {
+      kicker: "Who we help",
+      titleStart: "Your solar deal went",
+      titleAccent: "wrong.",
+      subtitle: "Pick what sounds like you. Then find out where you stand.",
+      cards: [
+        "Payments higher than promised",
+        "Installer went out of business",
+        "Lease, loan, or PPA paperwork full of hidden fees",
+        "Selling a home with solar",
+      ],
+      go: "Check my options",
+    },
+    how: {
+      kicker: "How it works",
+      titleStart: "Three steps.",
+      titleAccent: "Free to check.",
+      subtitle: "No pressure, no runaround. Straight answers about your contract.",
+      steps: [
+        {
+          title: "Answer a few questions",
+          body: "Tell us about your system, your payments, and your installer.",
+        },
+        {
+          title: "We review your contract",
+          body: "We go through the terms, the fees, and what you were told.",
+        },
+        {
+          title: "We walk you through your options",
+          body: "You get clear next steps in plain English or Spanish.",
+        },
+      ],
+    },
+    closing: {
+      kicker: "Free consultation",
+      titleStart: "Ready to escape your",
+      titleAccent: "solar contract?",
+      body: "Take the quiz now. Your answers go straight to our Nevada team.",
+    },
+    callbar: { call: "Tap to call", check: "Check eligibility" },
+    learnMore: "Learn more about us",
+  },
   footer: {
     tagline: "Free consultations for people stuck with solar contracts",
     disclaimer:
