@@ -223,7 +223,7 @@ export const en: Dictionary = {
       titleLine1: "Stuck in a bad",
       titleAccent: "solar contract?",
       subtitle:
-        "Stuck with high payments, a closed installer, or hidden fees? Check your options.",
+        "We review your contract and give you a clear plan to get out.",
       ctaCheck: "Check eligibility",
       ctaCall: "Call (702) 313-3073",
     },
