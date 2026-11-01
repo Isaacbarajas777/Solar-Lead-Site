@@ -221,8 +221,8 @@ export const es: Dictionary = {
     },
     areas: "Las Vegas · Henderson · North Las Vegas",
     hero: {
-      titleLine1: "Salga de su",
-      titleAccent: "contrato solar",
+      titleLine1: "¿Atrapado en un",
+      titleAccent: "contrato Solar?",
       subtitle:
         "¿Pagos altos, un instalador que cerró o cargos ocultos? Revise sus opciones.",
       ctaCheck: "Verifique su elegibilidad",
