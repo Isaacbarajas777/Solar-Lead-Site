@@ -62,20 +62,37 @@ export function QuizPage({ locale, dict }: Props) {
             <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.2em] opacity-90 md:mb-[22px] md:text-sm md:tracking-[0.28em]">
               {s.areas}
             </p>
-            <h1 className={`font-display ${locale === "es" ? "text-[clamp(45px,8.6vw,124px)]" : "text-[clamp(52px,8.6vw,124px)]"} leading-[0.98] [text-shadow:0_4px_30px_rgba(0,0,0,.25)]`}>
-              <span className={locale === "es" ? "whitespace-nowrap" : undefined}>{s.hero.titleLine1}</span>
-              <br />
-              <span className="text-sun-gradient inline-block pb-[0.06em]">{locale === "es" && s.hero.titleAccent.includes(" ") ? (
-                  <>
-                    {s.hero.titleAccent.slice(0, s.hero.titleAccent.indexOf(" "))}
-                    <br className="md:hidden" />
-                    <span className="hidden md:inline"> </span>
-                    {s.hero.titleAccent.slice(s.hero.titleAccent.indexOf(" ") + 1)}
-                  </>
-                ) : (
-                  s.hero.titleAccent
-                )}</span>
-            </h1>
+            {locale === "es" ? (
+              <h1 className="font-display text-[clamp(52px,8.6vw,124px)] leading-[0.98] [text-shadow:0_4px_30px_rgba(0,0,0,.25)]">
+                {(() => {
+                  const l1 = s.hero.titleLine1;
+                  const cut = l1.lastIndexOf(" ");
+                  const a = s.hero.titleAccent;
+                  const ac = a.indexOf(" ");
+                  const grad = "text-sun-gradient pb-[0.06em] [-webkit-box-decoration-break:clone] [box-decoration-break:clone]";
+                  return (
+                    <>
+                      {l1.slice(0, cut)}
+                      <br className="md:hidden" />
+                      <span className="hidden md:inline"> </span>
+                      {l1.slice(cut + 1)}
+                      <br className="hidden md:inline" />
+                      <span className="md:hidden"> </span>
+                      <span className={grad}>{ac > 0 ? a.slice(0, ac) : a}</span>
+                      <br className="md:hidden" />
+                      <span className="hidden md:inline"> </span>
+                      {ac > 0 && <span className={grad}>{a.slice(ac + 1)}</span>}
+                    </>
+                  );
+                })()}
+              </h1>
+            ) : (
+              <h1 className="font-display text-[clamp(52px,8.6vw,124px)] leading-[0.98] [text-shadow:0_4px_30px_rgba(0,0,0,.25)]">
+                {s.hero.titleLine1}
+                <br />
+                <span className="text-sun-gradient inline-block pb-[0.06em]">{s.hero.titleAccent}</span>
+              </h1>
+            )}
             <p className="mx-auto mb-7 mt-5 max-w-[620px] text-[17px] opacity-95 md:mb-9 md:mt-[26px] md:text-[clamp(17px,1.6vw,21px)]">
               {s.hero.subtitle}
             </p>
