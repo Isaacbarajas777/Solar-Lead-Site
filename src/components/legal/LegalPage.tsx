@@ -8,7 +8,7 @@ import { HtmlLang } from "../HtmlLang";
 export type LegalSection = { h: string; p?: string[]; li?: string[] };
 export type LegalDoc = { title: string; effective: string; intro: string; sections: LegalSection[] };
 
-export const LEGAL_EMAIL = "nevadaenergyadvisors@yahoo.com";
+export const LEGAL_EMAIL = "team@nevadaenergyadvisors.com";
 
 export function legalMetadata(locale: Locale, title: string, paths: { en: string; es: string }): Metadata {
   return {
