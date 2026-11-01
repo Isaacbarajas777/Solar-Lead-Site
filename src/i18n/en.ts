@@ -220,10 +220,10 @@ export const en: Dictionary = {
     },
     areas: "Las Vegas · Henderson · North Las Vegas",
     hero: {
-      titleLine1: "Escape your",
-      titleAccent: "solar contract",
+      titleLine1: "Stuck in a bad",
+      titleAccent: "solar contract?",
       subtitle:
-        "Stuck with high payments, a closed installer, or hidden fees? Check your options.",
+        "We review your contract and walk you through your options.",
       ctaCheck: "Check eligibility",
       ctaCall: "Call (702) 313-3073",
     },
@@ -285,7 +285,7 @@ export const en: Dictionary = {
   legal: {
     banner: {
       aria: "Cookie choices",
-      text: "We use ad cookies only if you say OK.",
+      text: "We use cookies.",
       accept: "Accept",
       reject: "Reject",
       privacy: "Privacy Policy",
