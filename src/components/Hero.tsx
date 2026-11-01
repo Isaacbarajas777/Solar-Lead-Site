@@ -1,6 +1,6 @@
 import { siteConfig } from "@/config/site";
 import type { Dictionary, Locale } from "@/i18n";
-import { LeadForm } from "./LeadForm";
+import { Quiz } from "./quiz/Quiz";
 
 type Props = {
   locale: Locale;
@@ -62,20 +62,8 @@ export function Hero({ locale, dict }: Props) {
             </a>
           </p>
         </div>
-        <div
-          id="lead-form"
-          className="card-outline rounded-[28px] bg-white p-5 text-ink sm:p-7"
-        >
-          <h2
-            id="hero-form-title"
-            className="text-xl font-semibold text-navy-900"
-          >
-            {hero.formTitle}
-          </h2>
-          <p className="mt-1 text-sm text-slate-600">{hero.formSubtitle}</p>
-          <div className="mt-5">
-            <LeadForm idPrefix="hero" locale={locale} dict={dict} />
-          </div>
+        <div id="lead-form" className="scroll-mt-24 text-ink">
+          <Quiz locale={locale} dict={dict} idPrefix="home" />
         </div>
       </div>
     </section>

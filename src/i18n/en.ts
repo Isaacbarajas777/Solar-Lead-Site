@@ -244,7 +244,7 @@ export const en: Dictionary = {
         "Lease, loan, or PPA paperwork full of hidden fees",
         "Pushy sales or misleading promises",
       ],
-      cardAlts: ["High electric bill", "", "", "Solar salesperson pitching a proposal to worried homeowners at their dining table"],
+      cardAlts: ["High electric bill", "Solar panels on a home roof", "Solar contract paperwork", "Solar salesperson pitching a proposal to worried homeowners at their dining table"],
       go: "Check my options",
     },
     how: {
@@ -281,5 +281,23 @@ export const en: Dictionary = {
     disclaimer:
       "After you submit, we may reach out about a free consultation. When it makes sense, we can also connect you with specialists. We won't sell your information. This isn't legal advice, and we can't promise any result, like cancellation, relief, or a refund. Nevada Energy Advisors is a private company. We're not a state or government program, and we're not affiliated with NV Energy or any utility.",
     rights: "All rights reserved.",
+  },
+  legal: {
+    banner: {
+      aria: "Cookie choices",
+      text: "We use ad cookies only if you say OK.",
+      accept: "Accept",
+      reject: "Reject",
+      privacy: "Privacy Policy",
+    },
+    cookieSettings: "Cookie settings",
+    privacy: "Privacy Policy",
+    terms: "Terms",
+    quizConsent: {
+      before:
+        "By submitting, you agree we may contact you by phone, text, or email about your request. Consent is not required to get help. Msg & data rates may apply. Reply STOP to opt out. See our",
+      and: "and",
+      after: ".",
+    },
   },
 };

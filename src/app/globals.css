@@ -77,6 +77,13 @@ html {
     background-clip: text;
     color: transparent;
   }
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid #1f1712;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px #ffffff;
+  }
   .btn {
     display: inline-flex;
     align-items: center;
@@ -90,7 +97,7 @@ html {
     transition: transform 0.15s, box-shadow 0.15s;
   }
   .btn-primary {
-    background-image: linear-gradient(90deg, #f7a531 0%, #ef6a2c 55%, #e0402e 100%);
+    background-image: linear-gradient(90deg, #e2661a 0%, #c94a10 50%, #b23c0c 100%); /* WCAG AA with white text */
     color: #fff;
     box-shadow: 0 10px 24px -8px rgba(224, 64, 46, 0.6);
   }

@@ -1,16 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import type { Dictionary } from "@/i18n";
+import type { Dictionary, Locale } from "@/i18n";
 import { telHref } from "./site/SiteNav";
+import { CookieSettingsButton } from "./CookieSettingsButton";
+import { privacyPath, termsPath } from "@/lib/legalPaths";
 
 type Props = {
   dict: Dictionary;
+  locale: Locale;
   /** Optional link to the other page (e.g. the full /home page). */
   moreLink?: { href: string; label: string };
 };
 
-export function Footer({ dict, moreLink }: Props) {
+export function Footer({ dict, locale, moreLink }: Props) {
   const year = new Date().getFullYear();
 
   return (
@@ -41,7 +44,19 @@ export function Footer({ dict, moreLink }: Props) {
           </div>
         </div>
         <p className="mt-6 max-w-[980px] text-[13px] leading-[1.7] text-[#a8998a]">{dict.footer.disclaimer}</p>
-        <p className="mt-4 text-xs text-[#7d6f62]">
+        <nav aria-label={dict.legal.privacy} className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[13px] font-semibold">
+          <Link href={privacyPath(locale)} className="text-[#e8dccd] underline-offset-2 hover:text-white hover:underline">
+            {dict.legal.privacy}
+          </Link>
+          <Link href={termsPath(locale)} className="text-[#e8dccd] underline-offset-2 hover:text-white hover:underline">
+            {dict.legal.terms}
+          </Link>
+          <CookieSettingsButton
+            label={dict.legal.cookieSettings}
+            className="text-[#e8dccd] underline-offset-2 hover:text-white hover:underline"
+          />
+        </nav>
+        <p className="mt-4 text-xs text-[#a8998a]">
           © {year} {siteConfig.brandName}. {dict.footer.rights}
         </p>
       </div>

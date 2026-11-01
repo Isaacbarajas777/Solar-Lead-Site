@@ -245,7 +245,7 @@ export const es: Dictionary = {
         "Arrendamiento, préstamo o PPA con cargos ocultos",
         "Ventas agresivas o promesas engañosas",
       ],
-      cardAlts: ["Factura de luz alta", "", "", "Vendedor solar presentándole una propuesta a una pareja preocupada en la mesa del comedor"],
+      cardAlts: ["Factura de luz alta", "Paneles solares en el techo de una casa", "Documentos de un contrato solar", "Vendedor solar presentándole una propuesta a una pareja preocupada en la mesa del comedor"],
       go: "Ver mis opciones",
     },
     how: {
@@ -282,5 +282,23 @@ export const es: Dictionary = {
     disclaimer:
       "Después de enviar, podríamos comunicarnos con usted sobre una consulta gratuita. Cuando tenga sentido, también podemos conectarlo con especialistas. No venderemos su información. Esto no es asesoría legal, y no podemos prometer ningún resultado, como cancelación, alivio o reembolso. Nevada Energy Advisors es una empresa privada. No somos un programa estatal ni gubernamental, y no estamos afiliados a NV Energy ni a ninguna empresa de servicios públicos.",
     rights: "Todos los derechos reservados.",
+  },
+  legal: {
+    banner: {
+      aria: "Opciones de cookies",
+      text: "Usamos cookies de anuncios solo si usted lo acepta.",
+      accept: "Aceptar",
+      reject: "Rechazar",
+      privacy: "Política de privacidad",
+    },
+    cookieSettings: "Configuración de cookies",
+    privacy: "Política de privacidad",
+    terms: "Términos",
+    quizConsent: {
+      before:
+        "Al enviar, usted acepta que podamos comunicarnos con usted por teléfono, mensaje de texto o correo electrónico sobre su solicitud. No es necesario dar su consentimiento para recibir ayuda. Pueden aplicarse tarifas de mensajes y datos. Responda STOP para cancelar. Consulte nuestra",
+      and: "y los",
+      after: ".",
+    },
   },
 };

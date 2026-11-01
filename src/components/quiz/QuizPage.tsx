@@ -212,7 +212,7 @@ export function QuizPage({ locale, dict }: Props) {
         </section>
       </main>
 
-      <Footer dict={dict} moreLink={{ href: landingPath(locale), label: s.learnMore }} />
+      <Footer dict={dict} locale={locale} moreLink={{ href: landingPath(locale), label: s.learnMore }} />
       <CallBar dict={dict} checkHref="#quiz" />
     </div>
   );
