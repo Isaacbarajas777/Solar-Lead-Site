@@ -62,8 +62,8 @@ export function QuizPage({ locale, dict }: Props) {
             <p className="mb-4 text-[11px] font-medium uppercase tracking-[0.2em] opacity-90 md:mb-[22px] md:text-sm md:tracking-[0.28em]">
               {s.areas}
             </p>
-            <h1 className="font-display text-[clamp(52px,8.6vw,124px)] leading-[0.98] [text-shadow:0_4px_30px_rgba(0,0,0,.25)]">
-              {s.hero.titleLine1}
+            <h1 className={`font-display ${locale === "es" ? "text-[clamp(40px,8.6vw,124px)]" : "text-[clamp(52px,8.6vw,124px)]"} leading-[0.98] [text-shadow:0_4px_30px_rgba(0,0,0,.25)]`}>
+              <span className={locale === "es" ? "whitespace-nowrap" : undefined}>{s.hero.titleLine1}</span>
               <br />
               <span className="text-sun-gradient inline-block pb-[0.06em]">{s.hero.titleAccent}</span>
             </h1>

@@ -286,7 +286,7 @@ export const es: Dictionary = {
   legal: {
     banner: {
       aria: "Opciones de cookies",
-      text: "Usamos cookies de anuncios solo si usted lo acepta.",
+      text: "Usamos cookies.",
       accept: "Aceptar",
       reject: "Rechazar",
       privacy: "Política de privacidad",
