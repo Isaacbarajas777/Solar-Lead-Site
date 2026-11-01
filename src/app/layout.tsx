@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Poppins, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/config/site";
+import { CookieBanner } from "@/components/CookieBanner";
+import { MetaPixel } from "@/components/MetaPixel";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -55,6 +57,9 @@ export const metadata: Metadata = {
   },
 };
 
+// Meta Pixel loads only after cookie consent (see src/lib/consent.ts).
+const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -68,7 +73,10 @@ export default function RootLayout({
     >
       <body className="antialiased">
         {children}
+        {/* Vercel Web Analytics: first-party, cookieless; disclosed in the Privacy Policy, not consent-gated. */}
         <Analytics />
+        {metaPixelId ? <MetaPixel pixelId={metaPixelId} /> : null}
+        <CookieBanner />
       </body>
     </html>
   );

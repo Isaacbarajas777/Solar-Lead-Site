@@ -169,4 +169,12 @@ export type Dictionary = {
     disclaimer: string;
     rights: string;
   };
+  legal: {
+    banner: { text: string; accept: string; reject: string; privacy: string; aria: string };
+    cookieSettings: string;
+    privacy: string;
+    terms: string;
+    /** TCPA line above the quiz submit button: before + Privacy + and + Terms + after */
+    quizConsent: { before: string; and: string; after: string };
+  };
 };

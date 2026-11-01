@@ -14,6 +14,8 @@ import {
 } from "@/config/quiz";
 import type { Dictionary, Locale } from "@/i18n";
 import { landingPath } from "@/i18n";
+import { trackMetaLead } from "@/lib/metaPixel";
+import { privacyPath, termsPath } from "@/lib/legalPaths";
 
 type Props = {
   locale: Locale;
@@ -189,6 +191,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
         return;
       }
       setStatus("success");
+      trackMetaLead(idPrefix === "quiz" ? "quiz" : "home_quiz", locale);
     } catch {
       setStatus("error");
       setServerMessage(form.errors.network);
@@ -391,7 +394,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
                 <button
                   type="button"
                   onClick={goNext}
-                  className="btn btn-primary mt-5 w-full !text-base !font-bold"
+                  className="btn btn-primary mt-3 w-full !text-base !font-bold"
                 >
                   {q.next}
                 </button>
@@ -504,10 +507,22 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
                 </p>
               )}
 
+              <p className="mt-5 text-xs leading-relaxed text-slate-600">
+                {dict.legal.quizConsent.before}{" "}
+                <Link href={privacyPath(locale)} className="font-semibold text-brown underline underline-offset-2">
+                  {dict.legal.privacy}
+                </Link>{" "}
+                {dict.legal.quizConsent.and}{" "}
+                <Link href={termsPath(locale)} className="font-semibold text-brown underline underline-offset-2">
+                  {dict.legal.terms}
+                </Link>
+                {dict.legal.quizConsent.after}
+              </p>
+
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="btn btn-primary mt-5 w-full !text-base !font-bold disabled:cursor-not-allowed disabled:opacity-70"
+                className="btn btn-primary mt-3 w-full !text-base !font-bold disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === "submitting" ? form.submitting : q.submit}
               </button>

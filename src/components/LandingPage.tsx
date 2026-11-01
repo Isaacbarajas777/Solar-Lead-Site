@@ -17,7 +17,7 @@ type Props = {
 export function LandingPage({ locale, dict }: Props) {
   const toggleLocale = otherLocale(locale);
   const quizHome = localePath(locale);
-  const quizAnchor = `${quizHome}#quiz`;
+  const quizAnchor = "#lead-form";
   return (
     <div className="min-h-screen bg-cream text-ink">
       <SiteNav
@@ -39,7 +39,7 @@ export function LandingPage({ locale, dict }: Props) {
         <FAQ dict={dict} />
         <FinalCTA locale={locale} dict={dict} />
       </main>
-      <Footer dict={dict} moreLink={{ href: quizAnchor, label: dict.site.nav.check }} />
+      <Footer dict={dict} locale={locale} moreLink={{ href: quizAnchor, label: dict.site.nav.check }} />
       <CallBar dict={dict} checkHref={quizAnchor} />
     </div>
   );

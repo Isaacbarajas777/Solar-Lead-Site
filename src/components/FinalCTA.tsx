@@ -1,12 +1,13 @@
 import type { Dictionary, Locale } from "@/i18n";
-import { LeadForm } from "./LeadForm";
+import { PhoneIcon } from "./site/icons";
+import { telHref } from "./site/SiteNav";
 
 type Props = {
   locale: Locale;
   dict: Dictionary;
 };
 
-export function FinalCTA({ locale, dict }: Props) {
+export function FinalCTA({ dict }: Props) {
   const { finalCta } = dict;
 
   return (
@@ -30,17 +31,14 @@ export function FinalCTA({ locale, dict }: Props) {
             ))}
           </ul>
         </div>
-        <div className="card-outline rounded-[28px] bg-white p-5 text-ink sm:p-7">
-          <h3
-            id="final-form-title"
-            className="text-xl font-semibold text-navy-900"
-          >
-            {finalCta.formTitle}
-          </h3>
-          <p className="mt-1 text-sm text-slate-600">{finalCta.formSubtitle}</p>
-          <div className="mt-5">
-            <LeadForm idPrefix="final" locale={locale} dict={dict} />
-          </div>
+        <div className="flex flex-col gap-3.5 sm:flex-row lg:justify-end lg:self-center">
+          <a href="#lead-form" className="btn btn-primary">
+            {dict.site.hero.ctaCheck} <span aria-hidden="true">→</span>
+          </a>
+          <a href={telHref} className="btn btn-ghost">
+            <PhoneIcon />
+            {dict.site.hero.ctaCall}
+          </a>
         </div>
       </div>
     </section>
