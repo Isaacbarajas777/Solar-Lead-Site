@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Poppins, Geist_Mono } from "next/font/google";
+import { Playfair_Display, Source_Sans_3, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/config/site";
 import { CookieBanner } from "@/components/CookieBanner";
 import { MetaPixel } from "@/components/MetaPixel";
 import "./globals.css";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
-  weight: ["400", "500", "600", "700"],
+const sourceSans = Source_Sans_3({
+  variable: "--font-source-sans",
+  weight: ["400", "500", "600"],
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  weight: ["700", "800"],
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  weight: ["500", "600", "700"],
   subsets: ["latin", "latin-ext"],
   display: "swap",
 });
@@ -69,7 +69,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${poppins.variable} ${bricolage.variable} ${geistMono.variable}`}
+      className={`${sourceSans.variable} ${playfair.variable} ${geistMono.variable}`}
     >
       <body className="antialiased">
         {children}

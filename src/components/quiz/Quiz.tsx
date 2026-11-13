@@ -50,10 +50,9 @@ function isValidPhone(phone: string) {
 }
 
 const optionBase =
-  "flex w-full items-center justify-between gap-3 rounded-[18px] border-[2.5px] border-ink px-5 py-4 text-left text-[17px] font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust min-h-[64px] sm:px-6 sm:text-[19px]";
-const optionIdle =
-  "bg-cream text-ink hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#1f1712]";
-const optionActive = "bg-ink text-white";
+  "flex w-full items-center justify-between gap-3 rounded-sm border border-[rgba(11,31,58,0.22)] px-5 py-4 text-left text-[17px] font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink min-h-[64px] sm:px-6 sm:text-[19px]";
+const optionIdle = "bg-cream text-ink hover:border-ink";
+const optionActive = "border-ink bg-ink text-cream";
 
 export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
   const q = dict.quiz;
@@ -203,7 +202,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
     .replace("{total}", String(total));
 
   const fieldClass =
-    "mt-1 w-full rounded-xl border-2 border-ink/80 bg-white px-4 py-3 text-base text-ink outline-none transition focus:border-ink focus:ring-2 focus:ring-gold-400/60";
+    "mt-1 w-full rounded-sm border border-[rgba(11,31,58,0.25)] bg-white px-4 py-3 text-base text-ink outline-none transition focus:border-ink focus:ring-2 focus:ring-gold-400/40";
   const labelClass = "block text-sm font-medium text-brown";
   const errorClass = "mt-1 text-sm text-red-600";
   const headingClass = "font-sans text-lg font-medium leading-snug tracking-normal text-brown outline-none sm:text-xl";
@@ -211,12 +210,12 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
   return (
     <div
       ref={cardRef}
-      className="min-h-[480px] rounded-[22px] border-[3px] border-ink bg-white px-5 pb-10 pt-10 shadow-[7px_7px_0_#1f1712] sm:min-h-[560px] sm:rounded-[28px] sm:px-11 sm:pb-14 sm:pt-14 sm:shadow-[10px_10px_0_#1f1712]"
+      className="min-h-[480px] rounded-sm border border-[rgba(11,31,58,0.16)] bg-white px-5 pb-10 pt-10 sm:min-h-[560px] sm:px-11 sm:pb-14 sm:pt-14"
     >
       {/* Progress */}
       <div className="mb-6 sm:mb-7">
         <div className="mb-[18px] flex flex-wrap items-center justify-between gap-2">
-          <span className="inline-flex items-center gap-2 rounded-full border-[1.5px] border-[#f6c48a] bg-[#fff1e0] px-3.5 py-[7px] text-[12px] font-semibold uppercase tracking-[0.1em] text-rust sm:text-[13px]">
+          <span className="inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-[0.08em] text-gold-600 sm:text-[13px]">
             <span aria-hidden="true">●</span> {q.badge}
           </span>
           {status === "success" ? null : (
@@ -224,7 +223,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
           )}
         </div>
         <div
-          className="h-2 w-full overflow-hidden rounded-full bg-cream-2"
+          className="h-[2px] w-full overflow-hidden bg-cream-2"
           role="progressbar"
           aria-valuemin={0}
           aria-valuemax={100}
@@ -232,7 +231,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
           aria-label={stepLabel}
         >
           <div
-            className="bg-sun-gradient h-full rounded-full transition-all duration-300"
+            className="h-full bg-gold-400 transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -240,7 +239,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
 
       {status === "success" ? (
         <div className="py-6 text-center" role="status" aria-live="polite">
-          <div className="bg-sun-gradient mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border-[3px] border-ink text-white">
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-sm border border-gold-400 text-ink">
             <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
             </svg>
@@ -296,11 +295,11 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
                       <span>{label}</span>
                       <span
                         aria-hidden="true"
-                        className={`flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full border-[2.5px] ${
-                          selected ? "border-gold-400 bg-gold-400" : "border-ink"
+                        className={`flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-sm border ${
+                          selected ? "border-gold-400 bg-gold-400" : "border-ink/50"
                         }`}
                       >
-                        {selected && <span className="h-2 w-2 rounded-full bg-navy-900" />}
+                        {selected && <span className="h-2 w-2 bg-navy-900" />}
                       </span>
                     </button>
                   );
@@ -337,7 +336,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
                   </svg>
                 </button>
                 {companyOpen && (
-                  <div className="mt-2 overflow-hidden rounded-xl border-[2.5px] border-ink bg-white shadow-[4px_4px_0_#1f1712]">
+                  <div className="mt-2 overflow-hidden rounded-sm border border-[rgba(11,31,58,0.16)] bg-white">
                     <div className="border-b border-slate-200 p-2">
                       <input
                         ref={searchRef}
@@ -346,7 +345,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
                         onChange={(e) => setCompanySearch(e.target.value)}
                         placeholder={q.questions.company.searchPlaceholder}
                         aria-label={q.questions.company.searchPlaceholder}
-                        className="w-full rounded-lg border border-slate-300 px-3 py-2.5 text-base outline-none focus:border-navy-800 focus:ring-2 focus:ring-gold-400/50"
+                        className="w-full rounded-sm border border-[rgba(11,31,58,0.2)] px-3 py-2.5 text-base outline-none focus:border-navy-800 focus:ring-2 focus:ring-gold-400/40"
                       />
                     </div>
                     <ul role="listbox" aria-labelledby={`${idPrefix}-company-label`} className="max-h-72 overflow-y-auto py-1">
@@ -394,7 +393,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
                 <button
                   type="button"
                   onClick={goNext}
-                  className="btn btn-primary mt-3 w-full !text-base !font-bold"
+                  className="btn btn-primary mt-3 w-full !text-base"
                 >
                   {q.next}
                 </button>
@@ -489,7 +488,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
                           type="button"
                           aria-pressed={selected}
                           onClick={() => setBestTime(selected ? undefined : t)}
-                          className={`min-h-[48px] rounded-xl border-2 px-2 py-2.5 text-sm font-semibold transition ${
+                          className={`min-h-[48px] rounded-sm border px-2 py-2.5 text-sm font-medium transition ${
                             selected ? optionActive : optionIdle
                           }`}
                         >
@@ -522,7 +521,7 @@ export function Quiz({ locale, dict, idPrefix = "quiz" }: Props) {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="btn btn-primary mt-3 w-full !text-base !font-bold disabled:cursor-not-allowed disabled:opacity-70"
+                className="btn btn-primary mt-3 w-full !text-base disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === "submitting" ? form.submitting : q.submit}
               </button>
