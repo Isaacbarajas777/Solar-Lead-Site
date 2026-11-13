@@ -29,7 +29,7 @@ export function LegalPage({ locale, doc, otherHref }: { locale: Locale; doc: Leg
         toggleLocale={otherLocale(locale)}
         links={[{ href: localePath(locale), label: dict.site.nav.home }]}
       />
-      <main className="mx-auto max-w-[760px] px-6 pb-20 pt-10">
+      <main className="mx-auto max-w-[760px] px-6 pb-24 pt-16">
         <h1 className="font-display text-[clamp(36px,5vw,56px)] leading-[1.02]">{doc.title}</h1>
         <p className="mt-3 text-sm text-muted">{doc.effective}</p>
         <p className="mt-6 text-[17px] leading-relaxed text-brown">{doc.intro}</p>

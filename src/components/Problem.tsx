@@ -8,10 +8,10 @@ export function Problem({ dict }: Props) {
   const { problem } = dict;
 
   return (
-    <section className="bg-cream-2 py-16 sm:py-20" id="problems">
+    <section className="bg-cream-2 py-20 sm:py-24" id="problems">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-ink sm:text-4xl lg:text-5xl">
+          <h2 className="font-display text-2xl font-semibold text-ink sm:text-4xl lg:text-5xl">
             {problem.title}
           </h2>
           <p className="mt-3 text-slate-600">{problem.subtitle}</p>
@@ -20,9 +20,9 @@ export function Problem({ dict }: Props) {
           {problem.items.map((item) => (
             <article
               key={item.title}
-              className="card-outline rounded-3xl bg-white p-6"
+              className="card-outline rounded-sm bg-white p-6"
             >
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-red-50 text-red-600">
+              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-sm border border-[rgba(11,31,58,0.16)] bg-cream text-ink">
                 <svg
                   className="h-5 w-5"
                   fill="currentColor"

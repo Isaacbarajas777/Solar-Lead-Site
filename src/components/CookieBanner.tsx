@@ -31,13 +31,13 @@ export function CookieBanner() {
   }
 
   const btn =
-    "min-h-[32px] rounded-full border-[1.5px] border-ink bg-white px-3.5 text-[12.5px] font-semibold text-ink hover:bg-cream";
+    "min-h-[32px] rounded-sm border border-[rgba(11,31,58,0.25)] bg-white px-3.5 text-[12.5px] font-medium text-ink hover:bg-cream";
 
   return (
     <div
       role="region"
       aria-label={t.banner.aria}
-      className="fixed inset-x-2 bottom-[calc(78px+env(safe-area-inset-bottom))] z-[60] mx-auto flex max-w-[520px] items-center gap-2 rounded-full border-[1.5px] border-ink bg-white/95 py-1.5 pl-4 pr-1.5 text-ink shadow-[0_6px_20px_-10px_rgba(0,0,0,0.4)] md:bottom-4"
+      className="fixed inset-x-2 bottom-[calc(78px+env(safe-area-inset-bottom))] z-[60] mx-auto flex max-w-[520px] items-center gap-2 rounded-sm border border-[rgba(11,31,58,0.16)] bg-[#fdfcfa] py-2 pl-4 pr-2 text-ink shadow-[0_1px_2px_rgba(11,31,58,0.06)] md:bottom-4"
     >
       <p className="min-w-0 flex-1 text-[12px] leading-tight text-brown sm:text-[13px]">
         {t.banner.text}{" "}

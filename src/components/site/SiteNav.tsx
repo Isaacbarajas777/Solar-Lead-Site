@@ -19,17 +19,17 @@ type Props = {
   overlay?: boolean;
 };
 
-/** Pill-shaped site navigation shared by the quiz homepage and /home. */
+/** Formal site navigation shared by the quiz homepage and /home. */
 export function SiteNav({ locale, dict, links, toggleHref, toggleLocale, overlay }: Props) {
   return (
     <header
       className={
         overlay
-          ? "absolute inset-x-0 top-3 z-20 px-3 sm:top-[18px] sm:px-6"
-          : "relative z-20 bg-cream px-3 pb-2 pt-3 sm:px-6 sm:pt-[18px]"
+          ? "absolute inset-x-0 top-0 z-20 border-b border-[rgba(11,31,58,0.12)] border-t-[3px] border-t-gold-400 bg-cream/95 px-4 py-3 sm:px-8 sm:py-4"
+          : "relative z-20 border-b border-[rgba(11,31,58,0.12)] border-t-[3px] border-t-gold-400 bg-cream px-4 py-3 sm:px-8 sm:py-4"
       }
     >
-      <div className="mx-auto flex max-w-[1100px] items-center justify-between rounded-full border-2 border-ink bg-white py-[5px] pl-3 pr-1.5 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.35)] sm:py-1.5 sm:pl-[18px] sm:pr-2">
+      <div className="mx-auto flex max-w-[1100px] items-center justify-between gap-4">
         <Link href={localePath(locale)} className="flex shrink-0 items-center">
           <Image
             src="/logo.png"
@@ -40,13 +40,15 @@ export function SiteNav({ locale, dict, links, toggleHref, toggleLocale, overlay
             priority
           />
         </Link>
-        <nav aria-label={dict.site.nav.menuAria} className="hidden gap-1.5 text-[15px] font-medium text-brown lg:flex">
+        <nav aria-label={dict.site.nav.menuAria} className="hidden gap-6 text-[15px] font-medium text-ink lg:flex">
           {links.map((l) => (
             <Link
               key={l.href + l.label}
               href={l.href}
               aria-current={l.active ? "page" : undefined}
-              className={`rounded-full px-3.5 py-2 transition hover:bg-cream-2 ${l.active ? "bg-cream-2" : ""}`}
+              className={`border-b py-1 transition ${
+                l.active ? "border-gold-600" : "border-transparent hover:border-gold-400/80"
+              }`}
             >
               {l.label}
             </Link>
@@ -57,7 +59,7 @@ export function SiteNav({ locale, dict, links, toggleHref, toggleLocale, overlay
             href={toggleHref}
             hrefLang={toggleLocale}
             aria-label={dict.header.langToggleAria}
-            className="rounded-full px-2 py-1.5 text-[13px] font-semibold text-muted transition hover:bg-cream-2 hover:text-ink sm:px-2.5 sm:py-2 sm:text-sm"
+            className="px-2 py-1.5 text-[13px] font-medium text-muted transition hover:text-ink sm:px-2.5 sm:py-2 sm:text-sm"
           >
             {dict.site.nav.langShort}
           </Link>
